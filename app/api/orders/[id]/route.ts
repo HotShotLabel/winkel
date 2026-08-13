@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { getOrder } from '@/lib/orders'
 
 export async function GET(request: Request, { params }: { params: { id: string } }) {
-  const order = getOrder(params.id)
+  const order = await getOrder(params.id)
   if (!order) {
     return NextResponse.json({ error: 'Order niet gevonden' }, { status: 404 })
   }
@@ -10,8 +10,8 @@ export async function GET(request: Request, { params }: { params: { id: string }
   // Check email from query params
   const url = new URL(request.url)
   const email = url.searchParams.get('email')
-  
-  if (!email || order.customerEmail !== email) {
+
+  if (!email || order.customer_email !== email) {
     return NextResponse.json({ error: 'Ongeldige email' }, { status: 403 })
   }
 

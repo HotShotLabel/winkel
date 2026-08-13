@@ -1,4 +1,4 @@
-import db from '@/lib/db'
+import { supabase } from '@/lib/supabase'
 
 export interface Product {
   id: string
@@ -6,139 +6,160 @@ export interface Product {
   price: number
   image: string
   description: string
+  created_at?: string
 }
 
 export interface Order {
   id: string
-  customerEmail: string
-  customerName: string
+  customer_email: string
+  customer_name: string
   address: string
   items: { productId: string; name: string; price: number; quantity: number }[]
   total: number
   status: 'pending' | 'paid' | 'shipped'
-  trackingCode?: string
-  createdAt: string
+  tracking_code?: string
+  created_at: string
 }
 
-export function getProducts(): Product[] {
-  const rows = db.prepare('SELECT * FROM products').all() as any[]
-  return rows.map(row => ({
-    id: row.id,
-    name: row.name,
-    price: row.price,
-    image: row.image,
-    description: row.description,
-  }))
-}
+export async function getProducts(): Promise<Product[]> {
+  const { data, error } = await supabase
+    .from('products')
+    .select('*')
+    .order('created_at', { ascending: false })
 
-export function getProduct(id: string): Product | undefined {
-  const row = db.prepare('SELECT * FROM products WHERE id = ?').get(id) as any | undefined
-  if (!row) return undefined
-  return {
-    id: row.id,
-    name: row.name,
-    price: row.price,
-    image: row.image,
-    description: row.description,
+  if (error) {
+    console.error('Error fetching products:', error)
+    return []
   }
+  return data || []
 }
 
-export function createProduct(product: Omit<Product, 'id'>) {
-  const id = Date.now().toString()
-  db.prepare('INSERT INTO products (id, name, price, image, description) VALUES (?, ?, ?, ?, ?)').run(
-    id, product.name, product.price, product.image, product.description
-  )
-  return { ...product, id }
-}
+export async function getProduct(id: string): Promise<Product | null> {
+  const { data, error } = await supabase
+    .from('products')
+    .select('*')
+    .eq('id', id)
+    .single()
 
-export function updateProduct(id: string, product: Partial<Product>) {
-  const existing = getProduct(id)
-  if (!existing) return undefined
-
-  const name = product.name ?? existing.name
-  const price = product.price ?? existing.price
-  const image = product.image ?? existing.image
-  const description = product.description ?? existing.description
-
-  db.prepare('UPDATE products SET name = ?, price = ?, image = ?, description = ? WHERE id = ?').run(
-    name, price, image, description, id
-  )
-  return { ...existing, name, price, image, description }
-}
-
-export function deleteProduct(id: string) {
-  db.prepare('DELETE FROM products WHERE id = ?').run(id)
-}
-
-export function getOrders(): Order[] {
-  const rows = db.prepare('SELECT * FROM orders ORDER BY createdAt DESC').all() as any[]
-  return rows.map(row => ({
-    id: row.id,
-    customerEmail: row.customerEmail,
-    customerName: row.customerName,
-    address: row.address,
-    items: JSON.parse(row.items),
-    total: row.total,
-    status: row.status as Order['status'],
-    trackingCode: row.trackingCode || undefined,
-    createdAt: row.createdAt,
-  }))
-}
-
-export function getOrder(id: string): Order | undefined {
-  const row = db.prepare('SELECT * FROM orders WHERE id = ?').get(id) as any | undefined
-  if (!row) return undefined
-  return {
-    id: row.id,
-    customerEmail: row.customerEmail,
-    customerName: row.customerName,
-    address: row.address,
-    items: JSON.parse(row.items),
-    total: row.total,
-    status: row.status as Order['status'],
-    trackingCode: row.trackingCode || undefined,
-    createdAt: row.createdAt,
+  if (error) {
+    console.error('Error fetching product:', error)
+    return null
   }
+  return data
 }
 
-export function addOrder(order: Order) {
-  db.prepare(`
-    INSERT INTO orders (id, customerEmail, customerName, address, items, total, status, trackingCode, createdAt)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `).run(
-    order.id,
-    order.customerEmail,
-    order.customerName,
-    order.address,
-    JSON.stringify(order.items),
-    order.total,
-    order.status,
-    order.trackingCode || '',
-    order.createdAt
-  )
-  return order
+export async function createProduct(product: Omit<Product, 'id' | 'created_at'>): Promise<Product | null> {
+  const { data, error } = await supabase
+    .from('products')
+    .insert(product)
+    .select()
+    .single()
+
+  if (error) {
+    console.error('Error creating product:', error)
+    return null
+  }
+  return data
 }
 
-export function updateOrderTracking(orderId: string, trackingCode: string) {
-  db.prepare('UPDATE orders SET trackingCode = ?, status = ? WHERE id = ?').run(trackingCode, 'shipped', orderId)
-  const order = getOrder(orderId)
-  return order
+export async function updateProduct(id: string, product: Partial<Product>): Promise<Product | null> {
+  const { data, error } = await supabase
+    .from('products')
+    .update(product)
+    .eq('id', id)
+    .select()
+    .single()
+
+  if (error) {
+    console.error('Error updating product:', error)
+    return null
+  }
+  return data
 }
 
-export function updateOrder(orderId: string, data: Partial<Order>) {
-  const existing = getOrder(orderId)
-  if (!existing) return undefined
+export async function deleteProduct(id: string): Promise<boolean> {
+  const { error } = await supabase
+    .from('products')
+    .delete()
+    .eq('id', id)
 
-  const customerEmail = data.customerEmail ?? existing.customerEmail
-  const customerName = data.customerName ?? existing.customerName
-  const address = data.address ?? existing.address
-  const status = data.status ?? existing.status
-  const trackingCode = data.trackingCode ?? existing.trackingCode
+  if (error) {
+    console.error('Error deleting product:', error)
+    return false
+  }
+  return true
+}
 
-  db.prepare(`
-    UPDATE orders SET customerEmail = ?, customerName = ?, address = ?, status = ?, trackingCode = ?
-    WHERE id = ?
-  `).run(customerEmail, customerName, address, status, trackingCode || '', orderId)
+export async function getOrders(): Promise<Order[]> {
+  const { data, error } = await supabase
+    .from('orders')
+    .select('*')
+    .order('created_at', { ascending: false })
 
-  return { ...existing, customerEmail, customerName, address, status, trackingCode }
+  if (error) {
+    console.error('Error fetching orders:', error)
+    return []
+  }
+  return data || []
+}
+
+export async function getOrder(id: string): Promise<Order | null> {
+  const { data, error } = await supabase
+    .from('orders')
+    .select('*')
+    .eq('id', id)
+    .single()
+
+  if (error) {
+    console.error('Error fetching order:', error)
+    return null
+  }
+  return data
+}
+
+export async function addOrder(order: Omit<Order, 'id' | 'created_at'> & { id: string }): Promise<Order | null> {
+  const { data, error } = await supabase
+    .from('orders')
+    .insert({
+      ...order,
+      created_at: new Date().toISOString()
+    })
+    .select()
+    .single()
+
+  if (error) {
+    console.error('Error adding order:', error)
+    return null
+  }
+  return data
+}
+
+export async function updateOrder(id: string, updates: Partial<Order>): Promise<Order | null> {
+  const { data, error } = await supabase
+    .from('orders')
+    .update(updates)
+    .eq('id', id)
+    .select()
+    .single()
+
+  if (error) {
+    console.error('Error updating order:', error)
+    return null
+  }
+  return data
+}
+
+export async function updateOrderTracking(orderId: string, trackingCode: string): Promise<Order | null> {
+  const { data, error } = await supabase
+    .from('orders')
+    .update({ tracking_code: trackingCode, status: 'shipped' })
+    .eq('id', orderId)
+    .select()
+    .single()
+
+  if (error) {
+    console.error('Error updating order tracking:', error)
+    return null
+  }
+  return data
 }

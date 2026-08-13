@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
-import { addOrder, updateOrder } from '@/lib/orders'
+import { addOrder } from '@/lib/orders'
 
 export async function POST(request: Request) {
   try {
@@ -21,13 +21,13 @@ export async function POST(request: Request) {
     }
 
     const total = items.reduce((sum: number, item: any) => sum + item.price * item.quantity, 0)
-
-    // Maak order eerst aan in onze database
     const orderId = `order_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
-    addOrder({
+
+    // Maak order aan in Supabase
+    await addOrder({
       id: orderId,
-      customerEmail: customer.email,
-      customerName: `${customer.firstName} ${customer.lastName}`,
+      customer_email: customer.email,
+      customer_name: `${customer.firstName} ${customer.lastName}`,
       address: `${customer.address} ${customer.houseNumber}, ${customer.postalCode} ${customer.city}, ${customer.country}`,
       items: items.map((item: any) => ({
         productId: item.id,
@@ -37,7 +37,6 @@ export async function POST(request: Request) {
       })),
       total,
       status: 'pending',
-      createdAt: new Date().toISOString(),
     })
 
     // Maak Stripe session aan
@@ -46,16 +45,14 @@ export async function POST(request: Request) {
       line_items: items.map((item: any) => ({
         price_data: {
           currency: 'eur',
-          product_data: {
-            name: item.name,
-          },
+          product_data: { name: item.name },
           unit_amount: Math.round(item.price * 100),
         },
         quantity: item.quantity,
       })),
       mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/success?orderId=${orderId}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/checkout?canceled=true`,
+      success_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://winkel-dgycempvc-suleymanmguerrouj-9731s-projects.vercel.app'}/success?orderId=${orderId}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://winkel-dgycempvc-suleymanmguerrouj-9731s-projects.vercel.app'}/checkout?canceled=true`,
       metadata: {
         orderId,
         customerEmail: customer.email,
@@ -63,9 +60,6 @@ export async function POST(request: Request) {
         address: `${customer.address} ${customer.houseNumber}, ${customer.postalCode} ${customer.city}, ${customer.country}`,
       },
     })
-
-    // Update order met Stripe session ID
-    updateOrder(orderId, { status: 'pending' })
 
     return NextResponse.json({ url: session.url, orderId })
   } catch (error: any) {

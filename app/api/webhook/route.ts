@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
-import { getOrder, updateOrder } from '@/lib/orders'
+import { addOrder, updateOrder } from '@/lib/orders'
 import { sendTelegramNotification, formatOrderNotification } from '@/lib/notifications'
 
 export async function POST(request: Request) {
@@ -19,21 +19,17 @@ export async function POST(request: Request) {
       const orderId = session.metadata?.orderId
 
       if (orderId) {
-        const order = getOrder(orderId)
-        if (order) {
-          updateOrder(orderId, {
-            customerEmail: session.customer_details?.email || order.customerEmail,
-            customerName: session.customer_details?.name || order.customerName,
-            address: session.customer_details?.address ? 
-              `${session.customer_details.address.line1}, ${session.customer_details.address.postal_code} ${session.customer_details.address.city}` : order.address,
-            status: 'paid',
-          })
-        }
+        const order = await updateOrder(orderId, {
+          customer_email: session.customer_details?.email,
+          customer_name: session.customer_details?.name,
+          address: session.customer_details?.address
+            ? `${session.customer_details.address.line1}, ${session.customer_details.address.postal_code} ${session.customer_details.address.city}`
+            : undefined,
+          status: 'paid',
+        })
 
-        // Send Telegram notification
-        const updatedOrder = getOrder(orderId)
-        if (updatedOrder) {
-          const notification = formatOrderNotification(updatedOrder)
+        if (order) {
+          const notification = formatOrderNotification(order)
           await sendTelegramNotification(notification)
         }
       }
