@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
 import { addOrder, updateOrder } from '@/lib/orders'
-import { sendTelegramNotification, formatOrderNotification } from '@/lib/notifications'
+import { sendTelegramNotification, formatOrderNotification, sendEmail, orderConfirmationHtml } from '@/lib/notifications'
 
 export async function POST(request: Request) {
   const body = await request.text()
@@ -34,6 +34,14 @@ export async function POST(request: Request) {
         if (order) {
           const notification = formatOrderNotification(order)
           await sendTelegramNotification(notification)
+
+          if (order.customer_email) {
+            await sendEmail(
+              order.customer_email,
+              `Bestelling bevestigd - ${order.id}`,
+              orderConfirmationHtml(order)
+            )
+          }
         }
       }
 
