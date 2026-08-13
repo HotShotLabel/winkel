@@ -29,15 +29,12 @@ db.exec(`
   )
 `)
 
-// Seed products if empty
-const productCount = db.prepare('SELECT COUNT(*) as count FROM products').get() as any
-if (productCount.count === 0) {
-  const insert = db.prepare('INSERT INTO products (id, name, price, image, description) VALUES (?, ?, ?, ?, ?)')
-  insert.run('1', 'LED Strip Lights 5m', 19.99, 'https://picsum.photos/seed/ledstrip/400/400', 'Kleurrijke LED strip 5 meter, afstandsbediening, waterbestendig. Perfect voor ambiance in je kamer.')
-  insert.run('2', 'Telefoonhouder Universeel', 14.99, 'https://picsum.photos/seed/phoneholder/400/400', 'Flexibele telefoonhouder voor bureau of nachtkastje, geschikt voor alle telefoons.')
-  insert.run('3', 'Fitness Tracker Band', 24.99, 'https://picsum.photos/seed/fitnessband/400/400', 'Smart fitness band met stappenteller, hartslagmeter en slaapmonitoring. 7 dagen batterijduur.')
-  insert.run('4', 'Wireless Earbuds Pro', 39.99, 'https://picsum.photos/seed/earbuds/400/400', 'Actieve ruisonderdrukking, 24 uur speeltijd, waterbestendig IPX7.')
-  insert.run('5', 'Smart Watch Ultra', 49.99, 'https://picsum.photos/seed/smartwatch/400/400', 'Grote touchscreen, GPS, hartslagmeter, 10 dagen batterijduur. Geschikt voor iOS en Android.')
-}
+// Seed products (upsert)
+const insert = db.prepare('INSERT OR REPLACE INTO products (id, name, price, image, description) VALUES (?, ?, ?, ?, ?)')
+insert.run('1', 'LED Strip Lights 5m', 19.99, 'https://picsum.photos/seed/ledstrip/400/400', 'Kleurrijke LED strip 5 meter, afstandsbediening, waterbestendig. Perfect voor ambiance in je kamer.')
+insert.run('2', 'Telefoonhouder Universeel', 14.99, 'https://picsum.photos/seed/phoneholder/400/400', 'Flexibele telefoonhouder voor bureau of nachtkastje, geschikt voor alle telefoons.')
+insert.run('3', 'Fitness Tracker Band', 24.99, 'https://picsum.photos/seed/fitnessband/400/400', 'Smart fitness band met stappenteller, hartslagmeter en slaapmonitoring. 7 dagen batterijduur.')
+insert.run('4', 'Wireless Earbuds Pro', 39.99, 'https://picsum.photos/seed/earbuds/400/400', 'Actieve ruisonderdrukking, 24 uur speeltijd, waterbestendig IPX7.')
+insert.run('5', 'Smart Watch Ultra', 49.99, 'https://picsum.photos/seed/smartwatch/400/400', 'Grote touchscreen, GPS, hartslagmeter, 10 dagen batterijduur. Geschikt voor iOS en Android.')
 
 export default db
