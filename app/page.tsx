@@ -2,7 +2,7 @@ import { getProducts } from '@/lib/orders'
 import ProductCard from '@/components/ProductCard'
 
 export default async function Home() {
-  const products = getProducts()
+  const products = await getProducts()
   
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

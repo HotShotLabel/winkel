@@ -39,7 +39,7 @@ export default function OrderTrackingPage({ params }: { params: { id: string } }
               </div>
               <div>
                 <span className="font-medium">Naam:</span>
-                <span className="ml-2 text-gray-600">{order.customerName}</span>
+                <span className="ml-2 text-gray-600">{order.customer_name}</span>
               </div>
               <div>
                 <span className="font-medium">Status:</span>
@@ -52,10 +52,10 @@ export default function OrderTrackingPage({ params }: { params: { id: string } }
                    order.status === 'shipped' ? 'Verzonden' : 'In behandeling'}
                 </span>
               </div>
-              {order.trackingCode && (
+              {order.tracking_code && (
                 <div>
                   <span className="font-medium">Trackingcode:</span>
-                  <span className="ml-2 text-blue-600">{order.trackingCode}</span>
+                  <span className="ml-2 text-blue-600">{order.tracking_code}</span>
                 </div>
               )}
               {order.status === 'shipped' && (

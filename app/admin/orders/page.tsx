@@ -27,7 +27,7 @@ export default function AdminOrdersPage() {
 
     setOrders(orders.map(o => 
       o.id === selectedOrder.id 
-        ? { ...o, trackingCode: trackingCode.trim(), status: 'shipped' as const }
+        ? { ...o, tracking_code: trackingCode.trim(), status: 'shipped' as const }
         : o
     ))
     setTrackingCode('')
@@ -84,11 +84,11 @@ export default function AdminOrdersPage() {
                     {order.id.slice(0, 12)}...
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {new Date(order.createdAt).toLocaleDateString('nl-NL')}
+                    {new Date(order.created_at).toLocaleDateString('nl-NL')}
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-900">
-                    <div>{order.customerName || 'Onbekend'}</div>
-                    <div className="text-gray-500">{order.customerEmail || ''}</div>
+                    <div>{order.customer_name || 'Onbekend'}</div>
+                    <div className="text-gray-500">{order.customer_email || ''}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                     €{order.total.toFixed(2)}
@@ -104,17 +104,17 @@ export default function AdminOrdersPage() {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {order.trackingCode || '-'}
+                    {order.tracking_code || '-'}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
                     <button
                       onClick={() => {
                         setSelectedOrder(order)
-                        setTrackingCode(order.trackingCode || '')
+                        setTrackingCode(order.tracking_code || '')
                       }}
                       className="text-blue-600 hover:text-blue-800"
                     >
-                      {order.trackingCode ? 'Wijzig tracking' : 'Voeg tracking toe'}
+                      {order.tracking_code ? 'Wijzig tracking' : 'Voeg tracking toe'}
                     </button>
                   </td>
                 </tr>
