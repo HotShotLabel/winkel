@@ -19,14 +19,17 @@ export async function POST(request: Request) {
       const orderId = session.metadata?.orderId
 
       if (orderId) {
-        const order = await updateOrder(orderId, {
-          customer_email: session.customer_details?.email,
-          customer_name: session.customer_details?.name,
-          address: session.customer_details?.address
-            ? `${session.customer_details.address.line1}, ${session.customer_details.address.postal_code} ${session.customer_details.address.city}`
-            : undefined,
+        const updateData: any = {
           status: 'paid',
-        })
+        }
+        if (session.customer_details?.email) updateData.customer_email = session.customer_details.email
+        if (session.customer_details?.name) updateData.customer_name = session.customer_details.name
+        const addr = session.customer_details?.address
+        if (addr?.line1) {
+          updateData.address = `${addr.line1}, ${addr.postal_code} ${addr.city}`
+        }
+
+        const order = await updateOrder(orderId, updateData)
 
         if (order) {
           const notification = formatOrderNotification(order)
