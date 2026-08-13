@@ -51,8 +51,8 @@ export async function POST(request: Request) {
         quantity: item.quantity,
       })),
       mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://hotshotlabel.vercel.app'}/success?orderId=${orderId}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://hotshotlabel.vercel.app'}/checkout?canceled=true`,
+      success_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://mijnwinkel.vercel.app'}/success?orderId=${orderId}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://mijnwinkel.vercel.app'}/checkout?canceled=true`,
       metadata: {
         orderId,
         customerEmail: customer.email,
