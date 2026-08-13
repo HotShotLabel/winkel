@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
-import { addOrder } from '@/lib/orders'
+import { addOrder, updateOrder } from '@/lib/orders'
 
 export async function POST(request: Request) {
   try {
-    const { items } = await request.json()
+    const { items, customer } = await request.json()
 
     if (!items || items.length === 0) {
       return NextResponse.json(
@@ -12,6 +12,33 @@ export async function POST(request: Request) {
         { status: 400 }
       )
     }
+
+    if (!customer?.email || !customer?.firstName || !customer?.lastName) {
+      return NextResponse.json(
+        { error: 'Vul alle verplichte gegevens in' },
+        { status: 400 }
+      )
+    }
+
+    const total = items.reduce((sum: number, item: any) => sum + item.price * item.quantity, 0)
+
+    // Maak order eerst aan in onze database
+    const orderId = `order_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+    addOrder({
+      id: orderId,
+      customerEmail: customer.email,
+      customerName: `${customer.firstName} ${customer.lastName}`,
+      address: `${customer.address} ${customer.houseNumber}, ${customer.postalCode} ${customer.city}, ${customer.country}`,
+      items: items.map((item: any) => ({
+        productId: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+      })),
+      total,
+      status: 'pending',
+      createdAt: new Date().toISOString(),
+    })
 
     // Maak Stripe session aan
     const session = await stripe.checkout.sessions.create({
@@ -27,31 +54,20 @@ export async function POST(request: Request) {
         quantity: item.quantity,
       })),
       mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/?success=true`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/cart?canceled=true`,
+      success_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/success?orderId=${orderId}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/checkout?canceled=true`,
       metadata: {
-        items: JSON.stringify(items),
+        orderId,
+        customerEmail: customer.email,
+        customerName: `${customer.firstName} ${customer.lastName}`,
+        address: `${customer.address} ${customer.houseNumber}, ${customer.postalCode} ${customer.city}, ${customer.country}`,
       },
     })
 
-    // Sla order op in onze database
-    addOrder({
-      id: session.id,
-      customerEmail: '', // Wordt gevuld na betaling via webhook
-      customerName: '',
-      address: '',
-      items: items.map((item: any) => ({
-        productId: item.id,
-        name: item.name,
-        price: item.price,
-        quantity: item.quantity,
-      })),
-      total: items.reduce((sum: number, item: any) => sum + item.price * item.quantity, 0),
-      status: 'pending',
-      createdAt: new Date().toISOString(),
-    })
+    // Update order met Stripe session ID
+    updateOrder(orderId, { status: 'pending' })
 
-    return NextResponse.json({ url: session.url })
+    return NextResponse.json({ url: session.url, orderId })
   } catch (error: any) {
     console.error('Checkout error:', error)
     return NextResponse.json(

@@ -124,3 +124,21 @@ export function updateOrderTracking(orderId: string, trackingCode: string) {
   const order = getOrder(orderId)
   return order
 }
+
+export function updateOrder(orderId: string, data: Partial<Order>) {
+  const existing = getOrder(orderId)
+  if (!existing) return undefined
+
+  const customerEmail = data.customerEmail ?? existing.customerEmail
+  const customerName = data.customerName ?? existing.customerName
+  const address = data.address ?? existing.address
+  const status = data.status ?? existing.status
+  const trackingCode = data.trackingCode ?? existing.trackingCode
+
+  db.prepare(`
+    UPDATE orders SET customerEmail = ?, customerName = ?, address = ?, status = ?, trackingCode = ?
+    WHERE id = ?
+  `).run(customerEmail, customerName, address, status, trackingCode || '', orderId)
+
+  return { ...existing, customerEmail, customerName, address, status, trackingCode }
+}

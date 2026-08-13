@@ -1,34 +1,11 @@
 'use client'
 
 import { useCart } from '@/components/Cart'
-import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function CartPage() {
-  const { items, removeFromCart, total, clearCart } = useCart()
-  const [loading, setLoading] = useState(false)
-
-  const handleCheckout = async () => {
-    setLoading(true)
-    try {
-      const response = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ items }),
-      })
-
-      const { url } = await response.json()
-      if (url) {
-        window.location.href = url
-      }
-    } catch (error) {
-      console.error('Checkout error:', error)
-      alert('Er is iets misgegaan. Probeer het opnieuw.')
-    } finally {
-      setLoading(false)
-    }
-  }
+  const { items, removeFromCart, total } = useCart()
+  const router = useRouter()
 
   if (items.length === 0) {
     return (
@@ -68,11 +45,10 @@ export default function CartPage() {
             <span className="text-2xl font-bold text-gray-900">€{total.toFixed(2)}</span>
           </div>
           <button
-            onClick={handleCheckout}
-            disabled={loading}
-            className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-400"
+            onClick={() => router.push('/checkout')}
+            className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors"
           >
-            {loading ? 'Laden...' : 'Betalen met Stripe'}
+            Doorgaan naar checkout
           </button>
         </div>
       </div>

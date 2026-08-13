@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
-import { getOrder, addOrder } from '@/lib/orders'
+import { getOrder, updateOrder } from '@/lib/orders'
 import { sendTelegramNotification, formatOrderNotification } from '@/lib/notifications'
 
 export async function POST(request: Request) {
@@ -16,27 +16,27 @@ export async function POST(request: Request) {
 
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object as any
-      
-      // Update order with customer info
-      const existingOrder = getOrder(session.id)
-      if (existingOrder) {
-        existingOrder.customerEmail = session.customer_details?.email || ''
-        existingOrder.customerName = session.customer_details?.name || ''
-        existingOrder.address = session.customer_details?.address ? 
-          `${session.customer_details.address.line1}, ${session.customer_details.address.postal_code} ${session.customer_details.address.city}` : ''
-        existingOrder.status = 'paid'
-        
-        // Save updated order
-        const db = (await import('@/lib/db')).default
-        db.prepare(`
-          UPDATE orders SET customerEmail = ?, customerName = ?, address = ?, status = ?
-          WHERE id = ?
-        `).run(existingOrder.customerEmail, existingOrder.customerName, existingOrder.address, 'paid', session.id)
-      }
+      const orderId = session.metadata?.orderId
 
-      // Send Telegram notification
-      const notification = formatOrderNotification(existingOrder || session)
-      await sendTelegramNotification(notification)
+      if (orderId) {
+        const order = getOrder(orderId)
+        if (order) {
+          updateOrder(orderId, {
+            customerEmail: session.customer_details?.email || order.customerEmail,
+            customerName: session.customer_details?.name || order.customerName,
+            address: session.customer_details?.address ? 
+              `${session.customer_details.address.line1}, ${session.customer_details.address.postal_code} ${session.customer_details.address.city}` : order.address,
+            status: 'paid',
+          })
+        }
+
+        // Send Telegram notification
+        const updatedOrder = getOrder(orderId)
+        if (updatedOrder) {
+          const notification = formatOrderNotification(updatedOrder)
+          await sendTelegramNotification(notification)
+        }
+      }
 
       console.log(`Payment succeeded for session: ${session.id}`)
     }
