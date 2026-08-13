@@ -31,8 +31,8 @@ export function formatOrderNotification(order: any): string {
 🛒 <b>Nieuwe bestelling!</b>
 
 💰 <b>Totaal:</b> €${order.total.toFixed(2)}
-👤 <b>Klant:</b> ${order.customerName || 'Onbekend'}
-📧 <b>Email:</b> ${order.customerEmail || 'Geen'}
+👤 <b>Klant:</b> ${order.customer_name || 'Onbekend'}
+📧 <b>Email:</b> ${order.customer_email || 'Geen'}
 📍 <b>Adres:</b> ${order.address || 'Geen'}
 
 <b>Producten:</b>
