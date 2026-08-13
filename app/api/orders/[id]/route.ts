@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import { getOrder } from '@/lib/orders'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   const order = await getOrder(params.id)
   if (!order) {

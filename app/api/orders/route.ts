@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import { getOrders, updateOrder, updateOrderTracking } from '@/lib/orders'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   const orders = await getOrders()
   return NextResponse.json(orders)
