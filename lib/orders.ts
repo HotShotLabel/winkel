@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase'
+import { getSupabase } from '@/lib/supabase'
 
 export interface Product {
   id: string
@@ -22,7 +22,7 @@ export interface Order {
 }
 
 export async function getProducts(): Promise<Product[]> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('products')
     .select('*')
     .order('created_at', { ascending: false })
@@ -35,7 +35,7 @@ export async function getProducts(): Promise<Product[]> {
 }
 
 export async function getProduct(id: string): Promise<Product | null> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('products')
     .select('*')
     .eq('id', id)
@@ -49,7 +49,7 @@ export async function getProduct(id: string): Promise<Product | null> {
 }
 
 export async function createProduct(product: Omit<Product, 'id' | 'created_at'>): Promise<Product | null> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('products')
     .insert(product)
     .select()
@@ -63,7 +63,7 @@ export async function createProduct(product: Omit<Product, 'id' | 'created_at'>)
 }
 
 export async function updateProduct(id: string, product: Partial<Product>): Promise<Product | null> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('products')
     .update(product)
     .eq('id', id)
@@ -78,7 +78,7 @@ export async function updateProduct(id: string, product: Partial<Product>): Prom
 }
 
 export async function deleteProduct(id: string): Promise<boolean> {
-  const { error } = await supabase
+  const { error } = await getSupabase()
     .from('products')
     .delete()
     .eq('id', id)
@@ -91,7 +91,7 @@ export async function deleteProduct(id: string): Promise<boolean> {
 }
 
 export async function getOrders(): Promise<Order[]> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('orders')
     .select('*')
     .order('created_at', { ascending: false })
@@ -104,7 +104,7 @@ export async function getOrders(): Promise<Order[]> {
 }
 
 export async function getOrder(id: string): Promise<Order | null> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('orders')
     .select('*')
     .eq('id', id)
@@ -118,7 +118,7 @@ export async function getOrder(id: string): Promise<Order | null> {
 }
 
 export async function addOrder(order: Omit<Order, 'id' | 'created_at'> & { id: string }): Promise<Order | null> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('orders')
     .insert({
       ...order,
@@ -135,7 +135,7 @@ export async function addOrder(order: Omit<Order, 'id' | 'created_at'> & { id: s
 }
 
 export async function updateOrder(id: string, updates: Partial<Order>): Promise<Order | null> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('orders')
     .update(updates)
     .eq('id', id)
@@ -150,7 +150,7 @@ export async function updateOrder(id: string, updates: Partial<Order>): Promise<
 }
 
 export async function updateOrderTracking(orderId: string, trackingCode: string): Promise<Order | null> {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('orders')
     .update({ tracking_code: trackingCode, status: 'shipped' })
     .eq('id', orderId)
