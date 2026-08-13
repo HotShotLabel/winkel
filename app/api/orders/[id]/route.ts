@@ -7,11 +7,11 @@ export async function GET(request: Request, { params }: { params: { id: string }
     return NextResponse.json({ error: 'Order niet gevonden' }, { status: 404 })
   }
 
-  // Check email from query params
+  // Optionele email-check: alleen als email query param meegegeven is
   const url = new URL(request.url)
   const email = url.searchParams.get('email')
 
-  if (!email || order.customer_email !== email) {
+  if (email && order.customer_email !== email) {
     return NextResponse.json({ error: 'Ongeldige email' }, { status: 403 })
   }
 
