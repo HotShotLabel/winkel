@@ -38,3 +38,4 @@ Bewerk `lib/orders.ts` om producten toe te voegen/veranderen.
 1. Vergeet niet om `.env.local` aan te passen voor productie
 2. Deploy naar Vercel (1-click vanuit GitHub)
 3. Zet Stripe webhook op je live URL: https://jouwdomein.nl/api/webhook
+// trigger redeploy
