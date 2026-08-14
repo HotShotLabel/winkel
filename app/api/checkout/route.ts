@@ -2,10 +2,21 @@ import { NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
 import { addOrder } from '@/lib/orders'
 import { getCountry, locationTreeId } from '@/lib/address-map'
+import { validateCoupon } from '@/lib/coupons'
+
+// Idempotente Stripe-coupon per kortingspercentage (hergebruikt, niet opnieuw aangemaakt).
+async function getStripeCoupon(percent: number): Promise<string> {
+  const name = `PCT${percent}`
+  const existing = await stripe.coupons.list({ limit: 100 })
+  const found = existing.data.find((c: any) => c.name === name)
+  if (found) return found.id
+  const created = await stripe.coupons.create({ percent_off: percent, name, duration: 'once' })
+  return created.id
+}
 
 export async function POST(request: Request) {
   try {
-    const { items, customer } = await request.json()
+    const { items, customer, couponCode } = await request.json()
     const host = request.headers.get('host')
     const baseUrl =
       process.env.NEXT_PUBLIC_BASE_URL ||
@@ -48,6 +59,24 @@ export async function POST(request: Request) {
     const total = items.reduce((sum: number, item: any) => sum + item.price * item.quantity, 0)
     const orderId = `order_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
 
+    // Coupon valideren (server-side, nooit vertrouwen op de client)
+    let discountAmount = 0
+    let couponDiscounts: any[] = []
+    if (couponCode) {
+      const validation = await validateCoupon(couponCode, total)
+      if (!validation.valid) {
+        return NextResponse.json(
+          { error: 'Coupon ongeldig of verlopen' },
+          { status: 400 }
+        )
+      }
+      discountAmount = validation.discountAmount || 0
+      const stripeCouponId = await getStripeCoupon(validation.discountPct!)
+      couponDiscounts = [{ coupon: stripeCouponId }]
+    }
+
+    const payableTotal = Math.max(0, total - discountAmount)
+
     // Maak order aan in Supabase
     await addOrder({
       id: orderId,
@@ -60,7 +89,7 @@ export async function POST(request: Request) {
         price: item.price,
         quantity: item.quantity,
       })),
-      total,
+      total: payableTotal,
       status: 'pending',
     })
 
@@ -75,6 +104,7 @@ export async function POST(request: Request) {
         },
         quantity: item.quantity,
       })),
+      ...(couponDiscounts.length > 0 ? { discounts: couponDiscounts } : {}),
       mode: 'payment',
       success_url: `${baseUrl}/success?orderId=${orderId}`,
       cancel_url: `${baseUrl}/checkout?canceled=true`,
@@ -84,6 +114,8 @@ export async function POST(request: Request) {
         customerName: `${customer.firstName} ${customer.lastName}`,
         address: `${customer.address} ${customer.houseNumber}, ${customer.postalCode} ${customer.city}, ${customer.country}`,
         addressMap: addressMap ? JSON.stringify(addressMap) : '',
+        couponCode: couponCode || '',
+        discountAmount: discountAmount ? String(discountAmount) : '',
       },
     })
 

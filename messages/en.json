@@ -6,7 +6,8 @@
     "account": "My account",
     "accountShort": "account",
     "admin": "Admin",
-    "language": "Language"
+    "language": "Language",
+    "wishlist": "Wishlist"
   },
   "home": {
     "heroTitle": "Welcome to Our Shop",
@@ -50,7 +51,15 @@
     "addToCartN": "🛒 Add to cart ({n})",
     "added": "✓ Added",
     "home": "Home",
-    "soldToday": "people bought this"
+    "soldToday": "people bought this",
+    "trustTitle": "Safe & trusted",
+    "trust1": "Free shipping",
+    "trust2": "14 days return",
+    "trust3": "Secure payment",
+    "trust4": "iDEAL & credit card",
+    "relatedTitle": "Other customers also viewed",
+    "wishlistSave": "Save",
+    "wishlistSaved": "On wishlist"
   },
   "cart": {
     "title": "Shopping cart",
@@ -84,7 +93,15 @@
     "quantity": "Quantity:",
     "total": "Total",
     "loading": "Loading...",
-    "errGeneric": "Something went wrong. Please try again."
+    "errGeneric": "Something went wrong. Please try again.",
+    "couponPlaceholder": "Discount code",
+    "couponApply": "Apply",
+    "couponChecking": "Check...",
+    "couponDiscount": "{pct}% discount",
+    "couponRemove": "To delete",
+    "couponInvalid": "This discount code is invalid or expired.",
+    "subtotal": "Subtotal",
+    "discount": "Discount"
   },
   "success": {
     "thanks": "Thank you for your order!",
@@ -175,7 +192,9 @@
     "copyright": "© {year} My Shop. All rights reserved.",
     "contact": "Contact",
     "privacy": "Privacy Policy",
-    "terms": "Terms & Conditions"
+    "terms": "Terms & Conditions",
+    "contactLink": "Contact",
+    "about": "About us"
   },
   "privacy": {
     "title": "Privacy Policy",
@@ -313,5 +332,43 @@
         "a": "Yes, on the order page with your email and order code you see the status: paid or shipped. A track & trace code is shown when available."
       }
     ]
+  },
+  "wishlist": {
+    "title": "My wish list",
+    "empty": "Your wish list is still empty. Tap the heart next to products to save them here.",
+    "backToShop": "To the products",
+    "addToCart": "Add to cart",
+    "remove": "To delete"
+  },
+  "cookie": {
+    "text": "We use cookies to improve your experience and understand how visitors use our store.",
+    "privacy": "Read our privacy policy",
+    "accept": "Accept",
+    "decline": "To refuse"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Do you have a question about your order, a product or our service? Send us a message and we will respond as soon as possible.",
+    "name": "Name *",
+    "email": "Email *",
+    "subject": "Subject",
+    "message": "Message *",
+    "send": "To steer",
+    "sending": "To steer...",
+    "sentTitle": "Message sent!",
+    "sentText": "Thank you for your message. We will contact you as soon as possible.",
+    "error": "Something went wrong. Please try again."
+  },
+  "about": {
+    "title": "About us",
+    "p1": "My Shop is an online store with smart gadgets and useful products for everyday life. We select products that make life just a little easier — from smart solutions for the home to handy accessories on the go.",
+    "p2": "We work directly with manufacturers and suppliers, so we can offer competitive prices without sacrificing quality. Every order is carefully prepared and shipped.",
+    "p3": "Our goal is simple: make customers happy with good products, fast delivery and honest service. No complicated conditions, no surprises — just clear and reliable.",
+    "promiseTitle": "Our promise",
+    "promise1": "Competitive prices through direct collaboration with suppliers",
+    "promise2": "Secure payment via Stripe (iDEAL, credit card)",
+    "promise3": "100% satisfaction guarantee - money back guarantee",
+    "promise4": "Personal customer service by email",
+    "p4": "Do you have any questions? Please feel free to contact us — we are happy to help you."
   }
 }

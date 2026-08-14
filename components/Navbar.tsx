@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
 import { useAdmin } from '@/components/AdminContext'
 import { useCart } from '@/components/Cart'
+import { useWishlist } from '@/components/Wishlist'
 import { usePathname } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
 import Logo from '@/components/Logo'
@@ -20,6 +21,7 @@ export default function Navbar() {
   const t = useTranslations('nav')
   const { isAuthenticated } = useAdmin()
   const { itemCount } = useCart()
+  const { count: wishlistCount } = useWishlist()
   const pathname = usePathname() // pad ZONDER locale-prefix (next-intl gedrag)
   const locale = useLocale()
 
@@ -47,6 +49,20 @@ export default function Navbar() {
                   className="cart-badge inline-flex items-center justify-center min-w-[1.5rem] h-5 sm:h-6 px-1.5 rounded-full bg-blue-600 text-white text-xs font-bold"
                 >
                   {itemCount}
+                </span>
+              )}
+            </Link>
+            <Link href="/wishlist" className="text-gray-900 hover:text-gray-600 flex items-center gap-1.5">
+              <span className="hidden sm:inline">{t('wishlist')}</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-5 h-5 sm:hidden">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+              {wishlistCount > 0 && (
+                <span
+                  key={wishlistCount}
+                  className="inline-flex items-center justify-center min-w-[1.5rem] h-5 sm:h-6 px-1.5 rounded-full bg-red-500 text-white text-xs font-bold"
+                >
+                  {wishlistCount}
                 </span>
               )}
             </Link>

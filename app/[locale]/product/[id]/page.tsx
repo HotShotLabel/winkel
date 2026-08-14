@@ -1,4 +1,4 @@
-import { getProduct, localizeProduct, getPaidOrderCounts } from '@/lib/orders'
+import { getProduct, localizeProduct, getPaidOrderCounts, getProducts } from '@/lib/orders'
 import { getProductPrices } from '@/lib/prices'
 import { getReviews } from '@/lib/reviews'
 import { notFound } from 'next/navigation'
@@ -8,6 +8,7 @@ import { Link } from '@/i18n/navigation'
 import { absoluteUrl, languageAlternates } from '@/lib/seo'
 import AddToCartButton from '@/components/AddToCartButton'
 import ReviewSection from '@/components/ReviewSection'
+import WishlistButton from '@/components/WishlistButton'
 
 export const dynamic = 'force-dynamic'
 
@@ -66,6 +67,11 @@ export default async function ProductPage({ params }: { params: { id: string } }
     reviews.length > 0
       ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
       : 0
+
+  // Gerelateerde producten: 4 andere producten (nieuwste eerst)
+  const allProducts = await getProducts()
+  const related = allProducts.filter(p => p.id !== product.id).slice(0, 4)
+  const relatedPrices = await getProductPrices()
 
   const productSchema = {
     '@context': 'https://schema.org',
@@ -158,7 +164,10 @@ export default async function ProductPage({ params }: { params: { id: string } }
 
           <p className="text-gray-600 mb-6 leading-relaxed">{product.description}</p>
 
-          <AddToCartButton product={product} large />
+          <div className="flex items-center gap-3">
+            <AddToCartButton product={product} large />
+            <WishlistButton productId={product.id} showLabel className="px-4 py-3 border border-gray-200" />
+          </div>
 
           {/* Social proof */}
           {soldCount > 0 && (
@@ -166,6 +175,26 @@ export default async function ProductPage({ params }: { params: { id: string } }
               ✓ {soldCount} {t('soldToday')}
             </p>
           )}
+
+          {/* Trust badges */}
+          <div className="mt-6 grid grid-cols-2 gap-3">
+            <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">
+              <span className="text-lg">🚚</span>
+              <span className="text-sm font-medium text-gray-700">{t('trust1')}</span>
+            </div>
+            <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">
+              <span className="text-lg">↩️</span>
+              <span className="text-sm font-medium text-gray-700">{t('trust2')}</span>
+            </div>
+            <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">
+              <span className="text-lg">🔒</span>
+              <span className="text-sm font-medium text-gray-700">{t('trust3')}</span>
+            </div>
+            <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">
+              <span className="text-lg">💳</span>
+              <span className="text-sm font-medium text-gray-700">{t('trust4')}</span>
+            </div>
+          </div>
 
           {/* Garantie-blok */}
           <div className="mt-8 bg-green-50 border border-green-200 rounded-xl p-5">
@@ -199,6 +228,49 @@ export default async function ProductPage({ params }: { params: { id: string } }
 
       {/* Beoordelingen */}
       <ReviewSection productId={product.id} initialReviews={reviews} />
+
+      {/* Gerelateerde producten */}
+      {related.length > 0 && (
+        <section className="mt-14">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">{t('relatedTitle')}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {related.map(rp => {
+              const localized = localizeProduct(rp, locale)
+              const relOldPrice = relatedPrices[rp.id]?.old_price
+              return (
+                <Link
+                  key={rp.id}
+                  href={`/product/${rp.id}`}
+                  className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow block"
+                >
+                  <div className="aspect-square bg-gray-200 flex items-center justify-center">
+                    {rp.image ? (
+                      <img src={rp.image} alt={localized.name} className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="text-gray-400 text-sm">-</span>
+                    )}
+                  </div>
+                  <div className="p-4">
+                    <h3 className="text-sm font-semibold text-gray-900 mb-1 line-clamp-2">
+                      {localized.name}
+                    </h3>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-lg font-bold text-gray-900">
+                        €{localized.price.toFixed(2)}
+                      </span>
+                      {relOldPrice && relOldPrice > localized.price && (
+                        <span className="text-sm text-gray-400 line-through">
+                          €{relOldPrice.toFixed(2)}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </Link>
+              )
+            })}
+          </div>
+        </section>
+      )}
     </div>
   )
 }

@@ -6,6 +6,14 @@ import { useTranslations } from 'next-intl'
 import { useRouter, Link } from '@/i18n/navigation'
 import { COUNTRIES } from '@/lib/address-map'
 
+interface CouponState {
+  code: string
+  status: 'idle' | 'checking' | 'valid' | 'invalid'
+  discountPct?: number
+  discountAmount?: number
+  error?: string
+}
+
 export default function CheckoutPage() {
   const t = useTranslations('checkout')
   const { items, total, clearCart } = useCart()
@@ -13,6 +21,7 @@ export default function CheckoutPage() {
   const [loading, setLoading] = useState(false)
   const [agreed, setAgreed] = useState(false)
   const [termsError, setTermsError] = useState(false)
+  const [coupon, setCoupon] = useState<CouponState>({ code: '', status: 'idle' })
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -27,6 +36,39 @@ export default function CheckoutPage() {
   })
 
   const country = COUNTRIES.find((c) => c.name === formData.country)
+
+  const discount = coupon.status === 'valid' ? coupon.discountAmount || 0 : 0
+  const payable = Math.max(0, total - discount)
+
+  const applyCoupon = async () => {
+    const code = coupon.code.trim()
+    if (!code || coupon.status === 'checking') return
+    setCoupon({ ...coupon, status: 'checking' })
+    try {
+      const res = await fetch('/api/coupons', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code, subtotal: total }),
+      })
+      const result = await res.json()
+      if (result.valid && result.discountAmount > 0) {
+        setCoupon({
+          ...coupon,
+          status: 'valid',
+          discountPct: result.discountPct,
+          discountAmount: result.discountAmount,
+        })
+      } else {
+        setCoupon({ ...coupon, status: 'invalid', discountPct: undefined, discountAmount: undefined })
+      }
+    } catch (error) {
+      setCoupon({ ...coupon, status: 'invalid', discountPct: undefined, discountAmount: undefined })
+    }
+  }
+
+  const removeCoupon = () => {
+    setCoupon({ code: '', status: 'idle', discountPct: undefined, discountAmount: undefined })
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -44,6 +86,7 @@ export default function CheckoutPage() {
         body: JSON.stringify({
           items,
           customer: formData,
+          couponCode: coupon.status === 'valid' ? coupon.code : '',
         }),
       })
 
@@ -222,7 +265,7 @@ export default function CheckoutPage() {
               disabled={loading}
               className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-400"
             >
-              {loading ? t('loading') : t('pay', { total: total.toFixed(2) })}
+              {loading ? t('loading') : t('pay', { total: payable.toFixed(2) })}
             </button>
           </form>
         </div>
@@ -240,10 +283,61 @@ export default function CheckoutPage() {
                 <span className="font-semibold">€{(item.price * item.quantity).toFixed(2)}</span>
               </div>
             ))}
-            <div className="pt-4 border-t border-gray-200">
-              <div className="flex justify-between text-xl font-bold">
-                <span>{t('total')}</span>
+
+            {/* Kortingscode */}
+            <div className="pt-3">
+              {coupon.status !== 'valid' ? (
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={coupon.code}
+                    onChange={(e) => setCoupon({ code: e.target.value.toUpperCase(), status: 'idle' })}
+                    placeholder={t('couponPlaceholder')}
+                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-sm uppercase"
+                  />
+                  <button
+                    type="button"
+                    onClick={applyCoupon}
+                    disabled={coupon.status === 'checking'}
+                    className="px-4 py-2 bg-gray-800 text-white text-sm rounded-lg hover:bg-gray-900 disabled:bg-gray-400"
+                  >
+                    {coupon.status === 'checking' ? t('couponChecking') : t('couponApply')}
+                  </button>
+                </div>
+              ) : (
+                <div className="flex items-center justify-between bg-green-50 border border-green-200 rounded-lg px-3 py-2">
+                  <div className="text-sm text-green-800">
+                    <span className="font-semibold">{coupon.code}</span>
+                    <span> — {t('couponDiscount', { pct: coupon.discountPct! })}</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={removeCoupon}
+                    className="text-green-700 text-xs underline hover:text-green-900"
+                  >
+                    {t('couponRemove')}
+                  </button>
+                </div>
+              )}
+              {coupon.status === 'invalid' && (
+                <p className="text-red-600 text-sm mt-1">{t('couponInvalid')}</p>
+              )}
+            </div>
+
+            <div className="pt-4 border-t border-gray-200 space-y-1">
+              <div className="flex justify-between text-sm text-gray-600">
+                <span>{t('subtotal')}</span>
                 <span>€{total.toFixed(2)}</span>
+              </div>
+              {discount > 0 && (
+                <div className="flex justify-between text-sm text-green-700">
+                  <span>{t('discount')} ({coupon.code})</span>
+                  <span>-€{discount.toFixed(2)}</span>
+                </div>
+              )}
+              <div className="flex justify-between text-xl font-bold pt-2">
+                <span>{t('total')}</span>
+                <span>€{payable.toFixed(2)}</span>
               </div>
             </div>
           </div>

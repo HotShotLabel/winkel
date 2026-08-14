@@ -5,6 +5,7 @@ import { Link } from '@/i18n/navigation'
 import { useCart } from '@/components/Cart'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
+import WishlistButton from '@/components/WishlistButton'
 
 export default function ProductCard({ product, oldPrice }: { product: Product; oldPrice?: number | null }) {
   const t = useTranslations('productCard')
@@ -40,6 +41,10 @@ export default function ProductCard({ product, oldPrice }: { product: Product; o
             -{discountPct}%
           </span>
         )}
+        <WishlistButton
+          productId={product.id}
+          className="absolute top-3 right-3 p-2 shadow-sm border border-gray-200"
+        />
       </div>
       <div className="p-4">
         <h3 className="text-lg font-semibold text-gray-900 mb-2">

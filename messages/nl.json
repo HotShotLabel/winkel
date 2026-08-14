@@ -6,7 +6,8 @@
     "account": "Mijn account",
     "accountShort": "account",
     "admin": "Admin",
-    "language": "Taal"
+    "language": "Taal",
+    "wishlist": "Verlanglijst"
   },
   "home": {
     "heroTitle": "Welkom bij Onze Winkel",
@@ -50,7 +51,15 @@
     "addToCartN": "🛒 In winkelmand ({n})",
     "added": "✓ Toegevoegd",
     "home": "Home",
-    "soldToday": "mensen kochten dit"
+    "soldToday": "mensen kochten dit",
+    "trustTitle": "Veilig & vertrouwd",
+    "trust1": "Gratis verzending",
+    "trust2": "14 dagen retour",
+    "trust3": "Veilig betalen",
+    "trust4": "iDEAL & creditcard",
+    "relatedTitle": "Andere klanten bekeken ook",
+    "wishlistSave": "Bewaren",
+    "wishlistSaved": "Op verlanglijst"
   },
   "cart": {
     "title": "Winkelmand",
@@ -84,7 +93,15 @@
     "quantity": "Aantal:",
     "total": "Totaal",
     "loading": "Laden...",
-    "errGeneric": "Er is iets misgegaan. Probeer het opnieuw."
+    "errGeneric": "Er is iets misgegaan. Probeer het opnieuw.",
+    "couponPlaceholder": "Kortingscode",
+    "couponApply": "Toepassen",
+    "couponChecking": "Controleren...",
+    "couponDiscount": "{pct}% korting",
+    "couponRemove": "Verwijderen",
+    "couponInvalid": "Deze kortingscode is ongeldig of verlopen.",
+    "subtotal": "Subtotaal",
+    "discount": "Korting"
   },
   "success": {
     "thanks": "Bedankt voor je bestelling!",
@@ -175,7 +192,9 @@
     "copyright": "© {year} Mijn Winkel. Alle rechten voorbehouden.",
     "contact": "Contact",
     "privacy": "Privacyverklaring",
-    "terms": "Algemene voorwaarden"
+    "terms": "Algemene voorwaarden",
+    "contactLink": "Contact",
+    "about": "Over ons"
   },
   "privacy": {
     "title": "Privacyverklaring",
@@ -313,5 +332,43 @@
         "a": "Ja, op de orderpagina met je e-mailadres en bestelcode zie je de status: betaald of verzonden. Is er een track & trace-code, dan staat die erbij."
       }
     ]
+  },
+  "wishlist": {
+    "title": "Mijn verlanglijst",
+    "empty": "Je verlanglijst is nog leeg. Tik op het hartje bij producten om ze hier te bewaren.",
+    "backToShop": "Naar de producten",
+    "addToCart": "In winkelmand",
+    "remove": "Verwijderen"
+  },
+  "cookie": {
+    "text": "Wij gebruiken cookies om je ervaring te verbeteren en te begrijpen hoe bezoekers onze winkel gebruiken.",
+    "privacy": "Lees ons privacybeleid",
+    "accept": "Accepteren",
+    "decline": "Weigeren"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Heb je een vraag over je bestelling, een product of onze service? Stuur ons een bericht en we reageren zo snel mogelijk.",
+    "name": "Naam *",
+    "email": "Email *",
+    "subject": "Onderwerp",
+    "message": "Bericht *",
+    "send": "Versturen",
+    "sending": "Versturen...",
+    "sentTitle": "Bericht verzonden!",
+    "sentText": "Bedankt voor je bericht. We nemen zo snel mogelijk contact met je op.",
+    "error": "Er is iets misgegaan. Probeer het opnieuw."
+  },
+  "about": {
+    "title": "Over ons",
+    "p1": "Mijn Winkel is een online winkel met slimme gadgets en handige producten voor het dagelijks leven. We zoeken producten uit die het leven net wat makkelijker maken — van slimme oplossingen voor thuis tot handige accessoires onderweg.",
+    "p2": "We werken rechtstreeks met fabrikanten en leveranciers samen, zodat we scherpe prijzen kunnen bieden zonder in te leveren op kwaliteit. Elke bestelling wordt zorgvuldig klaargemaakt en verzonden.",
+    "p3": "Ons doel is simpel: klanten blij maken met goede producten, snelle levering en eerlijke service. Geen ingewikkelde voorwaarden, geen verrassingen — gewoon duidelijk en betrouwbaar.",
+    "promiseTitle": "Onze belofte",
+    "promise1": "Scherpe prijzen door directe samenwerking met leveranciers",
+    "promise2": "Veilig betalen via Stripe (iDEAL, creditcard)",
+    "promise3": "100% tevredenheidsgarantie — niet goed, geld terug",
+    "promise4": "Persoonlijke klantenservice per e-mail",
+    "p4": "Heb je vragen? Neem gerust contact met ons op — we helpen je graag verder."
   }
 }

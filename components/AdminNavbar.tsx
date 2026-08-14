@@ -35,6 +35,12 @@ export default function AdminNavbar() {
               >
                 Producten
               </Link>
+              <Link 
+                href="/admin/coupons" 
+                className={`text-sm ${pathname === '/admin/coupons' ? 'text-blue-600 font-medium' : 'text-gray-600 hover:text-gray-900'}`}
+              >
+                Kortingscodes
+              </Link>
             </div>
           </div>
           <div className="flex items-center space-x-4">

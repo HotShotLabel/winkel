@@ -25,6 +25,16 @@ export default async function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/contact" className="hover:text-white">
+                  {t('contactLink')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/over-ons" className="hover:text-white">
+                  {t('about')}
+                </Link>
+              </li>
+              <li>
                 <Link href="/account" className="hover:text-white">
                   {t('myAccount')}
                 </Link>

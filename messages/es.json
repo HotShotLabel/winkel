@@ -6,7 +6,8 @@
     "account": "Mi cuenta",
     "accountShort": "cuenta",
     "admin": "Admin",
-    "language": "Idioma"
+    "language": "Idioma",
+    "wishlist": "Lista de deseos"
   },
   "home": {
     "heroTitle": "Bienvenido a Nuestra Tienda",
@@ -50,7 +51,15 @@
     "addToCartN": "🛒 Añadir al carrito ({n})",
     "added": "✓ Añadido",
     "home": "Inicio",
-    "soldToday": "personas compraron esto"
+    "soldToday": "personas compraron esto",
+    "trustTitle": "Seguro & confiable",
+    "trust1": "Envío gratis",
+    "trust2": "14 días de devolución",
+    "trust3": "Pago seguro",
+    "trust4": "iDEAL y tarjeta de crédito",
+    "relatedTitle": "Otros clientes también vieron",
+    "wishlistSave": "Ahorrar",
+    "wishlistSaved": "En la lista de deseos"
   },
   "cart": {
     "title": "Carrito",
@@ -84,7 +93,15 @@
     "quantity": "Cantidad:",
     "total": "Total",
     "loading": "Cargando...",
-    "errGeneric": "Algo salió mal. Inténtalo de nuevo."
+    "errGeneric": "Algo salió mal. Inténtalo de nuevo.",
+    "couponPlaceholder": "Código de descuento",
+    "couponApply": "Aplicar",
+    "couponChecking": "Controlar...",
+    "couponDiscount": "{pct}% de descuento",
+    "couponRemove": "para eliminar",
+    "couponInvalid": "Este código de descuento no es válido o ha caducado.",
+    "subtotal": "Total parcial",
+    "discount": "Descuento"
   },
   "success": {
     "thanks": "¡Gracias por tu pedido!",
@@ -175,7 +192,9 @@
     "copyright": "© {year} Mi Tienda. Todos los derechos reservados.",
     "contact": "Contacto",
     "privacy": "Política de privacidad",
-    "terms": "Términos y condiciones"
+    "terms": "Términos y condiciones",
+    "contactLink": "Contacto",
+    "about": "Sobre nosotros"
   },
   "privacy": {
     "title": "Política de privacidad",
@@ -313,5 +332,43 @@
         "a": "Sí, en la página de pedido con tu correo y código de pedido ves el estado: pagado o enviado. El código de seguimiento se muestra si está disponible."
       }
     ]
+  },
+  "wishlist": {
+    "title": "mi lista de deseos",
+    "empty": "Tu lista de deseos todavía está vacía. Toca el corazón junto a los productos para guardarlos aquí.",
+    "backToShop": "a los productos",
+    "addToCart": "Añadir a la cesta",
+    "remove": "para eliminar"
+  },
+  "cookie": {
+    "text": "Utilizamos cookies para mejorar su experiencia y comprender cómo los visitantes usan nuestra tienda.",
+    "privacy": "Lea nuestra política de privacidad",
+    "accept": "Aceptar",
+    "decline": "Rechazar"
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¿Tiene alguna pregunta sobre su pedido, un producto o nuestro servicio? Envíanos un mensaje y te responderemos lo antes posible.",
+    "name": "Nombre *",
+    "email": "Correo electrónico *",
+    "subject": "Sujeto",
+    "message": "Mensaje *",
+    "send": "para dirigir",
+    "sending": "Para dirigir...",
+    "sentTitle": "¡Mensaje enviado!",
+    "sentText": "Gracias por tu mensaje. Nos pondremos en contacto con usted lo antes posible.",
+    "error": "Algo salió mal. Por favor inténtalo de nuevo."
+  },
+  "about": {
+    "title": "Sobre nosotros",
+    "p1": "My Shop es una tienda online con gadgets inteligentes y productos útiles para el día a día. Seleccionamos productos que hacen la vida un poco más fácil, desde soluciones inteligentes para el hogar hasta prácticos accesorios para llevar.",
+    "p2": "Trabajamos directamente con fabricantes y proveedores, por lo que podemos ofrecer precios competitivos sin sacrificar la calidad. Cada pedido se prepara y envía cuidadosamente.",
+    "p3": "Nuestro objetivo es simple: hacer felices a los clientes con buenos productos, entrega rápida y servicio honesto. Sin condiciones complicadas ni sorpresas: simplemente claro y fiable.",
+    "promiseTitle": "Nuestra promesa",
+    "promise1": "Precios competitivos gracias a la colaboración directa con los proveedores.",
+    "promise2": "Pago seguro a través de Stripe (iDEAL, tarjeta de crédito)",
+    "promise3": "Garantía de satisfacción del 100% - garantía de devolución de dinero",
+    "promise4": "Atención al cliente personalizada por correo electrónico",
+    "p4": "¿Tiene alguna pregunta? No dude en contactarnos; estaremos encantados de ayudarle."
   }
 }

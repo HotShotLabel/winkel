@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
 import { addOrder, updateOrder, getOrder } from '@/lib/orders'
 import { sendTelegramNotification, formatOrderNotification, sendEmail, orderConfirmationHtml } from '@/lib/notifications'
+import { recordCouponUse } from '@/lib/coupons'
 import {
   getProductSources,
   getFreightOption,
@@ -30,6 +31,10 @@ export async function POST(request: Request) {
         const updateData: any = {
           status: 'paid',
         }
+        // Exact betaalde bedrag (na eventuele couponkorting)
+        if (typeof session.amount_total === 'number') {
+          updateData.total = session.amount_total / 100
+        }
         if (session.customer_details?.email) updateData.customer_email = session.customer_details.email
         if (session.customer_details?.name) updateData.customer_name = session.customer_details.name
         const addr = session.customer_details?.address
@@ -48,6 +53,13 @@ export async function POST(request: Request) {
         }
 
         const order = await updateOrder(orderId, updateData)
+
+        // Coupon registreren (used_count +1 + order_coupons rij)
+        const couponCode = session.metadata?.couponCode
+        if (order && couponCode) {
+          const discountAmount = Number(session.metadata?.discountAmount) || 0
+          await recordCouponUse(couponCode, orderId, discountAmount)
+        }
 
         if (order) {
           const notification = formatOrderNotification(order)

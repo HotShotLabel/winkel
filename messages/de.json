@@ -6,7 +6,8 @@
     "account": "Mein Konto",
     "accountShort": "Konto",
     "admin": "Admin",
-    "language": "Sprache"
+    "language": "Sprache",
+    "wishlist": "Wunschliste"
   },
   "home": {
     "heroTitle": "Willkommen in unserem Shop",
@@ -50,7 +51,15 @@
     "addToCartN": "🛒 In den Warenkorb ({n})",
     "added": "✓ Hinzugefügt",
     "home": "Startseite",
-    "soldToday": "Personen kauften dies"
+    "soldToday": "Personen kauften dies",
+    "trustTitle": "Sicher & vertrauenswürdig",
+    "trust1": "Kostenloser Versand",
+    "trust2": "14 Tage Rückgaberecht",
+    "trust3": "Sichere Zahlung",
+    "trust4": "iDEAL & Kreditkarte",
+    "relatedTitle": "Andere Kunden haben sich auch angesehen",
+    "wishlistSave": "Speichern",
+    "wishlistSaved": "Auf der Wunschliste"
   },
   "cart": {
     "title": "Warenkorb",
@@ -84,7 +93,15 @@
     "quantity": "Anzahl:",
     "total": "Gesamt",
     "loading": "Laden...",
-    "errGeneric": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut."
+    "errGeneric": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
+    "couponPlaceholder": "Rabattcode",
+    "couponApply": "Anwenden",
+    "couponChecking": "Überprüfen...",
+    "couponDiscount": "{pct} % Rabatt",
+    "couponRemove": "Zum Löschen",
+    "couponInvalid": "Dieser Rabattcode ist ungültig oder abgelaufen.",
+    "subtotal": "Zwischensumme",
+    "discount": "Rabatt"
   },
   "success": {
     "thanks": "Vielen Dank für Ihre Bestellung!",
@@ -175,7 +192,9 @@
     "copyright": "© {year} Mein Shop. Alle Rechte vorbehalten.",
     "contact": "Kontakt",
     "privacy": "Datenschutzerklärung",
-    "terms": "AGB"
+    "terms": "AGB",
+    "contactLink": "Kontakt",
+    "about": "Über uns"
   },
   "privacy": {
     "title": "Datenschutzerklärung",
@@ -313,5 +332,43 @@
         "a": "Ja, auf der Bestellseite mit Ihrer E-Mail und Bestellcode sehen Sie den Status: bezahlt oder versendet. Eine Sendungsverfolgungsnummer wird angezeigt, sofern verfügbar."
       }
     ]
+  },
+  "wishlist": {
+    "title": "Meine Wunschliste",
+    "empty": "Ihre Wunschliste ist noch leer. Tippen Sie auf das Herz neben den Produkten, um sie hier zu speichern.",
+    "backToShop": "Zu den Produkten",
+    "addToCart": "In den Warenkorb legen",
+    "remove": "Zum Löschen"
+  },
+  "cookie": {
+    "text": "Wir verwenden Cookies, um Ihr Erlebnis zu verbessern und zu verstehen, wie Besucher unseren Shop nutzen.",
+    "privacy": "Lesen Sie unsere Datenschutzbestimmungen",
+    "accept": "Akzeptieren",
+    "decline": "Ablehnen"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Sie haben eine Frage zu Ihrer Bestellung, einem Produkt oder unserer Dienstleistung? Senden Sie uns eine Nachricht und wir werden so schnell wie möglich antworten.",
+    "name": "Name *",
+    "email": "E-Mail *",
+    "subject": "Thema",
+    "message": "Nachricht *",
+    "send": "Lenken",
+    "sending": "Lenken...",
+    "sentTitle": "Nachricht gesendet!",
+    "sentText": "Vielen Dank für Ihre Nachricht. Wir werden uns so schnell wie möglich mit Ihnen in Verbindung setzen.",
+    "error": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+  },
+  "about": {
+    "title": "Über uns",
+    "p1": "My Shop ist ein Online-Shop mit smarten Gadgets und nützlichen Produkten für den Alltag. Wir wählen Produkte aus, die das Leben ein wenig einfacher machen – von intelligenten Lösungen für zu Hause bis hin zu praktischen Accessoires für unterwegs.",
+    "p2": "Wir arbeiten direkt mit Herstellern und Lieferanten zusammen, sodass wir wettbewerbsfähige Preise ohne Qualitätseinbußen anbieten können. Jede Bestellung wird sorgfältig vorbereitet und versendet.",
+    "p3": "Unser Ziel ist einfach: Kunden mit guten Produkten, schneller Lieferung und ehrlichem Service glücklich zu machen. Keine komplizierten Bedingungen, keine Überraschungen – einfach klar und zuverlässig.",
+    "promiseTitle": "Unser Versprechen",
+    "promise1": "Wettbewerbsfähige Preise durch direkte Zusammenarbeit mit Lieferanten",
+    "promise2": "Sichere Zahlung per Stripe (iDEAL, Kreditkarte)",
+    "promise3": "100 % Zufriedenheitsgarantie – Geld-zurück-Garantie",
+    "promise4": "Persönlicher Kundenservice per E-Mail",
+    "p4": "Haben Sie Fragen? Nehmen Sie gerne Kontakt mit uns auf – wir helfen Ihnen gerne weiter."
   }
 }

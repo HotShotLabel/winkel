@@ -6,7 +6,8 @@
     "account": "Mon compte",
     "accountShort": "compte",
     "admin": "Admin",
-    "language": "Langue"
+    "language": "Langue",
+    "wishlist": "Liste de souhaits"
   },
   "home": {
     "heroTitle": "Bienvenue dans notre boutique",
@@ -50,7 +51,15 @@
     "addToCartN": "🛒 Ajouter au panier ({n})",
     "added": "✓ Ajouté",
     "home": "Accueil",
-    "soldToday": "personnes ont acheté ce produit"
+    "soldToday": "personnes ont acheté ce produit",
+    "trustTitle": "Coffre-fort & fiable",
+    "trust1": "Livraison gratuite",
+    "trust2": "14 jours de retour",
+    "trust3": "Paiement sécurisé",
+    "trust4": "iDEAL & carte bancaire",
+    "relatedTitle": "D'autres clients ont également consulté",
+    "wishlistSave": "Sauvegarder",
+    "wishlistSaved": "Sur la liste de souhaits"
   },
   "cart": {
     "title": "Panier",
@@ -84,7 +93,15 @@
     "quantity": "Quantité :",
     "total": "Total",
     "loading": "Chargement...",
-    "errGeneric": "Une erreur est survenue. Veuillez réessayer."
+    "errGeneric": "Une erreur est survenue. Veuillez réessayer.",
+    "couponPlaceholder": "Code de réduction",
+    "couponApply": "Appliquer",
+    "couponChecking": "Vérifier...",
+    "couponDiscount": "{pct} % de réduction",
+    "couponRemove": "Pour supprimer",
+    "couponInvalid": "Ce code de réduction est invalide ou a expiré.",
+    "subtotal": "Total",
+    "discount": "Rabais"
   },
   "success": {
     "thanks": "Merci pour votre commande !",
@@ -175,7 +192,9 @@
     "copyright": "© {year} Ma Boutique. Tous droits réservés.",
     "contact": "Contact",
     "privacy": "Politique de confidentialité",
-    "terms": "Conditions générales"
+    "terms": "Conditions générales",
+    "contactLink": "Contact",
+    "about": "À propos de nous"
   },
   "privacy": {
     "title": "Politique de confidentialité",
@@ -313,5 +332,43 @@
         "a": "Oui, sur la page de commande avec votre e-mail et votre code de commande, vous voyez le statut : payée ou expédiée. Le code de suivi est affiché s'il est disponible."
       }
     ]
+  },
+  "wishlist": {
+    "title": "Ma liste de souhaits",
+    "empty": "Votre liste de souhaits est toujours vide. Appuyez sur le cœur à côté des produits pour les enregistrer ici.",
+    "backToShop": "Vers les produits",
+    "addToCart": "Ajouter au panier",
+    "remove": "Pour supprimer"
+  },
+  "cookie": {
+    "text": "Nous utilisons des cookies pour améliorer votre expérience et comprendre comment les visiteurs utilisent notre boutique.",
+    "privacy": "Lire notre politique de confidentialité",
+    "accept": "Accepter",
+    "decline": "Refuser"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Vous avez une question sur votre commande, un produit ou notre service ? Envoyez-nous un message et nous vous répondrons dans les plus brefs délais.",
+    "name": "Nom *",
+    "email": "E-mail *",
+    "subject": "Sujet",
+    "message": "Message *",
+    "send": "Pour diriger",
+    "sending": "Pour piloter...",
+    "sentTitle": "Message envoyé !",
+    "sentText": "Merci pour votre message. Nous vous contacterons dans les plus brefs délais.",
+    "error": "Quelque chose s'est mal passé. Veuillez réessayer."
+  },
+  "about": {
+    "title": "À propos de nous",
+    "p1": "My Shop est une boutique en ligne proposant des gadgets intelligents et des produits utiles pour la vie de tous les jours. Nous sélectionnons des produits qui rendent la vie un peu plus facile : des solutions intelligentes pour la maison aux accessoires pratiques en déplacement.",
+    "p2": "Nous travaillons directement avec les fabricants et les fournisseurs afin de pouvoir proposer des prix compétitifs sans sacrifier la qualité. Chaque commande est soigneusement préparée et expédiée.",
+    "p3": "Notre objectif est simple : rendre les clients satisfaits avec de bons produits, une livraison rapide et un service honnête. Pas de conditions compliquées, pas de surprises – juste clair et fiable.",
+    "promiseTitle": "Notre promesse",
+    "promise1": "Des prix compétitifs grâce à une collaboration directe avec les fournisseurs",
+    "promise2": "Paiement sécurisé via Stripe (iDEAL, carte bancaire)",
+    "promise3": "Garantie de satisfaction à 100% - garantie de remboursement",
+    "promise4": "Service client personnalisé par email",
+    "p4": "Avez-vous des questions ? N'hésitez pas à nous contacter, nous serons heureux de vous aider."
   }
 }

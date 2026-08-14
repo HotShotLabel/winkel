@@ -7,7 +7,10 @@ import { absoluteUrl, languageAlternates } from '@/lib/seo'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import HtmlLangSetter from '@/components/HtmlLangSetter'
+import CookieBanner from '@/components/CookieBanner'
+import ChatWidget from '@/components/ChatWidget'
 import { CartProvider } from '@/components/Cart'
+import { WishlistProvider } from '@/components/Wishlist'
 
 export function generateStaticParams() {
   return routing.locales.map(locale => ({ locale }))
@@ -55,11 +58,15 @@ export default async function LocaleLayout({
     <NextIntlClientProvider>
       <HtmlLangSetter />
       <CartProvider>
-        <Navbar />
-        <main className="min-h-screen bg-gray-50">
-          {children}
-        </main>
-        <Footer />
+        <WishlistProvider>
+          <Navbar />
+          <main className="min-h-screen bg-gray-50">
+            {children}
+          </main>
+          <Footer />
+          <CookieBanner />
+          <ChatWidget />
+        </WishlistProvider>
       </CartProvider>
     </NextIntlClientProvider>
   )
