@@ -75,7 +75,7 @@
     "province": "Provincie *",
     "chooseProvince": "Kies provincie...",
     "other": "Anders",
-    "terms": "Ik ga akkoord met de algemene voorwaarden",
+    "terms": "Ik ga akkoord met de {link}algemene voorwaarden{/link}",
     "termsError": "Je moet akkoord gaan met de algemene voorwaarden om te bestellen.",
     "pay": "Betalen €{total}",
     "overview": "Overzicht",
@@ -171,6 +171,94 @@
     "p2": "💶 Geld terug binnen 7 dagen",
     "p3": "💳 Veilig betalen via Stripe",
     "copyright": "© {year} Mijn Winkel. Alle rechten voorbehouden.",
-    "contact": "Contact"
+    "contact": "Contact",
+    "privacy": "Privacyverklaring",
+    "terms": "Algemene voorwaarden"
+  },
+  "privacy": {
+    "title": "Privacyverklaring",
+    "updated": "Laatst bijgewerkt: 14 augustus 2026",
+    "intro": "Mijn Winkel respecteert uw privacy. In deze verklaring leggen we uit welke gegevens we verzamelen, waarvoor we ze gebruiken en welke rechten u heeft. Vragen? Mail naar mijnwinkel.vercel@proton.me.",
+    "sections": [
+      {
+        "h": "Wie zijn wij",
+        "p": "Mijn Winkel is een handelsnaam voor een online winkel in slimme gadgets en handige producten. Wij zijn bereikbaar via mijnwinkel.vercel@proton.me."
+      },
+      {
+        "h": "Welke gegevens verzamelen wij",
+        "p": "Bij een bestelling verwerken wij: uw naam, adres, e-mailadres, telefoonnummer, de bestelde producten en het betaalde bedrag. Betalingsgegevens zoals kaartnummer verwerken wij niet zelf; dat doet onze betaalpartner Stripe."
+      },
+      {
+        "h": "Waarvoor gebruiken wij uw gegevens",
+        "p": "Uw gegevens gebruiken wij alleen om: uw bestelling te verwerken en te leveren, betalingen af te handelen, u op de hoogte te houden van de status van uw bestelling, en vragen van u te beantwoorden. Wij verkopen uw gegevens nooit aan derden."
+      },
+      {
+        "h": "Hoe lang bewaren wij uw gegevens",
+        "p": "Bestelgegevens bewaren wij zolang als nodig is voor de uitvoering van de overeenkomst en om te voldoen aan wettelijke bewaarplichten, in ieder geval niet langer dan 2 jaar na uw laatste bestelling."
+      },
+      {
+        "h": "Delen met derden",
+        "p": "Wij delen uw gegevens alleen met partijen die nodig zijn voor uw bestelling: Stripe (betalingen), Vercel (hosting van de website) en vervoerders (levering van uw pakket). Deze partijen mogen uw gegevens niet voor andere doeleinden gebruiken."
+      },
+      {
+        "h": "Cookies",
+        "p": "Onze website gebruikt alleen technisch noodzakelijke cookies, bijvoorbeeld om uw winkelmand bij te houden. Wij gebruiken geen tracking- of advertentiecookies."
+      },
+      {
+        "h": "Beveiliging",
+        "p": "Uw gegevens worden versleuteld verstuurd (SSL) en zijn alleen toegankelijk voor mensen die ze nodig hebben voor hun werk. Betalingen verlopen via de beveiligde omgeving van Stripe."
+      },
+      {
+        "h": "Uw rechten",
+        "p": "U heeft recht op inzage, correctie, verwijdering en overdracht van uw gegevens, en u kunt bezwaar maken tegen verwerking. Stuur hiervoor een mail naar mijnwinkel.vercel@proton.me. Wij reageren binnen 30 dagen. U heeft ook het recht een klacht in te dienen bij de Autoriteit Persoonsgegevens."
+      },
+      {
+        "h": "Wijzigingen",
+        "p": "Deze verklaring kan veranderen. De nieuwste versie staat altijd op deze pagina."
+      }
+    ]
+  },
+  "terms": {
+    "title": "Algemene voorwaarden",
+    "updated": "Laatst bijgewerkt: 14 augustus 2026",
+    "intro": "Deze voorwaarden gelden voor alle bestellingen bij Mijn Winkel. Door een bestelling te plaatsen gaat u akkoord met deze voorwaarden. Vragen? Mail naar mijnwinkel.vercel@proton.me.",
+    "sections": [
+      {
+        "h": "Algemeen",
+        "p": "Mijn Winkel is een handelsnaam voor een online winkel in slimme gadgets en handige producten, bereikbaar via mijnwinkel.vercel@proton.me."
+      },
+      {
+        "h": "Aanbod en overeenkomst",
+        "p": "Een bestelling is pas definitief als u de bestelling heeft afgerond en de betaling is ontvangen. Na betaling ontvangt u een bevestiging per e-mail. De overeenkomst komt tot stand op het moment van die bevestiging."
+      },
+      {
+        "h": "Prijzen en betaling",
+        "p": "Alle prijzen zijn in euro’s. Betaling verloopt veilig via Stripe met iDEAL of creditcard. Pas na geslaagde betaling wordt uw bestelling verwerkt."
+      },
+      {
+        "h": "Levering",
+        "p": "Vandaag besteld betekent morgen thuis. Is een product uitverkocht, dan bestellen wij het met spoed bij en wordt het alsnog zo snel mogelijk verzonden. Levertijden kunnen in uitzonderlijke gevallen afwijken."
+      },
+      {
+        "h": "Herroepingsrecht",
+        "p": "U heeft het recht uw bestelling binnen 14 dagen na ontvangst zonder opgaaf van reden te herroepen. Mail ons binnen die termijn op mijnwinkel.vercel@proton.me. U ontvangt het aankoopbedrag binnen 14 dagen na uw bericht terug."
+      },
+      {
+        "h": "Garantie",
+        "p": "Op alle producten geldt onze garantie: niet tevreden? Geld terug binnen 7 dagen. Zie de garantiepagina voor de volledige voorwaarden."
+      },
+      {
+        "h": "Aansprakelijkheid",
+        "p": "Wij doen ons uiterste best uw bestelling correct te leveren. Wij zijn niet aansprakelijk voor schade die het gevolg is van verkeerd gebruik van een product of van overmacht."
+      },
+      {
+        "h": "Klachten",
+        "p": "Niet tevreden over onze service? Mail naar mijnwinkel.vercel@proton.me en wij lossen het op. Wij streven ernaar binnen 2 werkdagen te reageren."
+      },
+      {
+        "h": "Toepasselijk recht",
+        "p": "Op deze voorwaarden is Nederlands recht van toepassing. Wettelijke rechten die u heeft als consument in uw eigen land blijven altijd van toepassing."
+      }
+    ]
   }
 }

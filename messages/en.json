@@ -75,7 +75,7 @@
     "province": "Province *",
     "chooseProvince": "Choose province...",
     "other": "Other",
-    "terms": "I agree with the terms and conditions",
+    "terms": "I agree to the {link}terms and conditions{/link}",
     "termsError": "You must agree to the terms and conditions to order.",
     "pay": "Pay €{total}",
     "overview": "Overview",
@@ -171,6 +171,94 @@
     "p2": "💶 Money back within 7 days",
     "p3": "💳 Secure payments via Stripe",
     "copyright": "© {year} My Shop. All rights reserved.",
-    "contact": "Contact"
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "updated": "Last updated: August 14, 2026",
+    "intro": "My Shop respects your privacy. This policy explains what data we collect, what we use it for, and what rights you have. Questions? Email mijnwinkel.vercel@proton.me.",
+    "sections": [
+      {
+        "h": "Who we are",
+        "p": "My Shop is a trading name for an online store selling smart gadgets and handy products. You can reach us at mijnwinkel.vercel@proton.me."
+      },
+      {
+        "h": "What data we collect",
+        "p": "When you place an order we process: your name, address, email address, phone number, the products ordered and the amount paid. We do not process payment details such as card numbers ourselves; our payment partner Stripe does that."
+      },
+      {
+        "h": "What we use your data for",
+        "p": "We only use your data to: process and deliver your order, handle payments, keep you informed about your order status, and answer your questions. We never sell your data to third parties."
+      },
+      {
+        "h": "How long we keep your data",
+        "p": "We keep order data as long as needed to fulfil the agreement and comply with legal retention obligations, in any case no longer than 2 years after your last order."
+      },
+      {
+        "h": "Sharing with third parties",
+        "p": "We only share your data with parties needed for your order: Stripe (payments), Vercel (website hosting) and carriers (delivery of your package). These parties may not use your data for other purposes."
+      },
+      {
+        "h": "Cookies",
+        "p": "Our website only uses technically necessary cookies, for example to keep track of your cart. We do not use tracking or advertising cookies."
+      },
+      {
+        "h": "Security",
+        "p": "Your data is transmitted encrypted (SSL) and is only accessible to people who need it for their work. Payments go through Stripe’s secure environment."
+      },
+      {
+        "h": "Your rights",
+        "p": "You have the right to access, correct, delete and transfer your data, and you can object to processing. Send an email to mijnwinkel.vercel@proton.me. We respond within 30 days. You also have the right to file a complaint with your local data protection authority."
+      },
+      {
+        "h": "Changes",
+        "p": "This policy may change. The latest version is always on this page."
+      }
+    ]
+  },
+  "terms": {
+    "title": "Terms & Conditions",
+    "updated": "Last updated: August 14, 2026",
+    "intro": "These terms apply to all orders at My Shop. By placing an order you agree to these terms. Questions? Email mijnwinkel.vercel@proton.me.",
+    "sections": [
+      {
+        "h": "General",
+        "p": "My Shop is a trading name for an online store selling smart gadgets and handy products, reachable at mijnwinkel.vercel@proton.me."
+      },
+      {
+        "h": "Offer and agreement",
+        "p": "An order is only final once you have completed the order and payment has been received. After payment you receive a confirmation by email. The agreement is formed at the moment of that confirmation."
+      },
+      {
+        "h": "Prices and payment",
+        "p": "All prices are in euros. Payment runs securely through Stripe with iDEAL or credit card. Your order is only processed after successful payment."
+      },
+      {
+        "h": "Delivery",
+        "p": "Order today, delivered tomorrow. If a product is sold out, we reorder it urgently and it will still be shipped as soon as possible. Delivery times may differ in exceptional cases."
+      },
+      {
+        "h": "Right of withdrawal",
+        "p": "You have the right to withdraw your order within 14 days of receipt without giving a reason. Email us within that period at mijnwinkel.vercel@proton.me. You will receive the purchase amount back within 14 days of your message."
+      },
+      {
+        "h": "Warranty",
+        "p": "Our warranty applies to all products: not satisfied? Money back within 7 days. See the guarantee page for the full conditions."
+      },
+      {
+        "h": "Liability",
+        "p": "We do our best to deliver your order correctly. We are not liable for damage resulting from misuse of a product or force majeure."
+      },
+      {
+        "h": "Complaints",
+        "p": "Not happy with our service? Email mijnwinkel.vercel@proton.me and we will sort it out. We aim to respond within 2 working days."
+      },
+      {
+        "h": "Applicable law",
+        "p": "Dutch law applies to these terms. Your statutory rights as a consumer in your own country always remain applicable."
+      }
+    ]
   }
 }

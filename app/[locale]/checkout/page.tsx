@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useCart } from '@/components/Cart'
 import { useTranslations } from 'next-intl'
-import { useRouter } from '@/i18n/navigation'
+import { useRouter, Link } from '@/i18n/navigation'
 import { COUNTRIES } from '@/lib/address-map'
 
 export default function CheckoutPage() {
@@ -211,7 +211,7 @@ export default function CheckoutPage() {
                   }}
                   className="mt-0.5 h-4 w-4"
                 />
-                <span>{t('terms')}</span>
+                <span>{t.rich('terms', { link: chunks => <Link href="/voorwaarden" className="underline">{chunks}</Link> })}</span>
               </label>
               {termsError && (
                 <p className="text-red-600 text-sm mt-1">{t('termsError')}</p>

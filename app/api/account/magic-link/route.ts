@@ -13,7 +13,10 @@ export async function POST(request: Request) {
     }
 
     const token = createMagicLinkToken(email)
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mijnwinkel.vercel.app'
+    const host = request.headers.get('host')
+    const baseUrl =
+      process.env.NEXT_PUBLIC_BASE_URL ||
+      (host ? `https://${host}` : 'https://mijnwinkel.vercel.app')
     const loginUrl = `${baseUrl}/account?token=${token}`
 
     const html = `

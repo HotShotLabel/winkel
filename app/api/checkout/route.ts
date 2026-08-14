@@ -6,6 +6,10 @@ import { getCountry, locationTreeId } from '@/lib/address-map'
 export async function POST(request: Request) {
   try {
     const { items, customer } = await request.json()
+    const host = request.headers.get('host')
+    const baseUrl =
+      process.env.NEXT_PUBLIC_BASE_URL ||
+      (host ? `https://${host}` : 'https://mijnwinkel.vercel.app')
 
     if (!items || items.length === 0) {
       return NextResponse.json(
@@ -72,8 +76,8 @@ export async function POST(request: Request) {
         quantity: item.quantity,
       })),
       mode: 'payment',
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://mijnwinkel.vercel.app'}/success?orderId=${orderId}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://mijnwinkel.vercel.app'}/checkout?canceled=true`,
+      success_url: `${baseUrl}/success?orderId=${orderId}`,
+      cancel_url: `${baseUrl}/checkout?canceled=true`,
       metadata: {
         orderId,
         customerEmail: customer.email,

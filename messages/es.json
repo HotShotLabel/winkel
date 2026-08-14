@@ -75,7 +75,7 @@
     "province": "Provincia *",
     "chooseProvince": "Elegir provincia...",
     "other": "Otro",
-    "terms": "Acepto las condiciones generales",
+    "terms": "Acepto los {link}términos y condiciones{/link}",
     "termsError": "Debes aceptar las condiciones generales para poder pedir.",
     "pay": "Pagar €{total}",
     "overview": "Resumen",
@@ -171,6 +171,94 @@
     "p2": "💶 Dinero de vuelta en 7 días",
     "p3": "💳 Pago seguro a través de Stripe",
     "copyright": "© {year} Mi Tienda. Todos los derechos reservados.",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "privacy": "Política de privacidad",
+    "terms": "Términos y condiciones"
+  },
+  "privacy": {
+    "title": "Política de privacidad",
+    "updated": "Última actualización: 14 de agosto de 2026",
+    "intro": "Mi Tienda respeta su privacidad. Esta política explica qué datos recopilamos, para qué los usamos y qué derechos tiene. ¿Preguntas? Escriba a mijnwinkel.vercel@proton.me.",
+    "sections": [
+      {
+        "h": "Quiénes somos",
+        "p": "Mi Tienda es un nombre comercial de una tienda en línea de gadgets inteligentes y productos prácticos. Puede contactarnos en mijnwinkel.vercel@proton.me."
+      },
+      {
+        "h": "Qué datos recopilamos",
+        "p": "Al hacer un pedido procesamos: su nombre, dirección, correo electrónico, número de teléfono, los productos pedidos y el importe pagado. No procesamos nosotros mismos los datos de pago como el número de tarjeta; lo hace nuestro socio de pago Stripe."
+      },
+      {
+        "h": "Para qué usamos sus datos",
+        "p": "Usamos sus datos solo para: procesar y entregar su pedido, gestionar los pagos, mantenerle informado del estado de su pedido y responder a sus preguntas. Nunca vendemos sus datos a terceros."
+      },
+      {
+        "h": "Cuánto tiempo conservamos sus datos",
+        "p": "Conservamos los datos del pedido mientras sea necesario para cumplir el contrato y las obligaciones legales de conservación, en cualquier caso no más de 2 años después de su último pedido."
+      },
+      {
+        "h": "Compartir con terceros",
+        "p": "Solo compartimos sus datos con los actores necesarios para su pedido: Stripe (pagos), Vercel (alojamiento del sitio web) y transportistas (entrega de su paquete). Estos actores no pueden usar sus datos para otros fines."
+      },
+      {
+        "h": "Cookies",
+        "p": "Nuestro sitio web solo utiliza cookies técnicamente necesarias, por ejemplo para mantener su cesta. No usamos cookies de seguimiento ni publicidad."
+      },
+      {
+        "h": "Seguridad",
+        "p": "Sus datos se transmiten cifrados (SSL) y solo son accesibles para las personas que los necesitan para su trabajo. Los pagos se realizan a través del entorno seguro de Stripe."
+      },
+      {
+        "h": "Sus derechos",
+        "p": "Tiene derecho a acceder, corregir, eliminar y transferir sus datos, y puede oponerse al tratamiento. Envíe un correo a mijnwinkel.vercel@proton.me. Respondemos en un plazo de 30 días. También tiene derecho a presentar una reclamación ante su autoridad de protección de datos."
+      },
+      {
+        "h": "Cambios",
+        "p": "Esta política puede cambiar. La versión más reciente está siempre en esta página."
+      }
+    ]
+  },
+  "terms": {
+    "title": "Términos y condiciones",
+    "updated": "Última actualización: 14 de agosto de 2026",
+    "intro": "Estos términos se aplican a todos los pedidos en Mi Tienda. Al realizar un pedido acepta estos términos. ¿Preguntas? Escriba a mijnwinkel.vercel@proton.me.",
+    "sections": [
+      {
+        "h": "General",
+        "p": "Mi Tienda es un nombre comercial de una tienda en línea de gadgets inteligentes y productos prácticos, contactable en mijnwinkel.vercel@proton.me."
+      },
+      {
+        "h": "Oferta y contrato",
+        "p": "Un pedido solo es definitivo cuando ha completado el pedido y se ha recibido el pago. Tras el pago recibe una confirmación por correo. El contrato se celebra en el momento de esa confirmación."
+      },
+      {
+        "h": "Precios y pago",
+        "p": "Todos los precios están en euros. El pago se realiza de forma segura a través de Stripe con iDEAL o tarjeta de crédito. Su pedido solo se procesa después de un pago correcto."
+      },
+      {
+        "h": "Entrega",
+        "p": "Pedido hoy, entregado mañana. Si un producto está agotado, lo reponemos con urgencia y se enviará igualmente lo antes posible. Los plazos pueden variar en casos excepcionales."
+      },
+      {
+        "h": "Derecho de desistimiento",
+        "p": "Tiene derecho a desistir de su pedido dentro de los 14 días siguientes a la recepción sin indicar motivo. Escríbanos dentro de ese plazo a mijnwinkel.vercel@proton.me. Recibirá el importe reembolsado en un plazo de 14 días desde su mensaje."
+      },
+      {
+        "h": "Garantía",
+        "p": "Nuestra garantía se aplica a todos los productos: ¿no está satisfecho? Reembolso en 7 días. Consulte la página de garantía para las condiciones completas."
+      },
+      {
+        "h": "Responsabilidad",
+        "p": "Hacemos todo lo posible por entregar su pedido correctamente. No somos responsables de los daños derivados del mal uso de un producto o de fuerza mayor."
+      },
+      {
+        "h": "Reclamaciones",
+        "p": "¿No está satisfecho con nuestro servicio? Escriba a mijnwinkel.vercel@proton.me y lo resolvemos. Intentamos responder en un plazo de 2 días laborables."
+      },
+      {
+        "h": "Ley aplicable",
+        "p": "Se aplica la ley neerlandesa a estos términos. Sus derechos legales como consumidor en su propio país siguen siendo siempre aplicables."
+      }
+    ]
   }
 }

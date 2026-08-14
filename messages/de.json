@@ -75,7 +75,7 @@
     "province": "Provinz *",
     "chooseProvince": "Provinz wählen...",
     "other": "Andere",
-    "terms": "Ich akzeptiere die Allgemeinen Geschäftsbedingungen",
+    "terms": "Ich akzeptiere die {link}Allgemeinen Geschäftsbedingungen{/link}",
     "termsError": "Sie müssen den Allgemeinen Geschäftsbedingungen zustimmen, um zu bestellen.",
     "pay": "Bezahlen €{total}",
     "overview": "Übersicht",
@@ -171,6 +171,94 @@
     "p2": "💶 Geld zurück innerhalb von 7 Tagen",
     "p3": "💳 Sichere Zahlung über Stripe",
     "copyright": "© {year} Mein Shop. Alle Rechte vorbehalten.",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "privacy": "Datenschutzerklärung",
+    "terms": "AGB"
+  },
+  "privacy": {
+    "title": "Datenschutzerklärung",
+    "updated": "Zuletzt aktualisiert: 14. August 2026",
+    "intro": "Mein Shop respektiert Ihre Privatsphäre. Diese Erklärung erläutert, welche Daten wir sammeln, wofür wir sie verwenden und welche Rechte Sie haben. Fragen? Schreiben Sie an mijnwinkel.vercel@proton.me.",
+    "sections": [
+      {
+        "h": "Wer wir sind",
+        "p": "Mein Shop ist ein Handelsname für einen Online-Shop mit smarten Gadgets und praktischen Produkten. Sie erreichen uns unter mijnwinkel.vercel@proton.me."
+      },
+      {
+        "h": "Welche Daten wir sammeln",
+        "p": "Bei einer Bestellung verarbeiten wir: Ihren Namen, Adresse, E-Mail-Adresse, Telefonnummer, die bestellten Produkte und den bezahlten Betrag. Zahlungsdaten wie Kartennummern verarbeiten wir nicht selbst; das übernimmt unser Zahlungspartner Stripe."
+      },
+      {
+        "h": "Wofür wir Ihre Daten verwenden",
+        "p": "Wir verwenden Ihre Daten nur, um: Ihre Bestellung zu bearbeiten und zu liefern, Zahlungen abzuwickeln, Sie über den Status Ihrer Bestellung zu informieren und Ihre Fragen zu beantworten. Wir verkaufen Ihre Daten niemals an Dritte."
+      },
+      {
+        "h": "Wie lange wir Ihre Daten speichern",
+        "p": "Wir speichern Bestelldaten so lange wie nötig zur Erfüllung des Vertrags und zur Einhaltung gesetzlicher Aufbewahrungspflichten, auf jeden Fall nicht länger als 2 Jahre nach Ihrer letzten Bestellung."
+      },
+      {
+        "h": "Weitergabe an Dritte",
+        "p": "Wir geben Ihre Daten nur an Parteien weiter, die für Ihre Bestellung nötig sind: Stripe (Zahlungen), Vercel (Hosting der Website) und Transportunternehmen (Zustellung Ihres Pakets). Diese Parteien dürfen Ihre Daten nicht für andere Zwecke verwenden."
+      },
+      {
+        "h": "Cookies",
+        "p": "Unsere Website verwendet nur technisch notwendige Cookies, z. B. um Ihren Warenkorb zu speichern. Wir verwenden keine Tracking- oder Werbe-Cookies."
+      },
+      {
+        "h": "Sicherheit",
+        "p": "Ihre Daten werden verschlüsselt übertragen (SSL) und sind nur für Personen zugänglich, die sie für ihre Arbeit benötigen. Zahlungen laufen über die sichere Umgebung von Stripe."
+      },
+      {
+        "h": "Ihre Rechte",
+        "p": "Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Übertragung Ihrer Daten, und Sie können der Verarbeitung widersprechen. Senden Sie eine E-Mail an mijnwinkel.vercel@proton.me. Wir antworten innerhalb von 30 Tagen. Sie haben außerdem das Recht, eine Beschwerde bei Ihrer Datenschutzbehörde einzureichen."
+      },
+      {
+        "h": "Änderungen",
+        "p": "Diese Erklärung kann sich ändern. Die neueste Version steht immer auf dieser Seite."
+      }
+    ]
+  },
+  "terms": {
+    "title": "Allgemeine Geschäftsbedingungen",
+    "updated": "Zuletzt aktualisiert: 14. August 2026",
+    "intro": "Diese Bedingungen gelten für alle Bestellungen bei Mein Shop. Mit einer Bestellung stimmen Sie diesen Bedingungen zu. Fragen? Schreiben Sie an mijnwinkel.vercel@proton.me.",
+    "sections": [
+      {
+        "h": "Allgemeines",
+        "p": "Mein Shop ist ein Handelsname für einen Online-Shop mit smarten Gadgets und praktischen Produkten, erreichbar unter mijnwinkel.vercel@proton.me."
+      },
+      {
+        "h": "Angebot und Vertrag",
+        "p": "Eine Bestellung ist erst endgültig, wenn Sie sie abgeschlossen und die Zahlung eingegangen ist. Nach der Zahlung erhalten Sie eine Bestätigung per E-Mail. Der Vertrag kommt mit dieser Bestätigung zustande."
+      },
+      {
+        "h": "Preise und Zahlung",
+        "p": "Alle Preise sind in Euro. Die Zahlung erfolgt sicher über Stripe mit iDEAL oder Kreditkarte. Ihre Bestellung wird erst nach erfolgreicher Zahlung bearbeitet."
+      },
+      {
+        "h": "Lieferung",
+        "p": "Heute bestellt, morgen geliefert. Ist ein Produkt ausverkauft, bestellen wir es dringend nach und es wird trotzdem so schnell wie möglich versendet. Lieferzeiten können in Ausnahmefällen abweichen."
+      },
+      {
+        "h": "Widerrufsrecht",
+        "p": "Sie haben das Recht, Ihre Bestellung innerhalb von 14 Tagen nach Erhalt ohne Angabe von Gründen zu widerrufen. Schreiben Sie uns innerhalb dieser Frist an mijnwinkel.vercel@proton.me. Sie erhalten den Kaufbetrag innerhalb von 14 Tagen nach Ihrer Nachricht zurück."
+      },
+      {
+        "h": "Garantie",
+        "p": "Unsere Garantie gilt für alle Produkte: nicht zufrieden? Geld zurück innerhalb von 7 Tagen. Vollständige Bedingungen auf der Garantieseite."
+      },
+      {
+        "h": "Haftung",
+        "p": "Wir tun unser Bestes, um Ihre Bestellung korrekt zu liefern. Wir haften nicht für Schäden durch unsachgemäße Nutzung eines Produkts oder höhere Gewalt."
+      },
+      {
+        "h": "Beschwerden",
+        "p": "Nicht zufrieden mit unserem Service? Schreiben Sie an mijnwinkel.vercel@proton.me und wir lösen das Problem. Wir antworten in der Regel innerhalb von 2 Werktagen."
+      },
+      {
+        "h": "Anwendbares Recht",
+        "p": "Auf diese Bedingungen ist niederländisches Recht anwendbar. Ihre gesetzlichen Rechte als Verbraucher in Ihrem eigenen Land bleiben immer bestehen."
+      }
+    ]
   }
 }

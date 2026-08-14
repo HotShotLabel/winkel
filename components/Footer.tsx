@@ -28,6 +28,16 @@ export default async function Footer() {
                   {t('myAccount')}
                 </Link>
               </li>
+              <li>
+                <Link href="/privacy" className="hover:text-white">
+                  {t('privacy')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/voorwaarden" className="hover:text-white">
+                  {t('terms')}
+                </Link>
+              </li>
             </ul>
           </div>
           <div>
