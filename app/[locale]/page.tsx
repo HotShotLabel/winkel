@@ -1,7 +1,7 @@
-import { getProducts } from '@/lib/orders'
+import { getProducts, localizeProduct } from '@/lib/orders'
 import { getProductPrices } from '@/lib/prices'
 import { getProductSeasons } from '@/lib/seasons'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, getLocale } from 'next-intl/server'
 import ProductCard from '@/components/ProductCard'
 import { Link } from '@/i18n/navigation'
 
@@ -9,7 +9,8 @@ export const dynamic = 'force-dynamic'
 
 export default async function Home() {
   const t = await getTranslations('home')
-  const products = await getProducts()
+  const locale = await getLocale()
+  const products = (await getProducts()).map(p => localizeProduct(p, locale))
   const prices = await getProductPrices()
   const seasons = await getProductSeasons()
 

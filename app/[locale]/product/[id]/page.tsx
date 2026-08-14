@@ -1,7 +1,7 @@
-import { getProduct } from '@/lib/orders'
+import { getProduct, localizeProduct } from '@/lib/orders'
 import { getProductPrices } from '@/lib/prices'
 import { notFound } from 'next/navigation'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, getLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import AddToCartButton from '@/components/AddToCartButton'
 
@@ -9,10 +9,12 @@ export const dynamic = 'force-dynamic'
 
 export default async function ProductPage({ params }: { params: { id: string } }) {
   const t = await getTranslations('product')
-  const product = await getProduct(params.id)
-  if (!product) {
+  const locale = await getLocale()
+  const productRaw = await getProduct(params.id)
+  if (!productRaw) {
     notFound()
   }
+  const product = localizeProduct(productRaw, locale)
 
   const prices = await getProductPrices()
   const oldPrice = prices[product.id]?.old_price

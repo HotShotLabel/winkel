@@ -1,4 +1,5 @@
 import { getSupabase } from '@/lib/supabase'
+import { buildTranslationColumns } from '@/lib/translate'
 
 export interface Product {
   id: string
@@ -7,6 +8,23 @@ export interface Product {
   image: string
   description: string
   created_at?: string
+  name_en?: string
+  name_fr?: string
+  name_de?: string
+  name_es?: string
+  description_en?: string
+  description_fr?: string
+  description_de?: string
+  description_es?: string
+}
+
+// Kiest naam/beschrijving per taal, valt terug op Nederlands
+export function localizeProduct(product: Product, locale: string): Product {
+  if (locale === 'nl') return product
+  const key = locale as 'en' | 'fr' | 'de' | 'es'
+  const name = product[`name_${key}`] || product.name
+  const description = product[`description_${key}`] || product.description
+  return { ...product, name, description }
 }
 
 export interface Order {
@@ -86,6 +104,19 @@ export async function createProduct(product: Omit<Product, 'id' | 'created_at'>)
     console.error('Error creating product:', error)
     return null
   }
+
+  // Nieuw product direct vertalen naar alle talen (valt terug op NL bij een fout)
+  try {
+    const translations = await buildTranslationColumns(product.name, product.description || '')
+    await getSupabase()
+      .from('products')
+      .update(translations)
+      .eq('id', data.id)
+    return { ...data, ...translations }
+  } catch (e) {
+    console.error('Auto-translate create error:', e)
+  }
+
   return data
 }
 
@@ -101,6 +132,27 @@ export async function updateProduct(id: string, product: Partial<Product>): Prom
     console.error('Error updating product:', error)
     return null
   }
+
+  // Bij naam-/beschrijvingswijziging ook de vertalingen bijwerken
+  if (product.name !== undefined || product.description !== undefined) {
+    try {
+      const current = await getProduct(id)
+      if (current) {
+        const translations = await buildTranslationColumns(
+          current.name,
+          current.description || ''
+        )
+        await getSupabase()
+          .from('products')
+          .update(translations)
+          .eq('id', id)
+        return { ...current, ...translations }
+      }
+    } catch (e) {
+      console.error('Auto-translate update error:', e)
+    }
+  }
+
   return data
 }
 
