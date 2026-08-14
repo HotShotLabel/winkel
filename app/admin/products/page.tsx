@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Product } from '@/lib/orders'
 import { AliExpressSources } from '@/lib/aliexpress'
 import { ProductPrices } from '@/lib/prices'
+import { adminFetch } from '@/lib/admin-fetch'
 
 export default function AdminProductsPage() {
   const [products, setProducts] = useState<Product[]>([])
@@ -39,7 +40,7 @@ export default function AdminProductsPage() {
 
   const saveSources = async (next: AliExpressSources) => {
     setSources(next)
-    await fetch('/api/aliexpress-sources', {
+    await adminFetch('/api/aliexpress-sources', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(next),
@@ -60,13 +61,13 @@ export default function AdminProductsPage() {
 
     if (editingProduct) {
       productId = editingProduct.id
-      await fetch(`/api/products/${editingProduct.id}`, {
+      await adminFetch(`/api/products/${editingProduct.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(productData),
       })
     } else {
-      const res = await fetch('/api/products', {
+      const res = await adminFetch('/api/products', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(productData),
@@ -95,7 +96,7 @@ export default function AdminProductsPage() {
       delete nextPrices[productId]
     }
     setPrices(nextPrices)
-    await fetch('/api/product-prices', {
+    await adminFetch('/api/product-prices', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(nextPrices),
@@ -129,7 +130,7 @@ export default function AdminProductsPage() {
   const handleDelete = async (id: string) => {
     if (!confirm('Weet je zeker dat je dit product wilt verwijderen?')) return
     
-    await fetch(`/api/products/${id}`, { method: 'DELETE' })
+    await adminFetch(`/api/products/${id}`, { method: 'DELETE' })
     setProducts(products.filter(p => p.id !== id))
   }
 

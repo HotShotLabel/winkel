@@ -26,9 +26,10 @@ function LoginForm() {
   const [error, setError] = useState('')
   const { login } = useAdmin()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (login(password)) {
+    const ok = await login(password)
+    if (ok) {
       setPassword('')
       setError('')
     } else {

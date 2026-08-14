@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Order, Product } from '@/lib/orders'
 import { AliExpressSources, buildAliExpressUrl } from '@/lib/aliexpress'
+import { adminFetch } from '@/lib/admin-fetch'
 
 export default function AdminOrdersPage() {
   const [orders, setOrders] = useState<Order[]>([])
@@ -14,7 +15,7 @@ export default function AdminOrdersPage() {
   const [fulfillOrder, setFulfillOrder] = useState<Order | null>(null)
 
   useEffect(() => {
-    fetch('/api/orders')
+    adminFetch('/api/orders')
       .then(res => res.json())
       .then(data => setOrders(data))
       .catch(err => console.error('Failed to fetch orders:', err))
@@ -33,7 +34,7 @@ export default function AdminOrdersPage() {
   const updateTracking = async () => {
     if (!selectedOrder || !trackingCode.trim()) return
 
-    await fetch('/api/orders', {
+    await adminFetch('/api/orders', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ orderId: selectedOrder.id, trackingCode: trackingCode.trim() }),

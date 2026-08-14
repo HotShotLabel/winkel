@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getProduct, updateProduct, deleteProduct } from '@/lib/orders'
+import { requireAdmin } from '@/lib/admin-auth'
 
 export async function GET(
   request: Request,
@@ -17,6 +18,9 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   try {
+    if (!requireAdmin(request)) {
+      return NextResponse.json({ error: 'Niet geautoriseerd' }, { status: 401 })
+    }
     const productData = await request.json()
     const product = await updateProduct(params.id, productData)
     if (!product) {
@@ -32,6 +36,9 @@ export async function DELETE(
   request: Request,
   { params }: { params: { id: string } }
 ) {
+  if (!requireAdmin(request)) {
+    return NextResponse.json({ error: 'Niet geautoriseerd' }, { status: 401 })
+  }
   const success = await deleteProduct(params.id)
   if (!success) {
     return NextResponse.json({ error: 'Product not found' }, { status: 404 })

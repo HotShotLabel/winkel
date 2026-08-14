@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getProductPrices, saveProductPrices } from '@/lib/prices'
+import { requireAdmin } from '@/lib/admin-auth'
 
 export async function GET() {
   const prices = await getProductPrices()
@@ -8,6 +9,9 @@ export async function GET() {
 
 export async function PUT(request: Request) {
   try {
+    if (!requireAdmin(request)) {
+      return NextResponse.json({ error: 'Niet geautoriseerd' }, { status: 401 })
+    }
     const prices = await request.json()
     const ok = await saveProductPrices(prices)
     if (!ok) {

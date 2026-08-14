@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getAliExpressSources, saveAliExpressSources } from '@/lib/aliexpress'
+import { requireAdmin } from '@/lib/admin-auth'
 
 export async function GET() {
   const sources = await getAliExpressSources()
@@ -8,6 +9,9 @@ export async function GET() {
 
 export async function PUT(request: Request) {
   try {
+    if (!requireAdmin(request)) {
+      return NextResponse.json({ error: 'Niet geautoriseerd' }, { status: 401 })
+    }
     const sources = await request.json()
     const ok = await saveAliExpressSources(sources)
     if (!ok) {

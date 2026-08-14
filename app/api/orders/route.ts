@@ -1,16 +1,23 @@
 import { NextResponse } from 'next/server'
 import { getOrders, updateOrder, updateOrderTracking } from '@/lib/orders'
 import { sendEmail, shippingConfirmationHtml } from '@/lib/notifications'
+import { requireAdmin } from '@/lib/admin-auth'
 
 export const dynamic = 'force-dynamic'
 
-export async function GET() {
+export async function GET(request: Request) {
+  if (!requireAdmin(request)) {
+    return NextResponse.json({ error: 'Niet geautoriseerd' }, { status: 401 })
+  }
   const orders = await getOrders()
   return NextResponse.json(orders)
 }
 
 export async function PUT(request: Request) {
   try {
+    if (!requireAdmin(request)) {
+      return NextResponse.json({ error: 'Niet geautoriseerd' }, { status: 401 })
+    }
     const { orderId, trackingCode } = await request.json()
     const order = await updateOrderTracking(orderId, trackingCode)
 
