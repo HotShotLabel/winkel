@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import { getAliExpressSources, saveAliExpressSources } from '@/lib/aliexpress'
 import { requireAdmin } from '@/lib/admin-auth'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   const sources = await getAliExpressSources()
   return NextResponse.json(sources)

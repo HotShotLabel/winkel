@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import { getProductPrices, saveProductPrices } from '@/lib/prices'
 import { requireAdmin } from '@/lib/admin-auth'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   const prices = await getProductPrices()
   return NextResponse.json(prices)
