@@ -2,12 +2,25 @@
 
 import { Product } from '@/lib/orders'
 import Link from 'next/link'
+import { useCart } from '@/components/Cart'
+import { useState } from 'react'
 
 export default function ProductCard({ product, oldPrice }: { product: Product; oldPrice?: number | null }) {
+  const { addToCart } = useCart()
+  const [added, setAdded] = useState(false)
+
   const discountPct =
     oldPrice && oldPrice > product.price
       ? Math.round(((oldPrice - product.price) / oldPrice) * 100)
       : null
+
+  const handleAdd = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    addToCart(product)
+    setAdded(true)
+    setTimeout(() => setAdded(false), 1500)
+  }
 
   return (
     <Link
@@ -33,8 +46,8 @@ export default function ProductCard({ product, oldPrice }: { product: Product; o
         <p className="text-gray-600 text-sm mb-4 line-clamp-2">
           {product.description}
         </p>
-        <div className="flex items-center justify-between">
-          <div className="flex items-baseline gap-2">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-baseline gap-2 min-w-0">
             <span className="text-2xl font-bold text-gray-900">
               €{product.price.toFixed(2)}
             </span>
@@ -44,9 +57,12 @@ export default function ProductCard({ product, oldPrice }: { product: Product; o
               </span>
             )}
           </div>
-          <span className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium">
-            Toevoegen
-          </span>
+          <button
+            onClick={handleAdd}
+            className={`${added ? 'bg-green-600' : 'bg-blue-600'} text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-colors whitespace-nowrap`}
+          >
+            {added ? '✓ Toegevoegd' : 'Toevoegen'}
+          </button>
         </div>
       </div>
     </Link>
