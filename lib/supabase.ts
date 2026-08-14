@@ -9,6 +9,13 @@ export function getSupabase(): SupabaseClient {
   if (!url || !key) {
     throw new Error('supabaseUrl is required. Check SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY env vars.')
   }
-  client = createClient(url, key)
+  // Eigen fetch met cache: 'no-store': Next.js cachet anders fetch-verzoeken in
+  // server-component-renders (zelfs met force-dynamic), waardoor pagina's stale
+  // producten tonen terwijl API-routes wel live data geven.
+  client = createClient(url, key, {
+    global: {
+      fetch: (input, init) => fetch(input, { ...init, cache: 'no-store' }),
+    },
+  })
   return client
 }

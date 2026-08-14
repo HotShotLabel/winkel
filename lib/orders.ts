@@ -49,10 +49,36 @@ export async function getProduct(id: string): Promise<Product | null> {
   return data
 }
 
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 80)
+}
+
 export async function createProduct(product: Omit<Product, 'id' | 'created_at'>): Promise<Product | null> {
+  // De products-tabel heeft id als NOT NULL zonder default.
+  // Genereer een unieke slug uit de naam (zoals bestaande producten: star-projector, usb-c-240w-kabel).
+  const baseSlug = slugify(product.name) || 'product'
+  let slug = baseSlug
+  let suffix = 2
+  for (;;) {
+    const { data: existing } = await getSupabase()
+      .from('products')
+      .select('id')
+      .eq('id', slug)
+      .maybeSingle()
+    if (!existing) break
+    slug = `${baseSlug}-${suffix}`
+    suffix++
+  }
+
   const { data, error } = await getSupabase()
     .from('products')
-    .insert(product)
+    .insert({ ...product, id: slug })
     .select()
     .single()
 
