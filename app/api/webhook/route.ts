@@ -61,12 +61,11 @@ export async function POST(request: Request) {
             )
           }
 
-          // AliExpress placeorder UIT (handmatig betalen): automatische plaatsing
-          // maakt onbetaalde orders die na ~24u vervallen. Bestellen gebeurt handmatig
-          // via de AliExpress-link op de admin-orders-pagina.
-          // if (addressMapRaw) {
-          //   await placeOrderForShopOrder(orderId, order, addressMapRaw)
-          // }
+          // AliExpress placeorder op klantadres (onbetaald, try_to_pay:false).
+          // Betalen doet de verkoper handmatig in het AliExpress-account.
+          if (addressMapRaw) {
+            await placeOrderForShopOrder(orderId, order, addressMapRaw)
+          }
         }
       }
 
