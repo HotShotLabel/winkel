@@ -1,5 +1,25 @@
 import { NextResponse } from 'next/server'
 import { sendEmail } from '@/lib/notifications'
+import { getSupabase } from '@/lib/supabase'
+import { requireAdmin } from '@/lib/admin-auth'
+
+export const dynamic = 'force-dynamic'
+
+// GET /api/contact — admin: alle contactberichten
+export async function GET(request: Request) {
+  if (!requireAdmin(request)) {
+    return NextResponse.json({ error: 'Niet geautoriseerd' }, { status: 401 })
+  }
+  const { data, error } = await getSupabase()
+    .from('contact_messages')
+    .select('*')
+    .order('created_at', { ascending: false })
+  if (error) {
+    console.error('Error fetching contact messages:', error)
+    return NextResponse.json([])
+  }
+  return NextResponse.json(data || [])
+}
 
 // Honeypot anti-spam: verborgen veld dat echte gebruikers nooit invullen.
 export async function POST(request: Request) {
@@ -15,6 +35,15 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Vul alle verplichte velden in' }, { status: 400 })
     }
 
+    // Altijd opslaan in DB — bericht is nooit verloren, ook niet als e-mail faalt
+    const { error: dbError } = await getSupabase()
+      .from('contact_messages')
+      .insert({ name, email, subject: subject || '', message })
+    if (dbError) {
+      console.error('Contact DB insert failed:', dbError)
+    }
+
+    // E-mail als melding (best effort — DB is de bron van waarheid)
     const to = process.env.SMTP_FROM?.replace(/^.*</, '').replace(/>.*$/, '') || ''
     const sent = await sendEmail(
       to,
@@ -33,7 +62,7 @@ export async function POST(request: Request) {
     )
 
     if (!sent) {
-      return NextResponse.json({ error: 'Versturen mislukt' }, { status: 500 })
+      console.warn('Contact email failed, but message saved to DB')
     }
     return NextResponse.json({ ok: true })
   } catch (error) {

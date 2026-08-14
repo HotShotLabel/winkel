@@ -41,6 +41,12 @@ export default function AdminNavbar() {
               >
                 Kortingscodes
               </Link>
+              <Link 
+                href="/admin/messages" 
+                className={`text-sm ${pathname === '/admin/messages' ? 'text-blue-600 font-medium' : 'text-gray-600 hover:text-gray-900'}`}
+              >
+                Contact
+              </Link>
             </div>
           </div>
           <div className="flex items-center space-x-4">
