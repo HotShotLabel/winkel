@@ -47,7 +47,7 @@ export default async function GarantiePage() {
           {t('contactText')}
         </p>
         <p className="text-gray-700">
-          📧 <a href="mailto:info@onzewinkel.nl" className="text-blue-600 hover:underline">info@onzewinkel.nl</a>
+          📧 <a href="mailto:mijnwinkel.vercel@proton.me" className="text-blue-600 hover:underline">mijnwinkel.vercel@proton.me</a>
         </p>
       </div>
 

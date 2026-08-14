@@ -6,6 +6,7 @@ import { useAdmin } from '@/components/AdminContext'
 import { useCart } from '@/components/Cart'
 import { usePathname } from '@/i18n/navigation'
 import { routing } from '@/i18n/routing'
+import Logo from '@/components/Logo'
 
 const LANGUAGE_NAMES: Record<string, string> = {
   nl: '🇳🇱 Nederlands',
@@ -27,8 +28,11 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-14 sm:h-16">
           <div className="flex items-center">
-            <Link href="/" className="text-base sm:text-xl font-bold text-gray-900">
-              {t('shopName')}
+            <Link href="/" className="flex items-center gap-2">
+              <Logo />
+              <span className="text-base sm:text-xl font-bold text-gray-900">
+                {t('shopName')}
+              </span>
             </Link>
           </div>
           <div className="flex items-center gap-2 sm:gap-6 text-xs sm:text-base">

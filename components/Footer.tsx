@@ -8,7 +8,7 @@ export default async function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <h3 className="text-white font-semibold mb-3">{t('shopName')}</h3>
             <p className="text-sm text-gray-400">
@@ -36,6 +36,16 @@ export default async function Footer() {
               <li>{t('p1')}</li>
               <li>{t('p2')}</li>
               <li>{t('p3')}</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-white font-semibold mb-3">{t('contact')}</h3>
+            <ul className="text-sm space-y-2 text-gray-400">
+              <li>
+                <a href="mailto:mijnwinkel.vercel@proton.me" className="hover:text-white">
+                  📧 mijnwinkel.vercel@proton.me
+                </a>
+              </li>
             </ul>
           </div>
         </div>
