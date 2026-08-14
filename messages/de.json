@@ -48,7 +48,9 @@
     "quantity": "Anzahl:",
     "addToCart": "🛒 In den Warenkorb",
     "addToCartN": "🛒 In den Warenkorb ({n})",
-    "added": "✓ Hinzugefügt"
+    "added": "✓ Hinzugefügt",
+    "home": "Startseite",
+    "soldToday": "Personen kauften dies"
   },
   "cart": {
     "title": "Warenkorb",
@@ -258,6 +260,57 @@
       {
         "h": "Anwendbares Recht",
         "p": "Auf diese Bedingungen ist niederländisches Recht anwendbar. Ihre gesetzlichen Rechte als Verbraucher in Ihrem eigenen Land bleiben immer bestehen."
+      }
+    ]
+  },
+  "metadata": {
+    "title": "Mein Shop | Schnell online bestellen",
+    "description": "Schnell und einfach online bestellen. Kühlende Sommerprodukte und wärmespeichernde Winterprodukte, schnell bei Ihnen zu Hause."
+  },
+  "reviews": {
+    "title": "Bewertungen",
+    "write": "Bewertung schreiben",
+    "name": "Name",
+    "rating": "Bewertung",
+    "comment": "Ihre Erfahrung mit diesem Produkt",
+    "submit": "Bewertung absenden",
+    "thanks": "Danke für Ihre Bewertung!",
+    "empty": "Noch keine Bewertungen. Seien Sie die Ersten!",
+    "stars": "von 5 Sternen",
+    "soldToday": "Personen kauften dies heute",
+    "error": "Bewertung konnte nicht gesendet werden, versuchen Sie es erneut."
+  },
+  "newsletter": {
+    "title": "Bleiben Sie informiert",
+    "sub": "Neue Produkte und Angebote direkt in Ihr Postfach.",
+    "placeholder": "ihre@email.de",
+    "button": "Anmelden",
+    "ok": "Geschafft! Sie sind auf der Liste.",
+    "error": "Anmeldung fehlgeschlagen, versuchen Sie es später erneut.",
+    "invalid": "Geben Sie eine gültige E-Mail-Adresse ein."
+  },
+  "faq": {
+    "title": "Häufig gestellte Fragen",
+    "items": [
+      {
+        "q": "Wie schnell wird meine Bestellung versandt?",
+        "a": "Bestellungen werden innerhalb von 24 Stunden bearbeitet. Auf Lager: am nächsten Werktag bei Ihnen. Nicht auf Lager: Wir bestellen sofort und versenden, sobald die Ware da ist (meist 2-3 Wochen)."
+      },
+      {
+        "q": "Wie funktioniert die 7-Tage-Garantie?",
+        "a": "Nicht zufrieden? Geld zurück innerhalb von 7 Tagen. Bedingung: Verpackung ungeöffnet und Produkt unbeschädigt."
+      },
+      {
+        "q": "Welche Zahlungsmethoden kann ich nutzen?",
+        "a": "Sicher bezahlen über Stripe mit Karte oder iDEAL."
+      },
+      {
+        "q": "Sind die Produkte original?",
+        "a": "Ja, alle Produkte sind neu und original, direkt geliefert."
+      },
+      {
+        "q": "Kann ich meine Bestellung verfolgen?",
+        "a": "Ja, auf der Bestellseite mit Ihrer E-Mail und Bestellcode sehen Sie den Status: bezahlt oder versendet. Eine Sendungsverfolgungsnummer wird angezeigt, sofern verfügbar."
       }
     ]
   }

@@ -48,7 +48,9 @@
     "quantity": "Cantidad:",
     "addToCart": "🛒 Añadir al carrito",
     "addToCartN": "🛒 Añadir al carrito ({n})",
-    "added": "✓ Añadido"
+    "added": "✓ Añadido",
+    "home": "Inicio",
+    "soldToday": "personas compraron esto"
   },
   "cart": {
     "title": "Carrito",
@@ -258,6 +260,57 @@
       {
         "h": "Ley aplicable",
         "p": "Se aplica la ley neerlandesa a estos términos. Sus derechos legales como consumidor en su propio país siguen siendo siempre aplicables."
+      }
+    ]
+  },
+  "metadata": {
+    "title": "Mi Tienda | Pide online rápido",
+    "description": "Pide online de forma rápida y sencilla. Productos refrescantes de verano y productos que conservan el calor en invierno, rápido en tu casa."
+  },
+  "reviews": {
+    "title": "Reseñas",
+    "write": "Escribir una reseña",
+    "name": "Nombre",
+    "rating": "Puntuación",
+    "comment": "Tu experiencia con este producto",
+    "submit": "Publicar reseña",
+    "thanks": "¡Gracias por tu reseña!",
+    "empty": "Aún no hay reseñas. ¡Sé el primero!",
+    "stars": "de 5 estrellas",
+    "soldToday": "personas compraron esto hoy",
+    "error": "No se pudo publicar la reseña, inténtalo de nuevo."
+  },
+  "newsletter": {
+    "title": "Mantente informado",
+    "sub": "Recibe nuevos productos y ofertas en tu correo.",
+    "placeholder": "tu@email.es",
+    "button": "Suscribirse",
+    "ok": "¡Hecho! Estás en la lista.",
+    "error": "No se pudo suscribir, inténtalo más tarde.",
+    "invalid": "Introduce un correo electrónico válido."
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "q": "¿Cuánto tarda el envío de mi pedido?",
+        "a": "Los pedidos se procesan en 24 horas. En stock: en tu puerta el siguiente día laborable. Sin stock: lo pedimos de inmediato y lo enviamos en cuanto llegue (normalmente 2-3 semanas)."
+      },
+      {
+        "q": "¿Cómo funciona la garantía de 7 días?",
+        "a": "¿No estás satisfecho? Devolución del dinero en 7 días. Condición: paquete sin abrir y producto sin daños."
+      },
+      {
+        "q": "¿Qué métodos de pago puedo usar?",
+        "a": "Paga de forma segura con Stripe con tarjeta o iDEAL."
+      },
+      {
+        "q": "¿Los productos son originales?",
+        "a": "Sí, todos los productos son nuevos y originales, entregados directamente."
+      },
+      {
+        "q": "¿Puedo seguir mi pedido?",
+        "a": "Sí, en la página de pedido con tu correo y código de pedido ves el estado: pagado o enviado. El código de seguimiento se muestra si está disponible."
       }
     ]
   }

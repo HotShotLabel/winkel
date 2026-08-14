@@ -2,6 +2,7 @@ import { getProducts, localizeProduct } from '@/lib/orders'
 import { getProductPrices } from '@/lib/prices'
 import { getProductSeasons } from '@/lib/seasons'
 import { getTranslations, getLocale } from 'next-intl/server'
+import { absoluteUrl } from '@/lib/seo'
 import ProductCard from '@/components/ProductCard'
 import { Link } from '@/i18n/navigation'
 
@@ -9,6 +10,7 @@ export const dynamic = 'force-dynamic'
 
 export default async function Home() {
   const t = await getTranslations('home')
+  const faq = await getTranslations('faq')
   const locale = await getLocale()
   const products = (await getProducts()).map(p => localizeProduct(p, locale))
   const prices = await getProductPrices()
@@ -17,6 +19,26 @@ export default async function Home() {
   const zomerProducts = products.filter(p => seasons[p.id] === 'zomer')
   const winterProducts = products.filter(p => seasons[p.id] === 'winter')
   const overigeProducts = products.filter(p => !seasons[p.id])
+
+  const faqItems = faq.raw('items') as { q: string; a: string }[]
+
+  const orgSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Mijn Winkel',
+    url: absoluteUrl(locale),
+    email: 'mijnwinkel.vercel@proton.me',
+  }
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map(item => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  }
 
   return (
     <div>
@@ -129,6 +151,37 @@ export default async function Home() {
           <p className="text-gray-500">{t('emptyOther')}</p>
         )}
       </div>
+
+      {/* FAQ */}
+      <section id="faq" className="bg-white border-t border-gray-200 py-12">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">{faq('title')}</h2>
+          <div className="space-y-3">
+            {faqItems.map((item, i) => (
+              <details
+                key={i}
+                className="group border border-gray-200 rounded-xl bg-gray-50 open:bg-white"
+              >
+                <summary className="cursor-pointer font-semibold text-gray-900 px-5 py-4 flex items-center justify-between">
+                  {item.q}
+                  <span className="text-gray-400 group-open:hidden">+</span>
+                  <span className="text-gray-400 hidden group-open:inline">−</span>
+                </summary>
+                <p className="px-5 pb-4 text-gray-600 text-sm leading-relaxed">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
     </div>
   )
 }

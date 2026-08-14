@@ -48,7 +48,9 @@
     "quantity": "Aantal:",
     "addToCart": "🛒 In winkelmand",
     "addToCartN": "🛒 In winkelmand ({n})",
-    "added": "✓ Toegevoegd"
+    "added": "✓ Toegevoegd",
+    "home": "Home",
+    "soldToday": "mensen kochten dit"
   },
   "cart": {
     "title": "Winkelmand",
@@ -258,6 +260,57 @@
       {
         "h": "Toepasselijk recht",
         "p": "Op deze voorwaarden is Nederlands recht van toepassing. Wettelijke rechten die u heeft als consument in uw eigen land blijven altijd van toepassing."
+      }
+    ]
+  },
+  "metadata": {
+    "title": "Mijn Winkel | Snel online bestellen",
+    "description": "Snel en eenvoudig online bestellen. Koelende zomerproducten en warmhoudende winterproducten, snel bij je thuis."
+  },
+  "reviews": {
+    "title": "Beoordelingen",
+    "write": "Schrijf een beoordeling",
+    "name": "Naam",
+    "rating": "Beoordeling",
+    "comment": "Jouw ervaring met dit product",
+    "submit": "Plaats beoordeling",
+    "thanks": "Bedankt voor je beoordeling!",
+    "empty": "Nog geen beoordelingen. Wees de eerste!",
+    "stars": "van 5 sterren",
+    "soldToday": "mensen kochten dit vandaag",
+    "error": "Beoordeling plaatsen mislukt, probeer het opnieuw."
+  },
+  "newsletter": {
+    "title": "Blijf op de hoogte",
+    "sub": "Ontvang nieuwe producten en acties in je mailbox.",
+    "placeholder": "jouw@email.nl",
+    "button": "Aanmelden",
+    "ok": "Gelukt! Je staat op de lijst.",
+    "error": "Kon niet aanmelden, probeer het later opnieuw.",
+    "invalid": "Vul een geldig e-mailadres in."
+  },
+  "faq": {
+    "title": "Veelgestelde vragen",
+    "items": [
+      {
+        "q": "Hoe snel wordt mijn bestelling verzonden?",
+        "a": "Bestellingen worden binnen 24 uur verwerkt. Op voorraad: de volgende werkdag in huis. Niet op voorraad: we bestellen het direct en sturen het zodra het binnen is (meestal 2-3 weken)."
+      },
+      {
+        "q": "Hoe werkt de 7-dagen-garantie?",
+        "a": "Niet tevreden? Binnen 7 dagen geld terug. Voorwaarde: verpakking ongeopend en product onbeschadigd."
+      },
+      {
+        "q": "Welke betaalmethoden kan ik gebruiken?",
+        "a": "Veilig betalen via Stripe. Je betaalt online met je betaalkaart of iDEAL."
+      },
+      {
+        "q": "Zijn de producten origineel?",
+        "a": "Ja, alle producten zijn nieuw en origineel, rechtstreeks geleverd."
+      },
+      {
+        "q": "Kan ik mijn bestelling volgen?",
+        "a": "Ja, op de orderpagina met je e-mailadres en bestelcode zie je de status: betaald of verzonden. Is er een track & trace-code, dan staat die erbij."
       }
     ]
   }

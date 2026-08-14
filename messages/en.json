@@ -48,7 +48,9 @@
     "quantity": "Quantity:",
     "addToCart": "🛒 Add to cart",
     "addToCartN": "🛒 Add to cart ({n})",
-    "added": "✓ Added"
+    "added": "✓ Added",
+    "home": "Home",
+    "soldToday": "people bought this"
   },
   "cart": {
     "title": "Shopping cart",
@@ -258,6 +260,57 @@
       {
         "h": "Applicable law",
         "p": "Dutch law applies to these terms. Your statutory rights as a consumer in your own country always remain applicable."
+      }
+    ]
+  },
+  "metadata": {
+    "title": "My Shop | Fast online ordering",
+    "description": "Fast and easy online ordering. Cooling summer products and heat-retaining winter products, quickly at your door."
+  },
+  "reviews": {
+    "title": "Reviews",
+    "write": "Write a review",
+    "name": "Name",
+    "rating": "Rating",
+    "comment": "Your experience with this product",
+    "submit": "Post review",
+    "thanks": "Thank you for your review!",
+    "empty": "No reviews yet. Be the first!",
+    "stars": "out of 5 stars",
+    "soldToday": "people bought this today",
+    "error": "Couldn't post your review, try again."
+  },
+  "newsletter": {
+    "title": "Stay updated",
+    "sub": "Get new products and offers in your inbox.",
+    "placeholder": "your@email.com",
+    "button": "Subscribe",
+    "ok": "Done! You're on the list.",
+    "error": "Couldn't subscribe, try again later.",
+    "invalid": "Enter a valid email address."
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "q": "How fast is my order shipped?",
+        "a": "Orders are processed within 24 hours. In stock: at your door the next working day. Out of stock: we order it right away and ship as soon as it arrives (usually 2-3 weeks)."
+      },
+      {
+        "q": "How does the 7-day guarantee work?",
+        "a": "Not happy? Money back within 7 days. Condition: package unopened and product undamaged."
+      },
+      {
+        "q": "Which payment methods can I use?",
+        "a": "Pay securely via Stripe with your card or iDEAL."
+      },
+      {
+        "q": "Are the products original?",
+        "a": "Yes, all products are new and original, delivered directly."
+      },
+      {
+        "q": "Can I track my order?",
+        "a": "Yes, on the order page with your email and order code you see the status: paid or shipped. A track & trace code is shown when available."
       }
     ]
   }

@@ -48,7 +48,9 @@
     "quantity": "Quantité :",
     "addToCart": "🛒 Ajouter au panier",
     "addToCartN": "🛒 Ajouter au panier ({n})",
-    "added": "✓ Ajouté"
+    "added": "✓ Ajouté",
+    "home": "Accueil",
+    "soldToday": "personnes ont acheté ce produit"
   },
   "cart": {
     "title": "Panier",
@@ -258,6 +260,57 @@
       {
         "h": "Droit applicable",
         "p": "Le droit néerlandais s’applique à ces conditions. Vos droits légaux en tant que consommateur dans votre propre pays restent toujours applicables."
+      }
+    ]
+  },
+  "metadata": {
+    "title": "Ma Boutique | Commandez en ligne rapidement",
+    "description": "Commandez en ligne rapidement et facilement. Produits rafraîchissants pour l'été et produits chauffants pour l'hiver, livrés rapidement chez vous."
+  },
+  "reviews": {
+    "title": "Avis",
+    "write": "Rédiger un avis",
+    "name": "Nom",
+    "rating": "Note",
+    "comment": "Votre expérience avec ce produit",
+    "submit": "Publier l'avis",
+    "thanks": "Merci pour votre avis !",
+    "empty": "Aucun avis pour le moment. Soyez le premier !",
+    "stars": "sur 5 étoiles",
+    "soldToday": "personnes ont acheté ce produit aujourd'hui",
+    "error": "Impossible de publier l'avis, réessayez."
+  },
+  "newsletter": {
+    "title": "Restez informé",
+    "sub": "Recevez les nouveaux produits et offres dans votre boîte mail.",
+    "placeholder": "votre@email.fr",
+    "button": "S'inscrire",
+    "ok": "C'est fait ! Vous êtes sur la liste.",
+    "error": "Inscription impossible, réessayez plus tard.",
+    "invalid": "Saisissez une adresse e-mail valide."
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "items": [
+      {
+        "q": "Combien de temps prend l'expédition ?",
+        "a": "Les commandes sont traitées sous 24 heures. En stock : chez vous le jour ouvré suivant. En rupture : nous commandons immédiatement et expédions dès réception (généralement 2 à 3 semaines)."
+      },
+      {
+        "q": "Comment fonctionne la garantie de 7 jours ?",
+        "a": "Pas satisfait ? Remboursement sous 7 jours. Condition : emballage non ouvert et produit intact."
+      },
+      {
+        "q": "Quels moyens de paiement puis-je utiliser ?",
+        "a": "Payez en toute sécurité via Stripe avec votre carte ou iDEAL."
+      },
+      {
+        "q": "Les produits sont-ils originaux ?",
+        "a": "Oui, tous les produits sont neufs et originaux, livrés directement."
+      },
+      {
+        "q": "Puis-je suivre ma commande ?",
+        "a": "Oui, sur la page de commande avec votre e-mail et votre code de commande, vous voyez le statut : payée ou expédiée. Le code de suivi est affiché s'il est disponible."
       }
     ]
   }

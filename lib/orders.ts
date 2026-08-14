@@ -182,6 +182,28 @@ export async function getOrders(): Promise<Order[]> {
   return data || []
 }
 
+// Social proof: aantal verkochte exemplaren per product (alleen betaalde/verzonden bestellingen).
+export async function getPaidOrderCounts(): Promise<Record<string, number>> {
+  const { data, error } = await getSupabase()
+    .from('orders')
+    .select('status, items')
+
+  if (error) {
+    console.error('Error fetching order counts:', error)
+    return {}
+  }
+
+  const counts: Record<string, number> = {}
+  for (const order of data || []) {
+    if (order.status === 'pending') continue
+    for (const item of (order.items as { productId: string; quantity: number }[]) || []) {
+      if (!item?.productId) continue
+      counts[item.productId] = (counts[item.productId] || 0) + (item.quantity || 1)
+    }
+  }
+  return counts
+}
+
 export async function getOrdersByEmail(email: string): Promise<Order[]> {
   const { data, error } = await getSupabase()
     .from('orders')

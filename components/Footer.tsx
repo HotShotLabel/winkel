@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
+import NewsletterForm from '@/components/NewsletterForm'
 
 export default async function Footer() {
   const t = await getTranslations('footer')
@@ -59,7 +60,10 @@ export default async function Footer() {
             </ul>
           </div>
         </div>
-        <div className="border-t border-gray-800 mt-8 pt-6 text-center text-sm text-gray-500">
+        <div className="border-t border-gray-800 mt-8 pt-6">
+          <NewsletterForm />
+        </div>
+        <div className="mt-6 text-center text-sm text-gray-500">
           {t('copyright', { year })}
         </div>
       </div>
