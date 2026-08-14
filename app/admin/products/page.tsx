@@ -2,16 +2,20 @@
 
 import { useState, useEffect } from 'react'
 import { Product } from '@/lib/orders'
+import { AliExpressSources } from '@/lib/aliexpress'
 
 export default function AdminProductsPage() {
   const [products, setProducts] = useState<Product[]>([])
+  const [sources, setSources] = useState<AliExpressSources>({})
   const [editingProduct, setEditingProduct] = useState<Product | null>(null)
   const [showAddForm, setShowAddForm] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     price: '',
     image: '',
-    description: ''
+    description: '',
+    aliexpress_url: '',
+    aliexpress_sku: ''
   })
   const [imageFile, setImageFile] = useState<File | null>(null)
 
@@ -20,7 +24,20 @@ export default function AdminProductsPage() {
       .then(res => res.json())
       .then(data => setProducts(data))
       .catch(err => console.error('Failed to fetch products:', err))
+    fetch('/api/aliexpress-sources')
+      .then(res => res.json())
+      .then(data => setSources(data))
+      .catch(err => console.error('Failed to fetch aliexpress sources:', err))
   }, [])
+
+  const saveSources = async (next: AliExpressSources) => {
+    setSources(next)
+    await fetch('/api/aliexpress-sources', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(next),
+    })
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -32,21 +49,37 @@ export default function AdminProductsPage() {
       description: formData.description
     }
 
+    let productId: string | null = null
+
     if (editingProduct) {
+      productId = editingProduct.id
       await fetch(`/api/products/${editingProduct.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(productData),
       })
     } else {
-      await fetch('/api/products', {
+      const res = await fetch('/api/products', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(productData),
       })
+      const created = await res.json()
+      productId = created?.id || null
     }
 
-    setFormData({ name: '', price: '', image: '', description: '' })
+    // AliExpress-link opslaan in sources-mapping
+    if (productId) {
+      const next = { ...sources }
+      if (formData.aliexpress_url) {
+        next[productId] = { url: formData.aliexpress_url, sku: formData.aliexpress_sku || null }
+      } else {
+        delete next[productId]
+      }
+      await saveSources(next)
+    }
+
+    setFormData({ name: '', price: '', image: '', description: '', aliexpress_url: '', aliexpress_sku: '' })
     setEditingProduct(null)
     setShowAddForm(false)
     
@@ -58,11 +91,14 @@ export default function AdminProductsPage() {
 
   const handleEdit = (product: Product) => {
     setEditingProduct(product)
+    const src = sources[product.id]
     setFormData({
       name: product.name,
       price: product.price.toString(),
       image: product.image,
-      description: product.description
+      description: product.description,
+      aliexpress_url: src?.url || '',
+      aliexpress_sku: src?.sku || ''
     })
     setShowAddForm(true)
   }
@@ -87,7 +123,7 @@ export default function AdminProductsPage() {
   }
 
   const resetForm = () => {
-    setFormData({ name: '', price: '', image: '', description: '' })
+    setFormData({ name: '', price: '', image: '', description: '', aliexpress_url: '', aliexpress_sku: '' })
     setEditingProduct(null)
     setShowAddForm(false)
     setImageFile(null)
@@ -160,6 +196,28 @@ export default function AdminProductsPage() {
                 required
               />
             </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">AliExpress-link (productpagina)</label>
+                <input
+                  type="url"
+                  value={formData.aliexpress_url}
+                  onChange={(e) => setFormData({...formData, aliexpress_url: e.target.value})}
+                  placeholder="https://nl.aliexpress.com/item/1005009055519135.html"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">AliExpress-variant (skuId, optioneel)</label>
+                <input
+                  type="text"
+                  value={formData.aliexpress_sku}
+                  onChange={(e) => setFormData({...formData, aliexpress_sku: e.target.value})}
+                  placeholder="bijv. 1200003712345678"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                />
+              </div>
+            </div>
             <div className="flex space-x-3">
               <button
                 type="submit"
@@ -188,6 +246,7 @@ export default function AdminProductsPage() {
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Naam</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Prijs</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Beschrijving</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">AliExpress</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Acties</th>
             </tr>
           </thead>
@@ -209,6 +268,20 @@ export default function AdminProductsPage() {
                 </td>
                 <td className="px-6 py-4 text-sm text-gray-600 max-w-xs truncate">
                   {product.description}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  {sources[product.id]?.url ? (
+                    <a
+                      href={sources[product.id].url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-orange-600 hover:text-orange-800"
+                    >
+                      Link ↗
+                    </a>
+                  ) : (
+                    <span className="text-gray-400">-</span>
+                  )}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm space-x-2">
                   <button
