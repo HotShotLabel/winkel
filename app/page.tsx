@@ -52,9 +52,9 @@ export default async function Home() {
             <p className="text-sm text-gray-500">Niet goed? Geld terug binnen 7 dagen</p>
           </div>
           <div>
-            <div className="text-2xl mb-1">📦</div>
-            <p className="font-semibold text-gray-900">Snel en veilig verzonden</p>
-            <p className="text-sm text-gray-500">Zorgvuldig verpakt en track & trace</p>
+            <div className="text-2xl mb-1">⚡</div>
+            <p className="font-semibold text-gray-900">Vandaag besteld, morgen thuis</p>
+            <p className="text-sm text-gray-500">Uitverkocht? Dan met spoed besteld en verzonden</p>
           </div>
           <div>
             <div className="text-2xl mb-1">💳</div>

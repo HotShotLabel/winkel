@@ -75,9 +75,18 @@ export default async function ProductPage({ params }: { params: { id: string } }
             </ul>
           </div>
 
+          {/* Verzending */}
+          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-5">
+            <h2 className="font-semibold text-blue-900 mb-2">⚡ Vandaag besteld, morgen thuis</h2>
+            <p className="text-sm text-blue-800 mb-2">
+              Bestel vandaag en we verzenden je pakket direct. Is het product uitverkocht? Dan bestellen we het met spoed voor je en versturen we het zodra het binnen is.
+            </p>
+            <p className="text-sm text-blue-700 mb-1">✓ Op voorraad — morgen in huis</p>
+            <p className="text-sm text-blue-700">✓ Niet op voorraad — met spoed bijbesteld en verzonden</p>
+          </div>
+
           <div className="mt-6 text-sm text-gray-500">
-            <p className="mb-1"><span className="font-medium text-gray-700">Verzending:</span> 2-3 weken</p>
-            <p>
+            <p className="mb-1">
               <Link href="/garantie" className="text-blue-600 hover:underline">
                 Bekijk onze garantievoorwaarden
               </Link>

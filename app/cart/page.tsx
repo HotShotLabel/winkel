@@ -21,9 +21,9 @@ export default function CartPage() {
       <h1 className="text-3xl font-bold text-gray-900 mb-8">Winkelmand</h1>
       <div className="bg-white rounded-lg shadow-md p-6">
         {items.map(item => (
-          <div key={item.id} className="flex items-center justify-between py-4 border-b border-gray-200 last:border-0">
-            <div className="flex-1">
-              <h3 className="text-lg font-semibold text-gray-900">{item.name}</h3>
+          <div key={item.id} className="flex flex-wrap items-center justify-between gap-2 py-4 border-b border-gray-200 last:border-0">
+            <div className="flex-1 min-w-[150px]">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900">{item.name}</h3>
               <p className="text-gray-600">€{item.price.toFixed(2)} x {item.quantity}</p>
             </div>
             <div className="flex items-center space-x-4">
