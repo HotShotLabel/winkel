@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useCart } from '@/components/Cart'
 import { useRouter } from 'next/navigation'
+import { COUNTRIES } from '@/lib/address-map'
 
 export default function CheckoutPage() {
   const { items, total, clearCart } = useCart()
@@ -16,8 +17,12 @@ export default function CheckoutPage() {
     postalCode: '',
     city: '',
     country: 'Nederland',
+    province: '',
+    phone: '',
     email: '',
   })
+
+  const country = COUNTRIES.find((c) => c.name === formData.country)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -101,6 +106,17 @@ export default function CheckoutPage() {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg"
               />
             </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Telefoon *</label>
+              <input
+                type="tel"
+                required
+                placeholder={country ? `${country.phoneCountry} 612345678` : '0612345678'}
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+              />
+            </div>
             <div className="grid grid-cols-3 gap-4">
               <div className="col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-1">Adres *</label>
@@ -148,17 +164,32 @@ export default function CheckoutPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-1">Land *</label>
                 <select
                   value={formData.country}
-                  onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                  onChange={(e) => setFormData({ ...formData, country: e.target.value, province: '' })}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg"
                 >
-                  <option>Nederland</option>
-                  <option>België</option>
-                  <option>Duitsland</option>
-                  <option>Frankrijk</option>
+                  {COUNTRIES.map((c) => (
+                    <option key={c.code}>{c.name}</option>
+                  ))}
                   <option>Anders</option>
                 </select>
               </div>
             </div>
+            {country && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Provincie *</label>
+                <select
+                  required
+                  value={formData.province}
+                  onChange={(e) => setFormData({ ...formData, province: e.target.value })}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                >
+                  <option value="">Kies provincie...</option>
+                  {country.regions.map((r) => (
+                    <option key={r.code} value={r.name}>{r.name}</option>
+                  ))}
+                </select>
+              </div>
+            )}
             <button
               type="submit"
               disabled={loading}

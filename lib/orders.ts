@@ -14,6 +14,7 @@ export interface Order {
   customer_email: string
   customer_name: string
   address: string
+  address_map?: string // JSON: {countryCode, province, locationTreeAddressId, phoneCountry, mobileNo}
   items: { productId: string; name: string; price: number; quantity: number }[]
   total: number
   status: 'pending' | 'paid' | 'shipped'

@@ -1,0 +1,186 @@
+// Adres-mapping voor AliExpress placeorder
+// Codes gevangen uit mtop.aliexpress.address.country.get (aug 2026)
+// location_tree_address_id = `<eersteRegioCode>-<provincieCode>`
+// Bewijs NL: 914700010000000000-914700120000000000 + province "South Holland" plaatste echte order.
+// Eerste component wordt door AliExpress niet strikt gevalideerd tegen de provincie.
+
+export interface CountryMap {
+  code: string            // 2-letter AliExpress country code
+  name: string            // NL-naam in dropdown
+  phoneCountry: string    // telefoon prefix
+  firstRegionCode: string // eerste component voor location_tree_address_id
+  regions: { name: string; code: string }[]
+}
+
+export const COUNTRIES: CountryMap[] = [
+  {
+    code: 'NL',
+    name: 'Nederland',
+    phoneCountry: '+31',
+    firstRegionCode: '914700010000000000',
+    regions: [
+      { name: 'Drenthe', code: '914700010000000000' },
+      { name: 'Flevoland', code: '914700020000000000' },
+      { name: 'Friesland', code: '914700030000000000' },
+      { name: 'Gelderland', code: '914700040000000000' },
+      { name: 'Groningen', code: '914700050000000000' },
+      { name: 'Limburg', code: '914700060000000000' },
+      { name: 'North Brabant', code: '914700070000000000' },
+      { name: 'North Holland', code: '914700080000000000' },
+      { name: 'Overijssel', code: '914700090000000000' },
+      { name: 'South Holland', code: '914700120000000000' },
+      { name: 'Utrecht', code: '914700100000000000' },
+      { name: 'Zeeland', code: '914700110000000000' },
+    ],
+  },
+  {
+    code: 'BE',
+    name: 'België',
+    phoneCountry: '+32',
+    firstRegionCode: '902400010000000000',
+    regions: [
+      { name: 'Brussels Hoofdstedelijk Gewest', code: '902400010000000000' },
+      { name: 'Vlaams Gewest', code: '902400020000000000' },
+      { name: 'Waals Gewest', code: '902400030000000000' },
+    ],
+  },
+  {
+    code: 'DE',
+    name: 'Duitsland',
+    phoneCountry: '+49',
+    firstRegionCode: '907700100000000000',
+    regions: [
+      { name: 'Baden-Wuerttemberg', code: '907700100000000000' },
+      { name: 'Bayern', code: '907700200000000000' },
+      { name: 'Berlin', code: '907700300000000000' },
+      { name: 'Brandenburg', code: '907700400000000000' },
+      { name: 'Bremen', code: '907700500000000000' },
+      { name: 'Hamburg', code: '907700600000000000' },
+      { name: 'Hessen', code: '907700700000000000' },
+      { name: 'Mecklenburg-Vorpommern', code: '907700800000000000' },
+      { name: 'Niedersachsen', code: '907701600000000000' },
+      { name: 'Nordrhein-Westfalen', code: '907700900000000000' },
+      { name: 'Rheinland-Pfalz', code: '907701000000000000' },
+      { name: 'Saarland', code: '907701100000000000' },
+      { name: 'Sachsen', code: '907701200000000000' },
+      { name: 'Sachsen-Anhalt', code: '907701300000000000' },
+      { name: 'Schleswig-Holstein', code: '907701400000000000' },
+      { name: 'Thueringen', code: '907701500000000000' },
+    ],
+  },
+  {
+    code: 'FR',
+    name: 'Frankrijk',
+    phoneCountry: '+33',
+    firstRegionCode: '907202900001000000',
+    regions: [
+      { name: 'Ain', code: '907202900001000000' },
+      { name: 'Aisne', code: '907202600001000000' },
+      { name: 'Allier', code: '907200300001000000' },
+      { name: 'Alpes-de-Haute-Provence', code: '907202800001000000' },
+      { name: 'Alpes-Maritimes', code: '907202800002000000' },
+      { name: 'Ardeche', code: '907202900002000000' },
+      { name: 'Ardennes', code: '907200800001000000' },
+      { name: 'Ariege', code: '907202300001000000' },
+      { name: 'Aube', code: '907200800002000000' },
+      { name: 'Aude', code: '907201800001000000' },
+      { name: 'Aveyron', code: '907202300002000000' },
+      { name: 'Bas-Rhin', code: '907200100001000000' },
+      { name: 'Bouches-du-Rhone', code: '907202800003000000' },
+      { name: 'Calvados', code: '907200400001000000' },
+      { name: 'Cantal', code: '907200300002000000' },
+      { name: 'Charente', code: '907202700001000000' },
+      { name: 'Charente-Maritime', code: '907202700002000000' },
+      { name: 'Cher', code: '907200700001000000' },
+      { name: 'Correze', code: '907201900001000000' },
+      { name: 'Corse-du-Sud', code: '907201000001000000' },
+      { name: "Cote-d'Or", code: '907200500001000000' },
+      { name: "Cotes-d'Armor", code: '907200600001000000' },
+      { name: 'Creuse', code: '907201900002000000' },
+      { name: 'Deux-Sevres', code: '907202700003000000' },
+      { name: 'Dordogne', code: '907200200001000000' },
+      { name: 'Doubs', code: '907201100001000000' },
+      { name: 'Drome', code: '907202900003000000' },
+      { name: 'Essonne', code: '907201500001000000' },
+      { name: 'Eure', code: '907201400001000000' },
+      { name: 'Eure-et-Loir', code: '907200700002000000' },
+      { name: 'Finistere', code: '907200600002000000' },
+      { name: 'Gard', code: '907201800002000000' },
+      { name: 'Gers', code: '907202300003000000' },
+      { name: 'Gironde', code: '907200200002000000' },
+      { name: 'Haut-Rhin', code: '907200100002000000' },
+      { name: 'Haute-Corse', code: '907201000002000000' },
+      { name: 'Haute-Garonne', code: '907202300004000000' },
+      { name: 'Haute-Loire', code: '907200300003000000' },
+      { name: 'Haute-Marne', code: '907200800003000000' },
+      { name: 'Haute-Saone', code: '907201100002000000' },
+      { name: 'Haute-Savoie', code: '907202900004000000' },
+      { name: 'Haute-Vienne', code: '907201900003000000' },
+      { name: 'Hautes-Alpes', code: '907202800004000000' },
+      { name: 'Hautes-Pyrenees', code: '907202300005000000' },
+      { name: 'Hauts-de-Seine', code: '907201500002000000' },
+      { name: 'Herault', code: '907201800003000000' },
+      { name: 'Ille-et-Vilaine', code: '907200600003000000' },
+      { name: 'Indre', code: '907200700003000000' },
+      { name: 'Indre-et-Loire', code: '907200700004000000' },
+      { name: 'Isere', code: '907202900005000000' },
+      { name: 'Jura', code: '907201100003000000' },
+      { name: 'Landes', code: '907200200003000000' },
+      { name: 'Loir-et-Cher', code: '907200700005000000' },
+      { name: 'Loire', code: '907202900006000000' },
+      { name: 'Loire-Atlantique', code: '907200600004000000' },
+      { name: 'Loiret', code: '907200700006000000' },
+      { name: 'Lot', code: '907202300006000000' },
+      { name: 'Lot-et-Garonne', code: '907200200004000000' },
+      { name: 'Lozere', code: '907201800004000000' },
+      { name: 'Maine-et-Loire', code: '907200600005000000' },
+      { name: 'Manche', code: '907200400002000000' },
+      { name: 'Marne', code: '907200800004000000' },
+      { name: 'Mayenne', code: '907200600006000000' },
+      { name: 'Meurthe-et-Moselle', code: '907201600001000000' },
+      { name: 'Meuse', code: '907201600002000000' },
+      { name: 'Morbihan', code: '907200600007000000' },
+      { name: 'Moselle', code: '907201600003000000' },
+      { name: 'Nievre', code: '907200500002000000' },
+      { name: 'Nord', code: '907202600002000000' },
+      { name: 'Oise', code: '907202600003000000' },
+      { name: 'Orne', code: '907200400003000000' },
+      { name: 'Paris', code: '907201500003000000' },
+      { name: 'Pas-de-Calais', code: '907202600004000000' },
+      { name: 'Puy-de-Dome', code: '907200300004000000' },
+      { name: 'Pyrenees-Atlantiques', code: '907200200005000000' },
+      { name: 'Pyrenees-Orientales', code: '907201800005000000' },
+      { name: 'Rhone', code: '907202900007000000' },
+      { name: 'Saone-et-Loire', code: '907200500003000000' },
+      { name: 'Sarthe', code: '907200600008000000' },
+      { name: 'Savoie', code: '907202900008000000' },
+      { name: 'Seine-et-Marne', code: '907201500004000000' },
+      { name: 'Seine-Maritime', code: '907201400002000000' },
+      { name: 'Seine-Saint-Denis', code: '907201500005000000' },
+      { name: 'Somme', code: '907202600005000000' },
+      { name: 'Tarn', code: '907202300007000000' },
+      { name: 'Tarn-et-Garonne', code: '907202300008000000' },
+      { name: 'Val-de-Marne', code: '907201500006000000' },
+      { name: "Val-d'Oise", code: '907201500007000000' },
+      { name: 'Var', code: '907202800005000000' },
+      { name: 'Vaucluse', code: '907202800006000000' },
+      { name: 'Vendee', code: '907200600009000000' },
+      { name: 'Vienne', code: '907200700007000000' },
+      { name: 'Vosges', code: '907201600004000000' },
+      { name: 'Yonne', code: '907200500004000000' },
+      { name: 'Yvelines', code: '907201500008000000' },
+    ],
+  },
+]
+
+export function getCountry(name: string): CountryMap | undefined {
+  return COUNTRIES.find((c) => c.name === name)
+}
+
+export function getCountryByCode(code: string): CountryMap | undefined {
+  return COUNTRIES.find((c) => c.code === code)
+}
+
+export function locationTreeId(country: CountryMap, regionCode: string): string {
+  return `${country.firstRegionCode}-${regionCode}`
+}

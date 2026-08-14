@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
 import { addOrder } from '@/lib/orders'
+import { getCountry, locationTreeId } from '@/lib/address-map'
 
 export async function POST(request: Request) {
   try {
@@ -13,11 +14,31 @@ export async function POST(request: Request) {
       )
     }
 
-    if (!customer?.email || !customer?.firstName || !customer?.lastName) {
+    if (!customer?.email || !customer?.firstName || !customer?.lastName || !customer?.phone) {
       return NextResponse.json(
         { error: 'Vul alle verplichte gegevens in' },
         { status: 400 }
       )
+    }
+
+    // Adres-mapping voor AliExpress placeorder
+    const country = getCountry(customer.country)
+    let addressMap: any = null
+    if (country) {
+      const region = country.regions.find((r) => r.name === customer.province)
+      if (!region) {
+        return NextResponse.json(
+          { error: 'Kies een geldige provincie' },
+          { status: 400 }
+        )
+      }
+      addressMap = {
+        countryCode: country.code,
+        province: region.name,
+        locationTreeAddressId: locationTreeId(country, region.code),
+        phoneCountry: country.phoneCountry,
+        mobileNo: customer.phone.replace(/[^0-9]/g, ''),
+      }
     }
 
     const total = items.reduce((sum: number, item: any) => sum + item.price * item.quantity, 0)
@@ -58,6 +79,7 @@ export async function POST(request: Request) {
         customerEmail: customer.email,
         customerName: `${customer.firstName} ${customer.lastName}`,
         address: `${customer.address} ${customer.houseNumber}, ${customer.postalCode} ${customer.city}, ${customer.country}`,
+        addressMap: addressMap ? JSON.stringify(addressMap) : '',
       },
     })
 

@@ -28,6 +28,11 @@ export async function POST(request: Request) {
         if (addr?.line1) {
           updateData.address = `${addr.line1}, ${addr.postal_code} ${addr.city}`
         }
+        // Adres-mapping (countryCode/province/locationTreeAddressId/phoneCountry/mobileNo) voor placeorder
+        const addressMapRaw = session.metadata?.addressMap
+        if (addressMapRaw) {
+          updateData.address_map = addressMapRaw
+        }
 
         const order = await updateOrder(orderId, updateData)
 
