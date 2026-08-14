@@ -11,21 +11,30 @@ const BUCKET = 'app-data'
 const FILE = 'aliexpress-sources.json'
 
 export async function getAliExpressSources(): Promise<AliExpressSources> {
-  const supabase = getSupabase()
-  const { data, error } = await supabase.storage
-    .from(BUCKET)
-    .download(FILE)
+  const url = process.env.SUPABASE_URL
+  if (!url) return {}
 
-  if (error || !data) {
-    console.error('Error loading aliexpress sources:', error)
-    return {}
-  }
-
+  // Eigen fetch met cache-breaker: Supabase CDN cachet objecten (max-age=3600),
+  // een query-param forceert altijd de verse versie.
   try {
-    const text = await data.text()
+    const res = await fetch(
+      `${url}/storage/v1/object/${BUCKET}/${FILE}?cb=${Date.now()}`,
+      {
+        headers: {
+          apikey: process.env.SUPABASE_SERVICE_ROLE_KEY || '',
+          Authorization: `Bearer ${process.env.SUPABASE_SERVICE_ROLE_KEY || ''}`,
+        },
+        cache: 'no-store',
+      }
+    )
+    if (!res.ok) {
+      console.error('Error loading aliexpress sources:', res.status)
+      return {}
+    }
+    const text = await res.text()
     return JSON.parse(text) as AliExpressSources
   } catch (e) {
-    console.error('Error parsing aliexpress sources:', e)
+    console.error('Error loading aliexpress sources:', e)
     return {}
   }
 }
@@ -37,6 +46,7 @@ export async function saveAliExpressSources(sources: AliExpressSources): Promise
     .upload(FILE, JSON.stringify(sources, null, 2), {
       contentType: 'application/json',
       upsert: true,
+      cacheControl: 'no-cache',
     })
 
   if (error) {
