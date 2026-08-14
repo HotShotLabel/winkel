@@ -13,6 +13,7 @@ export default async function Home() {
 
   const zomerProducts = products.filter(p => seasons[p.id] === 'zomer')
   const winterProducts = products.filter(p => seasons[p.id] === 'winter')
+  const overigeProducts = products.filter(p => !seasons[p.id])
 
   return (
     <div>
@@ -109,11 +110,11 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Alle producten */}
+      {/* Overige producten */}
       <div id="producten" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h2 className="text-2xl font-bold text-gray-900 mb-8">Alle producten</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-8">Overige producten</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map(product => (
+          {overigeProducts.map(product => (
             <ProductCard
               key={product.id}
               product={product}
@@ -121,6 +122,9 @@ export default async function Home() {
             />
           ))}
         </div>
+        {overigeProducts.length === 0 && (
+          <p className="text-gray-500">Geen overige producten.</p>
+        )}
       </div>
     </div>
   )
