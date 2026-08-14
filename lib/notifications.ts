@@ -75,6 +75,7 @@ export function formatOrderItemsHtml(order: any): string {
 export function orderConfirmationHtml(order: any): string {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://mijnwinkel.vercel.app'
   const statusUrl = `${baseUrl}/order/${order.id}`
+  const accountUrl = `${baseUrl}/account`
   return `
   <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;">
     <h2 style="color:#1a1a1a;">Bedankt voor je bestelling!</h2>
@@ -90,6 +91,10 @@ export function orderConfirmationHtml(order: any): string {
     </table>
     <p><strong>Verzendadres:</strong><br>${order.address || 'Onbekend'}</p>
     <p>Volg je bestelling: <a href="${statusUrl}" style="color:#2563eb;">${statusUrl}</a></p>
+    <p style="margin:24px 0;padding:16px;background:#f3f4f6;border-radius:8px;">
+      <strong>Je account is klaar!</strong><br>
+      Met je e-mailadres kun je op <a href="${accountUrl}" style="color:#2563eb;">${accountUrl}</a> inloggen om al je bestellingen en hun status te bekijken.
+    </p>
     <p style="color:#666;font-size:12px;margin-top:24px;">Vragen? Mail naar ${SMTP_FROM.replace(/^.*</, '').replace(/>.*$/, '')}</p>
   </div>
   `.trim()

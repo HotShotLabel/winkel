@@ -22,6 +22,9 @@ export default function Navbar() {
             <Link href="/cart" className="text-gray-900 hover:text-gray-600">
               Winkelmand
             </Link>
+            <Link href="/account" className="text-gray-900 hover:text-gray-600">
+              Mijn account
+            </Link>
             {isAuthenticated && (
               <Link href="/admin" className="text-gray-500 hover:text-gray-900 text-sm">
                 Admin

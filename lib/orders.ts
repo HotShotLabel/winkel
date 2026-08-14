@@ -103,6 +103,20 @@ export async function getOrders(): Promise<Order[]> {
   return data || []
 }
 
+export async function getOrdersByEmail(email: string): Promise<Order[]> {
+  const { data, error } = await getSupabase()
+    .from('orders')
+    .select('*')
+    .eq('customer_email', email)
+    .order('created_at', { ascending: false })
+
+  if (error) {
+    console.error('Error fetching orders by email:', error)
+    return []
+  }
+  return data || []
+}
+
 export async function getOrder(id: string): Promise<Order | null> {
   const { data, error } = await getSupabase()
     .from('orders')
