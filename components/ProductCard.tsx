@@ -61,7 +61,7 @@ export default function ProductCard({ product, oldPrice }: { product: Product; o
             onClick={handleAdd}
             className={`${added ? 'bg-green-600' : 'bg-blue-600'} text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-colors whitespace-nowrap`}
           >
-            {added ? '✓ Toegevoegd' : 'Toevoegen'}
+            {added ? '✓ Toegevoegd' : '🛒 Toevoegen'}
           </button>
         </div>
       </div>

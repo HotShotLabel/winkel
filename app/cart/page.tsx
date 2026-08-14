@@ -4,7 +4,7 @@ import { useCart } from '@/components/Cart'
 import { useRouter } from 'next/navigation'
 
 export default function CartPage() {
-  const { items, removeFromCart, total } = useCart()
+  const { items, removeFromCart, updateQuantity, total } = useCart()
   const router = useRouter()
 
   if (items.length === 0) {
@@ -21,18 +21,40 @@ export default function CartPage() {
       <h1 className="text-3xl font-bold text-gray-900 mb-8">Winkelmand</h1>
       <div className="bg-white rounded-lg shadow-md p-6">
         {items.map(item => (
-          <div key={item.id} className="flex flex-wrap items-center justify-between gap-2 py-4 border-b border-gray-200 last:border-0">
+          <div key={item.id} className="flex flex-wrap items-center justify-between gap-3 py-4 border-b border-gray-200 last:border-0">
             <div className="flex-1 min-w-[150px]">
               <h3 className="text-base sm:text-lg font-semibold text-gray-900">{item.name}</h3>
-              <p className="text-gray-600">€{item.price.toFixed(2)} x {item.quantity}</p>
+              <p className="text-gray-600">€{item.price.toFixed(2)} per stuk</p>
             </div>
-            <div className="flex items-center space-x-4">
-              <span className="text-lg font-semibold text-gray-900">
+            <div className="flex items-center gap-4">
+              {/* Aantal-stepper */}
+              <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                  disabled={item.quantity <= 1}
+                  className="px-3 py-1.5 text-lg font-semibold text-gray-700 hover:bg-gray-100 disabled:opacity-40"
+                  aria-label="Minder"
+                >
+                  −
+                </button>
+                <span className="px-3 text-sm font-semibold text-gray-900 min-w-[2rem] text-center">
+                  {item.quantity}
+                </span>
+                <button
+                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                  disabled={item.quantity >= 10}
+                  className="px-3 py-1.5 text-lg font-semibold text-gray-700 hover:bg-gray-100 disabled:opacity-40"
+                  aria-label="Meer"
+                >
+                  +
+                </button>
+              </div>
+              <span className="text-lg font-semibold text-gray-900 min-w-[5rem] text-right">
                 €{(item.price * item.quantity).toFixed(2)}
               </span>
               <button
                 onClick={() => removeFromCart(item.id)}
-                className="text-red-600 hover:text-red-800"
+                className="text-red-600 hover:text-red-800 text-sm"
               >
                 Verwijder
               </button>
