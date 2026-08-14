@@ -4,12 +4,14 @@ import { useState, useEffect } from 'react'
 import { Product } from '@/lib/orders'
 import { AliExpressSources } from '@/lib/aliexpress'
 import { ProductPrices } from '@/lib/prices'
+import { ProductSeasons } from '@/lib/seasons'
 import { adminFetch } from '@/lib/admin-fetch'
 
 export default function AdminProductsPage() {
   const [products, setProducts] = useState<Product[]>([])
   const [sources, setSources] = useState<AliExpressSources>({})
   const [prices, setPrices] = useState<ProductPrices>({})
+  const [seasons, setSeasons] = useState<ProductSeasons>({})
   const [editingProduct, setEditingProduct] = useState<Product | null>(null)
   const [showAddForm, setShowAddForm] = useState(false)
   const [formData, setFormData] = useState({
@@ -19,7 +21,8 @@ export default function AdminProductsPage() {
     image: '',
     description: '',
     aliexpress_url: '',
-    aliexpress_sku: ''
+    aliexpress_sku: '',
+    season: ''
   })
   const [imageFile, setImageFile] = useState<File | null>(null)
 
@@ -36,6 +39,10 @@ export default function AdminProductsPage() {
       .then(res => res.json())
       .then(data => setPrices(data))
       .catch(err => console.error('Failed to fetch product prices:', err))
+    fetch('/api/product-seasons')
+      .then(res => res.json())
+      .then(data => setSeasons(data))
+      .catch(err => console.error('Failed to fetch product seasons:', err))
   }, [])
 
   const saveSources = async (next: AliExpressSources) => {
@@ -102,7 +109,21 @@ export default function AdminProductsPage() {
       body: JSON.stringify(nextPrices),
     })
 
-    setFormData({ name: '', price: '', old_price: '', image: '', description: '', aliexpress_url: '', aliexpress_sku: '' })
+    // Seizoen opslaan
+    const nextSeasons = { ...seasons }
+    if (productId && (formData.season === 'zomer' || formData.season === 'winter')) {
+      nextSeasons[productId] = formData.season
+    } else if (productId) {
+      delete nextSeasons[productId]
+    }
+    setSeasons(nextSeasons)
+    await adminFetch('/api/product-seasons', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(nextSeasons),
+    })
+
+    setFormData({ name: '', price: '', old_price: '', image: '', description: '', aliexpress_url: '', aliexpress_sku: '', season: '' })
     setEditingProduct(null)
     setShowAddForm(false)
     
@@ -122,7 +143,8 @@ export default function AdminProductsPage() {
       image: product.image,
       description: product.description,
       aliexpress_url: src?.url || '',
-      aliexpress_sku: src?.sku || ''
+      aliexpress_sku: src?.sku || '',
+      season: seasons[product.id] || ''
     })
     setShowAddForm(true)
   }
@@ -147,7 +169,7 @@ export default function AdminProductsPage() {
   }
 
   const resetForm = () => {
-    setFormData({ name: '', price: '', old_price: '', image: '', description: '', aliexpress_url: '', aliexpress_sku: '' })
+    setFormData({ name: '', price: '', old_price: '', image: '', description: '', aliexpress_url: '', aliexpress_sku: '', season: '' })
     setEditingProduct(null)
     setShowAddForm(false)
     setImageFile(null)
@@ -204,6 +226,18 @@ export default function AdminProductsPage() {
                   placeholder="bijv. 29.99"
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg"
                 />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Seizoen (optioneel)</label>
+                <select
+                  value={formData.season}
+                  onChange={(e) => setFormData({...formData, season: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                >
+                  <option value="">— Geen —</option>
+                  <option value="zomer">☀️ Zomer</option>
+                  <option value="winter">❄️ Winter</option>
+                </select>
               </div>
             </div>
             <div className="mb-4">
