@@ -1,12 +1,14 @@
 import { getProduct } from '@/lib/orders'
 import { getProductPrices } from '@/lib/prices'
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
+import { Link } from '@/i18n/navigation'
 import AddToCartButton from '@/components/AddToCartButton'
 
 export const dynamic = 'force-dynamic'
 
 export default async function ProductPage({ params }: { params: { id: string } }) {
+  const t = await getTranslations('product')
   const product = await getProduct(params.id)
   if (!product) {
     notFound()
@@ -22,7 +24,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <Link href="/" className="text-blue-600 hover:underline text-sm mb-6 inline-block">
-        ← Terug naar alle producten
+        {t('back')}
       </Link>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -51,7 +53,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
                   €{oldPrice.toFixed(2)}
                 </span>
                 <span className="bg-red-100 text-red-700 text-sm font-semibold px-2 py-1 rounded-lg">
-                  {discountPct}% korting
+                  {t('discountPct', { pct: discountPct! })}
                 </span>
               </>
             ) : (
@@ -67,28 +69,28 @@ export default async function ProductPage({ params }: { params: { id: string } }
 
           {/* Garantie-blok */}
           <div className="mt-8 bg-green-50 border border-green-200 rounded-xl p-5">
-            <h2 className="font-semibold text-green-800 mb-2">✓ 100% tevredenheidsgarantie</h2>
+            <h2 className="font-semibold text-green-800 mb-2">{t('guaranteeTitle')}</h2>
             <ul className="text-sm text-green-700 space-y-1">
-              <li>Niet goed? Geld terug binnen 7 dagen</li>
-              <li>Pakket ongeopend en product onbeschadigd</li>
-              <li>Veilig betalen via Stripe</li>
+              <li>{t('guarantee1')}</li>
+              <li>{t('guarantee2')}</li>
+              <li>{t('guarantee3')}</li>
             </ul>
           </div>
 
           {/* Verzending */}
           <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-5">
-            <h2 className="font-semibold text-blue-900 mb-2">⚡ Vandaag besteld, morgen thuis</h2>
+            <h2 className="font-semibold text-blue-900 mb-2">{t('shipTitle')}</h2>
             <p className="text-sm text-blue-800 mb-2">
-              Bestel vandaag en we verzenden je pakket direct. Is het product uitverkocht? Dan bestellen we het met spoed voor je en versturen we het zodra het binnen is.
+              {t('shipText')}
             </p>
-            <p className="text-sm text-blue-700 mb-1">✓ Op voorraad — morgen in huis</p>
-            <p className="text-sm text-blue-700">✓ Niet op voorraad — met spoed bijbesteld en verzonden</p>
+            <p className="text-sm text-blue-700 mb-1">{t('shipInStock')}</p>
+            <p className="text-sm text-blue-700">{t('shipOutOfStock')}</p>
           </div>
 
           <div className="mt-6 text-sm text-gray-500">
             <p className="mb-1">
               <Link href="/garantie" className="text-blue-600 hover:underline">
-                Bekijk onze garantievoorwaarden
+                {t('guaranteeLink')}
               </Link>
             </p>
           </div>

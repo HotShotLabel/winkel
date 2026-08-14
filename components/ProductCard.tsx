@@ -1,11 +1,13 @@
 'use client'
 
 import { Product } from '@/lib/orders'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import { useCart } from '@/components/Cart'
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
 export default function ProductCard({ product, oldPrice }: { product: Product; oldPrice?: number | null }) {
+  const t = useTranslations('productCard')
   const { addToCart } = useCart()
   const [added, setAdded] = useState(false)
 
@@ -31,7 +33,7 @@ export default function ProductCard({ product, oldPrice }: { product: Product; o
         {product.image ? (
           <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
         ) : (
-          <span className="text-gray-400 text-sm">Geen afbeelding</span>
+          <span className="text-gray-400 text-sm">{t('noImage')}</span>
         )}
         {discountPct && (
           <span className="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-lg">
@@ -61,7 +63,7 @@ export default function ProductCard({ product, oldPrice }: { product: Product; o
             onClick={handleAdd}
             className={`${added ? 'bg-green-600' : 'bg-blue-600'} text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-colors whitespace-nowrap`}
           >
-            {added ? '✓ Toegevoegd' : '🛒 Toevoegen'}
+            {added ? t('added') : t('add')}
           </button>
         </div>
       </div>

@@ -1,8 +1,10 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 
 export default function OrderTrackingPage({ params }: { params: { id: string } }) {
+  const t = useTranslations('order')
   const [order, setOrder] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [email, setEmail] = useState('')
@@ -30,38 +32,38 @@ export default function OrderTrackingPage({ params }: { params: { id: string } }
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-2xl mx-auto">
-          <h1 className="text-3xl font-bold text-gray-900 mb-8">Order Status</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-8">{t('title')}</h1>
           <div className="bg-white rounded-lg shadow p-8">
             <div className="space-y-4">
               <div>
-                <span className="font-medium">Order ID:</span>
+                <span className="font-medium">{t('orderId')}</span>
                 <span className="ml-2 text-gray-600">{order.id}</span>
               </div>
               <div>
-                <span className="font-medium">Naam:</span>
+                <span className="font-medium">{t('name')}</span>
                 <span className="ml-2 text-gray-600">{order.customer_name}</span>
               </div>
               <div>
-                <span className="font-medium">Status:</span>
+                <span className="font-medium">{t('status')}</span>
                 <span className={`ml-2 px-2 py-1 text-sm rounded-full ${
                   order.status === 'paid' ? 'bg-green-100 text-green-800' :
                   order.status === 'shipped' ? 'bg-blue-100 text-blue-800' :
                   'bg-yellow-100 text-gray-800'
                 }`}>
-                  {order.status === 'paid' ? 'Betaald' :
-                   order.status === 'shipped' ? 'Verzonden' : 'In behandeling'}
+                  {order.status === 'paid' ? t('paid') :
+                   order.status === 'shipped' ? t('shipped') : t('processing')}
                 </span>
               </div>
               {order.tracking_code && (
                 <div>
-                  <span className="font-medium">Trackingcode:</span>
+                  <span className="font-medium">{t('trackingCode')}</span>
                   <span className="ml-2 text-blue-600">{order.tracking_code}</span>
                 </div>
               )}
               {order.status === 'shipped' && (
                 <div className="bg-blue-50 rounded-lg p-4 mt-4">
                   <p className="text-blue-800">
-                    Je pakket is onderweg! Gebruik de trackingcode om de levering te volgen.
+                    {t('shippedMsg')}
                   </p>
                 </div>
               )}
@@ -75,11 +77,11 @@ export default function OrderTrackingPage({ params }: { params: { id: string } }
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="max-w-md mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Order Status Opvragen</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">{t('titleQuery')}</h1>
         <div className="bg-white rounded-lg shadow p-8">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Order ID</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('orderId')}</label>
               <input
                 type="text"
                 value={params.id}
@@ -88,7 +90,7 @@ export default function OrderTrackingPage({ params }: { params: { id: string } }
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('emailLabel')}</label>
               <input
                 type="email"
                 required
@@ -103,7 +105,7 @@ export default function OrderTrackingPage({ params }: { params: { id: string } }
               disabled={loading}
               className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-400"
             >
-              {loading ? 'Laden...' : 'Bekijk order'}
+              {loading ? t('loading') : t('viewOrder')}
             </button>
           </form>
         </div>

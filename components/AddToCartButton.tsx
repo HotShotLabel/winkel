@@ -2,9 +2,11 @@
 
 import { Product } from '@/lib/orders'
 import { useCart } from '@/components/Cart'
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
 export default function AddToCartButton({ product, large = false }: { product: Product; large?: boolean }) {
+  const t = useTranslations('product')
   const { addToCart } = useCart()
   const [quantity, setQuantity] = useState(1)
   const [added, setAdded] = useState(false)
@@ -19,7 +21,7 @@ export default function AddToCartButton({ product, large = false }: { product: P
     <div className={`${large ? 'space-y-4' : ''}`}>
       {large && (
         <div className="flex items-center gap-3">
-          <span className="text-sm font-medium text-gray-700">Aantal:</span>
+          <span className="text-sm font-medium text-gray-700">{t('quantity')}</span>
           <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
             <button
               onClick={() => setQuantity(q => Math.max(1, q - 1))}
@@ -49,7 +51,11 @@ export default function AddToCartButton({ product, large = false }: { product: P
           added ? 'bg-green-600' : 'bg-blue-600'
         } text-white font-semibold rounded-lg hover:opacity-90 transition-colors`}
       >
-        {added ? '✓ Toegevoegd' : `🛒 ${large && quantity > 1 ? `In winkelmand (${quantity})` : 'In winkelmand'}`}
+        {added
+          ? t('added')
+          : large && quantity > 1
+            ? t('addToCartN', { n: quantity })
+            : t('addToCart')}
       </button>
     </div>
   )
