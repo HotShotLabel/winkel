@@ -2,9 +2,11 @@
 
 import Link from 'next/link'
 import { useAdmin } from '@/components/AdminContext'
+import { useCart } from '@/components/Cart'
 
 export default function Navbar() {
   const { isAuthenticated } = useAdmin()
+  const { itemCount } = useCart()
 
   return (
     <nav className="bg-white border-b border-gray-200">
@@ -19,8 +21,16 @@ export default function Navbar() {
             <Link href="/" className="text-gray-900 hover:text-gray-600">
               Producten
             </Link>
-            <Link href="/cart" className="text-gray-900 hover:text-gray-600">
-              Winkelmand
+            <Link href="/cart" className="text-gray-900 hover:text-gray-600 flex items-center space-x-2">
+              <span>Winkelmand</span>
+              {itemCount > 0 && (
+                <span
+                  key={itemCount}
+                  className="cart-badge inline-flex items-center justify-center min-w-[1.5rem] h-6 px-1.5 rounded-full bg-blue-600 text-white text-xs font-bold"
+                >
+                  {itemCount}
+                </span>
+              )}
             </Link>
             <Link href="/account" className="text-gray-900 hover:text-gray-600">
               Mijn account
