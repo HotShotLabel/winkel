@@ -7,9 +7,9 @@ export const routing = defineRouting({
   domains: [
     { domain: 'mijnwinkel.vercel.app', defaultLocale: 'nl', locales: ['nl', 'en', 'fr', 'de', 'es'] },
     { domain: 'myshopstore.vercel.app', defaultLocale: 'en', locales: ['nl', 'en', 'fr', 'de', 'es'] },
-    { domain: 'maboutique.vercel.app', defaultLocale: 'fr', locales: ['nl', 'en', 'fr', 'de', 'es'] },
+    { domain: 'maboutique-two.vercel.app', defaultLocale: 'fr', locales: ['nl', 'en', 'fr', 'de', 'es'] },
     { domain: 'meinshop.vercel.app', defaultLocale: 'de', locales: ['nl', 'en', 'fr', 'de', 'es'] },
-    { domain: 'mitienda.vercel.app', defaultLocale: 'es', locales: ['nl', 'en', 'fr', 'de', 'es'] },
+    { domain: 'mitienda-peach.vercel.app', defaultLocale: 'es', locales: ['nl', 'en', 'fr', 'de', 'es'] },
   ],
 })
 
