@@ -3,15 +3,18 @@
 import { useState, useEffect } from 'react'
 import { Product } from '@/lib/orders'
 import { AliExpressSources } from '@/lib/aliexpress'
+import { ProductPrices } from '@/lib/prices'
 
 export default function AdminProductsPage() {
   const [products, setProducts] = useState<Product[]>([])
   const [sources, setSources] = useState<AliExpressSources>({})
+  const [prices, setPrices] = useState<ProductPrices>({})
   const [editingProduct, setEditingProduct] = useState<Product | null>(null)
   const [showAddForm, setShowAddForm] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     price: '',
+    old_price: '',
     image: '',
     description: '',
     aliexpress_url: '',
@@ -28,6 +31,10 @@ export default function AdminProductsPage() {
       .then(res => res.json())
       .then(data => setSources(data))
       .catch(err => console.error('Failed to fetch aliexpress sources:', err))
+    fetch('/api/product-prices')
+      .then(res => res.json())
+      .then(data => setPrices(data))
+      .catch(err => console.error('Failed to fetch product prices:', err))
   }, [])
 
   const saveSources = async (next: AliExpressSources) => {
@@ -79,7 +86,22 @@ export default function AdminProductsPage() {
       await saveSources(next)
     }
 
-    setFormData({ name: '', price: '', image: '', description: '', aliexpress_url: '', aliexpress_sku: '' })
+    // Was-prijs opslaan
+    const nextPrices = { ...prices }
+    const oldPrice = parseFloat(formData.old_price)
+    if (productId && !isNaN(oldPrice) && oldPrice > 0) {
+      nextPrices[productId] = { old_price: oldPrice }
+    } else if (productId) {
+      delete nextPrices[productId]
+    }
+    setPrices(nextPrices)
+    await fetch('/api/product-prices', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(nextPrices),
+    })
+
+    setFormData({ name: '', price: '', old_price: '', image: '', description: '', aliexpress_url: '', aliexpress_sku: '' })
     setEditingProduct(null)
     setShowAddForm(false)
     
@@ -95,6 +117,7 @@ export default function AdminProductsPage() {
     setFormData({
       name: product.name,
       price: product.price.toString(),
+      old_price: prices[product.id]?.old_price?.toString() || '',
       image: product.image,
       description: product.description,
       aliexpress_url: src?.url || '',
@@ -123,7 +146,7 @@ export default function AdminProductsPage() {
   }
 
   const resetForm = () => {
-    setFormData({ name: '', price: '', image: '', description: '', aliexpress_url: '', aliexpress_sku: '' })
+    setFormData({ name: '', price: '', old_price: '', image: '', description: '', aliexpress_url: '', aliexpress_sku: '' })
     setEditingProduct(null)
     setShowAddForm(false)
     setImageFile(null)
@@ -168,6 +191,17 @@ export default function AdminProductsPage() {
                   onChange={(e) => setFormData({...formData, price: e.target.value})}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg"
                   required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Was-prijs (€, optioneel — voor korting)</label>
+                <input
+                  type="number"
+                  step="0.01"
+                  value={formData.old_price}
+                  onChange={(e) => setFormData({...formData, old_price: e.target.value})}
+                  placeholder="bijv. 29.99"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg"
                 />
               </div>
             </div>
