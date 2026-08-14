@@ -1,8 +1,11 @@
 'use client'
 
 import Link from 'next/link'
+import { useAdmin } from '@/components/AdminContext'
 
 export default function Navbar() {
+  const { isAuthenticated } = useAdmin()
+
   return (
     <nav className="bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,9 +22,11 @@ export default function Navbar() {
             <Link href="/cart" className="text-gray-900 hover:text-gray-600">
               Winkelmand
             </Link>
-            <Link href="/admin" className="text-gray-500 hover:text-gray-900 text-sm">
-              Admin
-            </Link>
+            {isAuthenticated && (
+              <Link href="/admin" className="text-gray-500 hover:text-gray-900 text-sm">
+                Admin
+              </Link>
+            )}
           </div>
         </div>
       </div>

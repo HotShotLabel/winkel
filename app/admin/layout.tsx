@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import AdminNavbar from '@/components/AdminNavbar'
-import { AdminProvider, useAdmin } from '@/components/AdminContext'
+import { useAdmin } from '@/components/AdminContext'
 
 function AdminLoginGate({ children }: { children: React.ReactNode }) {
   const { isAuthenticated } = useAdmin()
@@ -63,15 +63,13 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   return (
-    <AdminProvider>
-      <div className="min-h-screen bg-gray-50">
-        <AdminNavbar />
-        <AdminLoginGate>
-          <main>
-            {children}
-          </main>
-        </AdminLoginGate>
-      </div>
-    </AdminProvider>
+    <div className="min-h-screen bg-gray-50">
+      <AdminNavbar />
+      <AdminLoginGate>
+        <main>
+          {children}
+        </main>
+      </AdminLoginGate>
+    </div>
   )
 }

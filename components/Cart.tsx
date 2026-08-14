@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useState, ReactNode } from 'react'
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 import { Product } from '@/lib/orders'
 
 interface CartItem extends Product {
@@ -18,8 +18,36 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
 
+const STORAGE_KEY = 'mijnwinkel_cart'
+
+function loadCart(): CartItem[] {
+  if (typeof window === 'undefined') return []
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    if (!raw) return []
+    const parsed = JSON.parse(raw)
+    return Array.isArray(parsed) ? parsed : []
+  } catch {
+    return []
+  }
+}
+
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([])
+
+  // Laad cart uit localStorage bij mount
+  useEffect(() => {
+    setItems(loadCart())
+  }, [])
+
+  // Bewaar cart bij elke wijziging
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
+    } catch {
+      // storage niet beschikbaar (privacy mode) — cart werkt dan alleen in-sessie
+    }
+  }, [items])
 
   const addToCart = (product: Product) => {
     setItems(prev => {
@@ -41,6 +69,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const clearCart = () => {
     setItems([])
+    try {
+      localStorage.removeItem(STORAGE_KEY)
+    } catch {
+      // ignore
+    }
   }
 
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0)

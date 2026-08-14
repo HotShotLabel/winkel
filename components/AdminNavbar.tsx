@@ -1,10 +1,18 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+import { useAdmin } from '@/components/AdminContext'
 
 export default function AdminNavbar() {
   const pathname = usePathname()
+  const router = useRouter()
+  const { logout } = useAdmin()
+
+  const handleLogout = () => {
+    logout()
+    router.push('/')
+  }
 
   return (
     <nav className="bg-white border-b border-gray-200">
@@ -29,10 +37,16 @@ export default function AdminNavbar() {
               </Link>
             </div>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center space-x-4">
             <Link href="/" className="text-gray-600 hover:text-gray-900 text-sm">
               ← Terug naar winkel
             </Link>
+            <button
+              onClick={handleLogout}
+              className="text-red-600 hover:text-red-800 text-sm"
+            >
+              Uitloggen
+            </button>
           </div>
         </div>
       </div>
