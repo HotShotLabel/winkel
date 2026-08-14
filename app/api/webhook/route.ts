@@ -150,13 +150,15 @@ async function placeOrderForShopOrder(orderId: string, order: any, addressMapRaw
 
     await saveAliexpressOrderLink(orderId, {
       orderId: result.orderId,
+      orderIds: result.orderIds,
       placedAt: new Date().toISOString(),
       status: 'placed',
     })
     await updateOrder(orderId, { status: 'shipped' })
-    console.log(`Placeorder OK: ${orderId} -> AliExpress ${result.orderId}`)
+    const allIds = result.orderIds.join(', ')
+    console.log(`Placeorder OK: ${orderId} -> AliExpress ${allIds}`)
     await sendTelegramNotification(
-      `✅ AliExpress-order geplaatst\nWinkel: ${orderId}\nAliExpress: ${result.orderId}`
+      `✅ AliExpress-order geplaatst\nWinkel: ${orderId}\nAliExpress: ${allIds}`
     )
   } catch (error: any) {
     console.error(`Placeorder mislukt voor ${orderId}:`, error)

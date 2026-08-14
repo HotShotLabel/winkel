@@ -59,7 +59,8 @@ export async function saveOrderAddress(shopOrderId: string, addressMapJson: stri
 
 /** Koppeling winkel-order -> AliExpress-order, opgeslagen in Storage (geen DB-migratie nodig) */
 export interface AliexpressOrderLink {
-  orderId: string // AliExpress order id
+  orderId: string // Eerste AliExpress order id (bij splitsing per verkoper)
+  orderIds?: string[] // Alle AliExpress order ids (1 of meerdere bij splitsing per verkoper)
   placedAt: string
   status: 'placed' | 'failed'
   error?: string
@@ -171,7 +172,8 @@ export interface PlaceOrderItem {
 }
 
 export interface PlaceOrderResult {
-  orderId: string
+  orderId: string // Eerste AliExpress order id
+  orderIds: string[] // Alle AliExpress order ids (1 of meerdere bij splitsing per verkoper)
   raw: any
 }
 
@@ -229,5 +231,7 @@ export async function placeOrder(
   if (!orderId) {
     throw new Error(`Placeorder zonder order-id: ${JSON.stringify(result).slice(0, 500)}`)
   }
-  return { orderId: String(orderId), raw: result }
+  // Bij meerdere verkopers splitst AliExpress de order: alle nummers bewaren
+  const orderIds: string[] = (result.order_list?.number || [orderId]).map(String)
+  return { orderId: String(orderId), orderIds, raw: result }
 }
