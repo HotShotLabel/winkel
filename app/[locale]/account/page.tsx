@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useTranslations, useLocale } from 'next-intl'
+import AccountMessages from '@/components/AccountMessages'
 
 const SESSION_KEY = 'mijnwinkel_session'
 
@@ -225,6 +226,8 @@ function AccountContent() {
           ))}
         </div>
       ) : null}
+
+      <AccountMessages locale={locale} />
     </div>
   )
 }

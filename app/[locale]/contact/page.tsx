@@ -12,9 +12,20 @@ export default function ContactPage() {
     e.preventDefault()
     setStatus('sending')
     try {
+      // Als de bezoeker is ingelogd, wordt het een platform-bericht (gesprek in account)
+      let token = ''
+      try {
+        const stored = JSON.parse(localStorage.getItem('mijnwinkel_session') || 'null')
+        token = stored?.token || ''
+      } catch {
+        // ignore
+      }
       const res = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
         body: JSON.stringify(form),
       })
       if (!res.ok) throw new Error('fout')
