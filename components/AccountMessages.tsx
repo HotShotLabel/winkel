@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
 
 const SESSION_KEY = 'mijnwinkel_session'
@@ -33,6 +33,7 @@ export default function AccountMessages({ locale }: { locale: string }) {
   const [sentNew, setSentNew] = useState(false)
   const [replyTexts, setReplyTexts] = useState<Record<string, string>>({})
   const [sendingReply, setSendingReply] = useState<string | null>(null)
+  const lastJsonRef = useRef('')
 
   const getToken = (): string | null => {
     try {
@@ -70,7 +71,11 @@ export default function AccountMessages({ locale }: { locale: string }) {
             messages: sorted,
           })
         }
-        setThreads(list)
+        const json = JSON.stringify(list)
+        if (json !== lastJsonRef.current) {
+          lastJsonRef.current = json
+          setThreads(list)
+        }
       })
       .catch(() => setError(t('errLoad')))
       .finally(() => setLoading(false))
@@ -78,6 +83,9 @@ export default function AccountMessages({ locale }: { locale: string }) {
 
   useEffect(() => {
     load()
+    // Live poll: elke 6 seconden checken op nieuwe berichten/antwoorden
+    const iv = setInterval(load, 6000)
+    return () => clearInterval(iv)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

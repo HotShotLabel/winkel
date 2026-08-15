@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { adminFetch } from '@/lib/admin-fetch'
 
 interface ContactMessage {
@@ -18,8 +18,49 @@ interface Thread {
   id: string
   subject: string
   email: string
+  name: string
   messages: ContactMessage[]
   isPlatform: boolean
+}
+
+interface OrderInfo {
+  id: string
+  created_at: string
+  status: string
+  total: number
+  tracking_code: string | null
+}
+
+const STATUS_LABEL: Record<string, string> = {
+  paid: 'Betaald',
+  shipped: 'Verzonden',
+  pending: 'In behandeling',
+}
+
+function buildThreads(data: ContactMessage[]): Thread[] {
+  const byThread = new Map<string, ContactMessage[]>()
+  for (const m of data) {
+    const key = m.thread_id || m.id
+    if (!byThread.has(key)) byThread.set(key, [])
+    byThread.get(key)!.push(m)
+  }
+  const list: Thread[] = []
+  for (const [id, msgs] of Array.from(byThread.entries())) {
+    const sorted = msgs.sort((a: ContactMessage, b: ContactMessage) =>
+      a.created_at.localeCompare(b.created_at)
+    )
+    const first = sorted[0]
+    list.push({
+      id,
+      subject: first.subject || 'Geen onderwerp',
+      email: first.email,
+      name: first.name || '',
+      messages: sorted,
+      isPlatform: first.thread_id !== null,
+    })
+  }
+  list.sort((a, b) => b.messages[0].created_at.localeCompare(a.messages[0].created_at))
+  return list
 }
 
 export default function AdminMessagesPage() {
@@ -28,35 +69,50 @@ export default function AdminMessagesPage() {
   const [replyTexts, setReplyTexts] = useState<Record<string, string>>({})
   const [sending, setSending] = useState<string | null>(null)
   const [statusMsg, setStatusMsg] = useState('')
+  const [orders, setOrders] = useState<OrderInfo[] | null>(null)
+  const [ordersLoading, setOrdersLoading] = useState(false)
+  const lastJsonRef = useRef('')
 
-  useEffect(() => {
+  const load = useCallback(() => {
     adminFetch('/api/contact')
       .then(res => res.json())
       .then(data => {
-        const byThread = new Map<string, ContactMessage[]>()
-        for (const m of data as ContactMessage[]) {
-          const key = m.thread_id || m.id
-          if (!byThread.has(key)) byThread.set(key, [])
-          byThread.get(key)!.push(m)
+        const list = buildThreads(data)
+        const json = JSON.stringify(list)
+        if (json !== lastJsonRef.current) {
+          lastJsonRef.current = json
+          setThreads(list)
         }
-        const list: Thread[] = []
-        for (const [id, msgs] of Array.from(byThread.entries())) {
-          const sorted = msgs.sort((a: ContactMessage, b: ContactMessage) => a.created_at.localeCompare(b.created_at))
-          const first = sorted[0]
-          const isPlatform = first.thread_id !== null
-          list.push({
-            id,
-            subject: first.subject || 'Geen onderwerp',
-            email: first.email,
-            messages: sorted,
-            isPlatform,
-          })
-        }
-        list.sort((a, b) => a.messages[0].created_at.localeCompare(b.messages[0].created_at)).reverse()
-        setThreads(list)
       })
       .catch(err => console.error('Failed to fetch messages:', err))
   }, [])
+
+  // Eerste lading
+  useEffect(() => {
+    load()
+  }, [load])
+
+  // Live poll: elke 5 seconden nieuwe berichten ophalen
+  useEffect(() => {
+    const iv = setInterval(load, 5000)
+    return () => clearInterval(iv)
+  }, [load])
+
+  // Bestellingen van de klant laden bij het openen van een gesprek
+  useEffect(() => {
+    const thread = threads.find(t => t.id === openId)
+    if (!thread || !thread.email) {
+      setOrders(null)
+      return
+    }
+    setOrdersLoading(true)
+    setOrders(null)
+    adminFetch(`/api/contact/orders?email=${encodeURIComponent(thread.email)}`)
+      .then(res => res.json())
+      .then(data => setOrders(data.orders || []))
+      .catch(() => setOrders(null))
+      .finally(() => setOrdersLoading(false))
+  }, [openId, threads])
 
   const handleReply = async (threadId: string) => {
     const text = (replyTexts[threadId] || '').trim()
@@ -72,31 +128,7 @@ export default function AdminMessagesPage() {
       if (res.ok) {
         setReplyTexts({ ...replyTexts, [threadId]: '' })
         setStatusMsg('Antwoord verzonden. De klant ziet het bij het inloggen.')
-        // Refresh threads
-        adminFetch('/api/contact')
-          .then(res => res.json())
-          .then(data => {
-            const byThread = new Map<string, ContactMessage[]>()
-            for (const m of data as ContactMessage[]) {
-              const key = m.thread_id || m.id
-              if (!byThread.has(key)) byThread.set(key, [])
-              byThread.get(key)!.push(m)
-            }
-            const list: Thread[] = []
-            for (const [id, msgs] of Array.from(byThread.entries())) {
-              const sorted = msgs.sort((a: ContactMessage, b: ContactMessage) => a.created_at.localeCompare(b.created_at))
-              const first = sorted[0]
-              list.push({
-                id,
-                subject: first.subject || 'Geen onderwerp',
-                email: first.email,
-                messages: sorted,
-                isPlatform: first.thread_id !== null,
-              })
-            }
-            list.sort((a, b) => a.messages[0].created_at.localeCompare(b.messages[0].created_at)).reverse()
-            setThreads(list)
-          })
+        load()
       } else {
         const data = await res.json()
         setStatusMsg(data.error || 'Verzenden mislukt')
@@ -113,7 +145,7 @@ export default function AdminMessagesPage() {
       <h1 className="text-3xl font-bold text-gray-900 mb-2">Contactberichten</h1>
       <p className="text-gray-500 mb-4 text-sm">
         Gesprekken van klanten (inloggen) en mails van bezoekers. Antwoorden op klantgesprekken
-        zien klanten in hun account bij 'Mijn berichten'.
+        zien klanten in hun account bij 'Mijn berichten'. Ververst automatisch.
       </p>
 
       {statusMsg && (
@@ -147,7 +179,7 @@ export default function AdminMessagesPage() {
                     <p className="text-sm text-gray-500">{thread.email}</p>
                     <p className="text-xs text-gray-400 mt-1">
                       {thread.messages.length} bericht{thread.messages.length !== 1 ? 'en' : ''}
-                      {thread.messages.some(m => m.is_admin_reply) ? ' · beantwoord' : ''}
+                      {thread.messages.some(m => m.is_admin_reply) ? ' · beantwoord' : ' · nieuw'}
                     </p>
                   </div>
                   <span className="text-xs text-gray-400 whitespace-nowrap">
@@ -157,6 +189,44 @@ export default function AdminMessagesPage() {
 
                 {openId === thread.id && (
                   <div className="px-6 pb-5">
+                    {/* Klantinfo + bestellingen */}
+                    <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
+                      <p className="text-sm font-semibold text-gray-900 mb-1">
+                        {thread.name || thread.email} · {thread.email}
+                      </p>
+                      {ordersLoading ? (
+                        <p className="text-xs text-gray-400">Bestellingen laden...</p>
+                      ) : orders && orders.length > 0 ? (
+                        <div className="space-y-2">
+                          <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+                            Bestellingen ({orders.length})
+                          </p>
+                          {orders.map(o => (
+                            <div key={o.id} className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+                              <span className="font-mono text-gray-700">{o.id}</span>
+                              <span className="text-gray-400">
+                                {new Date(o.created_at).toLocaleDateString('nl-NL')}
+                              </span>
+                              <span className={`px-1.5 py-0.5 rounded-full ${
+                                o.status === 'paid' ? 'bg-green-100 text-green-800' :
+                                o.status === 'shipped' ? 'bg-blue-100 text-blue-800' :
+                                'bg-yellow-100 text-gray-800'
+                              }`}>
+                                {STATUS_LABEL[o.status] || o.status}
+                              </span>
+                              <span className="text-gray-900 font-medium">€{Number(o.total).toFixed(2)}</span>
+                              {o.tracking_code && (
+                                <span className="text-blue-700 font-mono">tracking: {o.tracking_code}</span>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-xs text-gray-500">Geen bestellingen gevonden voor dit e-mailadres.</p>
+                      )}
+                    </div>
+
+                    {/* Berichten */}
                     <div className="space-y-3 mb-4">
                       {thread.messages.map(m => (
                         <div
