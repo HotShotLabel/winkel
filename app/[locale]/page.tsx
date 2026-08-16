@@ -2,6 +2,7 @@ import { getProducts, localizeProduct } from '@/lib/orders'
 import { getProductPrices } from '@/lib/prices'
 import { getProductSeasons } from '@/lib/seasons'
 import { getRecentReviews, getReviewSummary } from '@/lib/reviews'
+import HomeReviews from '@/components/HomeReviews'
 import { getTranslations, getLocale } from 'next-intl/server'
 import { absoluteUrl } from '@/lib/seo'
 import ProductCard from '@/components/ProductCard'
@@ -158,32 +159,12 @@ export default async function Home() {
         )}
       </div>
 
-      {/* Klantreviews */}
-      {recentReviews.length > 0 && (
-        <section className="bg-gradient-to-br from-blue-50 via-white to-amber-50 border-t border-gray-200 py-12">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-8">
-              <div className="text-4xl mb-2">⭐</div>
-              <h2 className="text-3xl font-bold text-gray-900">{t('reviewsTitle')}</h2>
-              <p className="text-gray-600 mt-2">
-                {t('reviewsSub', { avg: reviewSummary.avg.toFixed(1), count: reviewSummary.count })}
-              </p>
-              <div className="mt-2 text-amber-400 text-xl tracking-widest">
-                {'★★★★★'.slice(0, Math.round(reviewSummary.avg)).padEnd(5, '☆')}
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {recentReviews.map(r => (
-                <div key={r.id} className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
-                  <div className="text-amber-400 mb-2">{'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}</div>
-                  <p className="text-gray-700 text-sm leading-relaxed mb-4">"{r.comment}"</p>
-                  <p className="text-sm font-semibold text-gray-900">— {r.name}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      <HomeReviews
+        recent={recentReviews}
+        avg={reviewSummary.avg}
+        count={reviewSummary.count}
+        products={products.map(p => ({ id: p.id, name: p.name }))}
+      />
 
       {/* FAQ */}
       <section id="faq" className="bg-white border-t border-gray-200 py-12">

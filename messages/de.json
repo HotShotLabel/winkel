@@ -29,7 +29,19 @@
     "emptyWinter": "Noch keine Winterprodukte.",
     "emptyOther": "Keine weiteren Produkte.",
     "reviewsTitle": "Kunden sprechen",
-    "reviewsSub": "Durchschnittlich {avg} von 5 Sternen – {count} Bewertungen"
+    "reviewsSub": "Durchschnittlich {avg} von 5 Sternen – {count} Bewertungen",
+    "reviewFormTitle": "Veröffentlichen Sie Ihre Bewertung",
+    "reviewFormSub": "Sie haben ein Produkt von uns? Teilen Sie Ihre Erfahrungen, es wird anderen Kunden helfen.",
+    "reviewName": "Ihr Name",
+    "reviewNamePh": "z.B. Jan",
+    "reviewProduct": "Produkt",
+    "reviewRating": "Ihre Bewertung",
+    "reviewComment": "Ihre Erfahrung",
+    "reviewCommentPh": "Was halten Sie von dem Produkt?",
+    "reviewSubmit": "Geben Sie eine Bewertung ab",
+    "reviewSending": "Lenken...",
+    "reviewThanks": "Danke schön! Ihre Bewertung wurde veröffentlicht.",
+    "reviewError": "Das Posten ist fehlgeschlagen. Bitte versuchen Sie es erneut."
   },
   "productCard": {
     "noImage": "Kein Bild",

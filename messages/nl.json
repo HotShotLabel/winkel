@@ -29,7 +29,19 @@
     "emptyWinter": "Nog geen winterproducten.",
     "emptyOther": "Geen overige producten.",
     "reviewsTitle": "Klanten aan het woord",
-    "reviewsSub": "Gemiddeld {avg} van 5 sterren — {count} beoordelingen"
+    "reviewsSub": "Gemiddeld {avg} van 5 sterren — {count} beoordelingen",
+    "reviewFormTitle": "Plaats jouw review",
+    "reviewFormSub": "Heb je een product van ons? Deel je ervaring, dat helpt andere klanten.",
+    "reviewName": "Jouw naam",
+    "reviewNamePh": "bv. Jan",
+    "reviewProduct": "Product",
+    "reviewRating": "Jouw beoordeling",
+    "reviewComment": "Jouw ervaring",
+    "reviewCommentPh": "Wat vond je van het product?",
+    "reviewSubmit": "Review plaatsen",
+    "reviewSending": "Versturen...",
+    "reviewThanks": "Bedankt! Je review is geplaatst.",
+    "reviewError": "Plaatsen mislukt, probeer het opnieuw."
   },
   "productCard": {
     "noImage": "Geen afbeelding",

@@ -29,7 +29,19 @@
     "emptyWinter": "No winter products yet.",
     "emptyOther": "No other products.",
     "reviewsTitle": "Customers speaking",
-    "reviewsSub": "Average {avg} out of 5 stars — {count} reviews"
+    "reviewsSub": "Average {avg} out of 5 stars — {count} reviews",
+    "reviewFormTitle": "Post your review",
+    "reviewFormSub": "Do you have a product from us? Share your experience, it will help other customers.",
+    "reviewName": "Your name",
+    "reviewNamePh": "e.g. Jan",
+    "reviewProduct": "Product",
+    "reviewRating": "Your review",
+    "reviewComment": "Your experience",
+    "reviewCommentPh": "What did you think of the product?",
+    "reviewSubmit": "Post a review",
+    "reviewSending": "To steer...",
+    "reviewThanks": "Thank you! Your review has been posted.",
+    "reviewError": "Posting failed, please try again."
   },
   "productCard": {
     "noImage": "No image",

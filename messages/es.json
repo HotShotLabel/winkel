@@ -29,7 +29,19 @@
     "emptyWinter": "Aún no hay productos de invierno.",
     "emptyOther": "No hay otros productos.",
     "reviewsTitle": "Clientes hablando",
-    "reviewsSub": "Promedio {avg} de 5 estrellas: reseñas {count}"
+    "reviewsSub": "Promedio {avg} de 5 estrellas: reseñas {count}",
+    "reviewFormTitle": "Publica tu reseña",
+    "reviewFormSub": "¿Tiene algún producto nuestro? Comparte tu experiencia, ayudará a otros clientes.",
+    "reviewName": "Su nombre",
+    "reviewNamePh": "p.ej. Ene",
+    "reviewProduct": "Producto",
+    "reviewRating": "Tu reseña",
+    "reviewComment": "Tu experiencia",
+    "reviewCommentPh": "¿Qué te pareció el producto?",
+    "reviewSubmit": "Publicar una reseña",
+    "reviewSending": "Para dirigir...",
+    "reviewThanks": "¡Gracias! Tu reseña ha sido publicada.",
+    "reviewError": "La publicación falló, inténtalo de nuevo."
   },
   "productCard": {
     "noImage": "Sin imagen",
