@@ -1,7 +1,6 @@
 'use client'
 
 import { Product } from '@/lib/orders'
-import { getProductNumber } from '@/lib/productOrder'
 import { Link } from '@/i18n/navigation'
 import { useCart } from '@/components/Cart'
 import { useTranslations } from 'next-intl'
@@ -12,7 +11,7 @@ export default function ProductCard({ product, oldPrice }: { product: Product; o
   const t = useTranslations('productCard')
   const { addToCart } = useCart()
   const [added, setAdded] = useState(false)
-  const number = getProductNumber(product.id)
+  const number = product.number
 
   const discountPct =
     oldPrice && oldPrice > product.price

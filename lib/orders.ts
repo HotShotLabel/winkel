@@ -7,6 +7,7 @@ export interface Product {
   price: number
   image: string
   description: string
+  number?: number
   created_at?: string
   name_en?: string
   name_fr?: string

@@ -1,6 +1,5 @@
 import { getProduct, localizeProduct, getPaidOrderCounts, getProducts } from '@/lib/orders'
 import { getProductPrices } from '@/lib/prices'
-import { getProductNumber } from '@/lib/productOrder'
 import { getReviews } from '@/lib/reviews'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
@@ -51,7 +50,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
     notFound()
   }
   const product = localizeProduct(productRaw, locale)
-  const number = getProductNumber(product.id)
+  const number = product.number
 
   const prices = await getProductPrices()
   const oldPrice = prices[product.id]?.old_price
