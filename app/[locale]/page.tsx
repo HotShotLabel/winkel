@@ -1,8 +1,9 @@
-import { getProducts, localizeProduct } from '@/lib/orders'
+import { getProducts, localizeProduct, getPaidOrderCounts } from '@/lib/orders'
 import { getProductPrices } from '@/lib/prices'
 import { getProductSeasons } from '@/lib/seasons'
 import { getRecentReviews, getReviewSummary } from '@/lib/reviews'
 import HomeReviews from '@/components/HomeReviews'
+import CategoryFilter from '@/components/CategoryFilter'
 import { getTranslations, getLocale } from 'next-intl/server'
 import { absoluteUrl } from '@/lib/seo'
 import ProductCard from '@/components/ProductCard'
@@ -20,7 +21,14 @@ export default async function Home() {
 
   const zomerProducts = products.filter(p => seasons[p.id] === 'zomer')
   const winterProducts = products.filter(p => seasons[p.id] === 'winter')
-  const overigeProducts = products.filter(p => !seasons[p.id])
+
+  const soldCounts = await getPaidOrderCounts()
+  const soldFor = (id: string) => soldCounts[id] || 0
+
+  // Bestsellers: meest verkochte eerst, daarna op productnummer.
+  const bestsellers = [...products]
+    .sort((a, b) => soldFor(b.id) - soldFor(a.id) || (a.number ?? 99) - (b.number ?? 99))
+    .slice(0, 6)
 
   const [reviewSummary, recentReviews] = await Promise.all([
     getReviewSummary(),
@@ -60,18 +68,17 @@ export default async function Home() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href="#zomer"
+              href="#bestsellers"
               className="inline-block bg-amber-400 text-amber-950 font-semibold px-8 py-3 rounded-lg hover:bg-amber-300 transition-colors"
             >
-              {t('summerBtn')}
-            </Link>
-            <Link
-              href="#winter"
-              className="inline-block bg-sky-200 text-sky-950 font-semibold px-8 py-3 rounded-lg hover:bg-sky-100 transition-colors"
-            >
-              {t('winterBtn')}
+              {t('heroBtn')}
             </Link>
           </div>
+          {reviewSummary.count > 0 && (
+            <p className="mt-6 text-sm text-blue-100">
+              ⭐ {t('heroProof', { avg: reviewSummary.avg.toFixed(1), count: reviewSummary.count })}
+            </p>
+          )}
         </div>
       </section>
 
@@ -96,6 +103,33 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Bestsellers */}
+      <section id="bestsellers" className="bg-gradient-to-b from-white to-blue-50 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <div className="text-5xl mb-2">🔥</div>
+            <h2 className="text-3xl font-bold text-gray-900">{t('bestsellersTitle')}</h2>
+            <p className="text-gray-500 mt-2">{t('bestsellersSub')}</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {bestsellers.map(product => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                oldPrice={prices[product.id]?.old_price}
+                sold={soldFor(product.id)}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Alle producten met categorie-filter */}
+      <div id="producten" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">{t('allTitle')}</h2>
+        <CategoryFilter products={products} soldCounts={soldCounts} oldPrices={prices} />
+      </div>
+
       {/* Zomer */}
       <section id="zomer" className="bg-gradient-to-br from-amber-300 via-orange-300 to-yellow-200 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -110,6 +144,7 @@ export default async function Home() {
                 key={product.id}
                 product={product}
                 oldPrice={prices[product.id]?.old_price}
+                sold={soldFor(product.id)}
               />
             ))}
           </div>
@@ -136,6 +171,7 @@ export default async function Home() {
                 key={product.id}
                 product={product}
                 oldPrice={prices[product.id]?.old_price}
+                sold={soldFor(product.id)}
               />
             ))}
           </div>
@@ -147,23 +183,6 @@ export default async function Home() {
 
       {/* Zachte overgang winter → licht */}
       <div className="h-20 bg-gradient-to-b from-indigo-950 to-gray-50" aria-hidden="true" />
-
-      {/* Overige producten */}
-      <div id="producten" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h2 className="text-2xl font-bold text-gray-900 mb-8">{t('otherTitle')}</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {overigeProducts.map(product => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              oldPrice={prices[product.id]?.old_price}
-            />
-          ))}
-        </div>
-        {overigeProducts.length === 0 && (
-          <p className="text-gray-500">{t('emptyOther')}</p>
-        )}
-      </div>
 
       <HomeReviews
         recent={recentReviews}

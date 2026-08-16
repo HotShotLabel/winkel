@@ -5,6 +5,7 @@ import { getTranslations } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { absoluteUrl, languageAlternates } from '@/lib/seo'
 import Navbar from '@/components/Navbar'
+import AnnouncementBar from '@/components/AnnouncementBar'
 import Footer from '@/components/Footer'
 import HtmlLangSetter from '@/components/HtmlLangSetter'
 import CookieBanner from '@/components/CookieBanner'
@@ -59,6 +60,7 @@ export default async function LocaleLayout({
       <HtmlLangSetter />
       <CartProvider>
         <WishlistProvider>
+          <AnnouncementBar locale={locale} />
           <Navbar />
           <main className="min-h-screen bg-gray-50">
             {children}

@@ -41,12 +41,19 @@
     "reviewSubmit": "Post a review",
     "reviewSending": "To steer...",
     "reviewThanks": "Thank you! Your review has been posted.",
-    "reviewError": "Posting failed, please try again."
+    "reviewError": "Posting failed, please try again.",
+    "heroBtn": "🔥 Shop bestsellers",
+    "heroProof": "{avg}/5 — {count} reviews",
+    "bestsellersTitle": "Best sellers",
+    "bestsellersSub": "Chosen by our customers",
+    "allTitle": "All products",
+    "allEmpty": "No products in this category"
   },
   "productCard": {
     "noImage": "No image",
     "add": "🛒 Add",
-    "added": "✓ Added"
+    "added": "✓ Added",
+    "sold": "{count}× ordered"
   },
   "product": {
     "back": "← Back to all products",
@@ -408,5 +415,18 @@
     "promise3": "100% satisfaction guarantee - money back guarantee",
     "promise4": "Personal customer service by email",
     "p4": "Do you have any questions? Please feel free to contact us — we are happy to help you."
+  },
+  "announcement": {
+    "text": "🚚 Free shipping over €30 — 30-day return guarantee"
+  },
+  "categories": {
+    "all": "All",
+    "zomer": "Summer & Cooling",
+    "verwarming": "Warming",
+    "gadgets": "Gadgets & Electronics",
+    "sfeer": "Ambience & Light",
+    "gezin": "Outdoor & Family",
+    "wellness": "Comfort & Wellness",
+    "empty": "No products in this category"
   }
 }

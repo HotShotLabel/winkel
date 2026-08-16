@@ -41,12 +41,19 @@
     "reviewSubmit": "Publicar una reseña",
     "reviewSending": "Para dirigir...",
     "reviewThanks": "¡Gracias! Tu reseña ha sido publicada.",
-    "reviewError": "La publicación falló, inténtalo de nuevo."
+    "reviewError": "La publicación falló, inténtalo de nuevo.",
+    "heroBtn": "🔥 Ver más vendidos",
+    "heroProof": "{avg}/5 — {count} valoraciones",
+    "bestsellersTitle": "Más vendidos",
+    "bestsellersSub": "Elegidos por nuestros clientes",
+    "allTitle": "Todos los productos",
+    "allEmpty": "No hay productos en esta categoría"
   },
   "productCard": {
     "noImage": "Sin imagen",
     "add": "🛒 Añadir",
-    "added": "✓ Añadido"
+    "added": "✓ Añadido",
+    "sold": "{count}× pedido"
   },
   "product": {
     "back": "← Volver a todos los productos",
@@ -408,5 +415,18 @@
     "promise3": "Garantía de satisfacción del 100% - garantía de devolución de dinero",
     "promise4": "Atención al cliente personalizada por correo electrónico",
     "p4": "¿Tiene alguna pregunta? No dude en contactarnos; estaremos encantados de ayudarle."
+  },
+  "announcement": {
+    "text": "🚚 Envío gratis desde 30 € — garantía de devolución de 30 días"
+  },
+  "categories": {
+    "all": "Todos",
+    "zomer": "Verano y refrigeración",
+    "verwarming": "Calefacción",
+    "gadgets": "Gadgets y electrónica",
+    "sfeer": "Ambiente y luz",
+    "gezin": "Exterior y familia",
+    "wellness": "Confort y bienestar",
+    "empty": "No hay productos en esta categoría"
   }
 }

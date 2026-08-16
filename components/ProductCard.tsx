@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import WishlistButton from '@/components/WishlistButton'
 
-export default function ProductCard({ product, oldPrice }: { product: Product; oldPrice?: number | null }) {
+export default function ProductCard({ product, oldPrice, sold = 0 }: { product: Product; oldPrice?: number | null; sold?: number }) {
   const t = useTranslations('productCard')
   const { addToCart } = useCart()
   const [added, setAdded] = useState(false)
@@ -61,6 +61,11 @@ export default function ProductCard({ product, oldPrice }: { product: Product; o
         <p className="text-gray-600 text-sm mb-4 line-clamp-2">
           {product.description}
         </p>
+        {sold > 0 && (
+          <p className="text-xs font-semibold text-green-600 -mt-2 mb-3">
+            🔥 {t('sold', { count: sold })}
+          </p>
+        )}
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-baseline gap-2 min-w-0">
             <span className="text-2xl font-bold text-gray-900">

@@ -41,12 +41,19 @@
     "reviewSubmit": "Review plaatsen",
     "reviewSending": "Versturen...",
     "reviewThanks": "Bedankt! Je review is geplaatst.",
-    "reviewError": "Plaatsen mislukt, probeer het opnieuw."
+    "reviewError": "Plaatsen mislukt, probeer het opnieuw.",
+    "heroBtn": "🔥 Bekijk bestsellers",
+    "heroProof": "{avg}/5 — {count} beoordelingen",
+    "bestsellersTitle": "Meest verkocht",
+    "bestsellersSub": "Gekozen door onze klanten",
+    "allTitle": "Alle producten",
+    "allEmpty": "Geen producten in deze categorie"
   },
   "productCard": {
     "noImage": "Geen afbeelding",
     "add": "🛒 Toevoegen",
-    "added": "✓ Toegevoegd"
+    "added": "✓ Toegevoegd",
+    "sold": "{count}× besteld"
   },
   "product": {
     "back": "← Terug naar alle producten",
@@ -408,5 +415,18 @@
     "promise3": "100% tevredenheidsgarantie — niet goed, geld terug",
     "promise4": "Persoonlijke klantenservice per e-mail",
     "p4": "Heb je vragen? Neem gerust contact met ons op — we helpen je graag verder."
+  },
+  "announcement": {
+    "text": "🚚 Gratis verzending boven €30 — 30 dagen retourgarantie"
+  },
+  "categories": {
+    "all": "Alles",
+    "zomer": "Zomer & Koeling",
+    "verwarming": "Verwarming",
+    "gadgets": "Gadgets & Elektronica",
+    "sfeer": "Sfeer & Licht",
+    "gezin": "Buiten & Gezin",
+    "wellness": "Comfort & Wellness",
+    "empty": "Geen producten in deze categorie"
   }
 }

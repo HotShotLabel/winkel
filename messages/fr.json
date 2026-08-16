@@ -41,12 +41,19 @@
     "reviewSubmit": "Publier un avis",
     "reviewSending": "Pour piloter...",
     "reviewThanks": "Merci! Votre avis a été publié.",
-    "reviewError": "La publication a échoué, veuillez réessayer."
+    "reviewError": "La publication a échoué, veuillez réessayer.",
+    "heroBtn": "🔥 Voir les meilleures ventes",
+    "heroProof": "{avg}/5 — {count} avis",
+    "bestsellersTitle": "Meilleures ventes",
+    "bestsellersSub": "Choisi par nos clients",
+    "allTitle": "Tous les produits",
+    "allEmpty": "Aucun produit dans cette catégorie"
   },
   "productCard": {
     "noImage": "Pas d'image",
     "add": "🛒 Ajouter",
-    "added": "✓ Ajouté"
+    "added": "✓ Ajouté",
+    "sold": "{count}× commandé"
   },
   "product": {
     "back": "← Retour à tous les produits",
@@ -408,5 +415,18 @@
     "promise3": "Garantie de satisfaction à 100% - garantie de remboursement",
     "promise4": "Service client personnalisé par email",
     "p4": "Avez-vous des questions ? N'hésitez pas à nous contacter, nous serons heureux de vous aider."
+  },
+  "announcement": {
+    "text": "🚚 Livraison gratuite dès 30 € — garantie de retour 30 jours"
+  },
+  "categories": {
+    "all": "Tout",
+    "zomer": "Été & Rafraîchissement",
+    "verwarming": "Chauffage",
+    "gadgets": "Gadgets & Électronique",
+    "sfeer": "Ambiance & Lumière",
+    "gezin": "Extérieur & Famille",
+    "wellness": "Confort & Bien-être",
+    "empty": "Aucun produit dans cette catégorie"
   }
 }
