@@ -50,7 +50,7 @@ export default async function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-gradient-to-r from-blue-700 to-blue-500 text-white">
+      <section className="bg-gradient-to-b from-blue-700 via-blue-600 to-blue-100 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             {t('heroTitle')}
@@ -76,7 +76,7 @@ export default async function Home() {
       </section>
 
       {/* Trust-badges */}
-      <section className="bg-white border-b border-gray-200">
+      <section className="bg-gradient-to-b from-blue-100 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
           <div>
             <div className="text-2xl mb-1">🛡️</div>
@@ -119,6 +119,9 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Zachte overgang zomer → winter */}
+      <div className="h-20 bg-gradient-to-b from-yellow-200 to-sky-900" aria-hidden="true" />
+
       {/* Winter */}
       <section id="winter" className="bg-gradient-to-br from-sky-900 via-blue-900 to-indigo-950 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -141,6 +144,9 @@ export default async function Home() {
           )}
         </div>
       </section>
+
+      {/* Zachte overgang winter → licht */}
+      <div className="h-20 bg-gradient-to-b from-indigo-950 to-gray-50" aria-hidden="true" />
 
       {/* Overige producten */}
       <div id="producten" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

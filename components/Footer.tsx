@@ -7,7 +7,10 @@ export default async function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <>
+      {/* Zachte overgang van pagina naar donkere footer */}
+      <div className="h-12 bg-gradient-to-b from-gray-50 to-gray-900" aria-hidden="true" />
+      <footer className="bg-gray-900 text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
@@ -77,6 +80,7 @@ export default async function Footer() {
           {t('copyright', { year })}
         </div>
       </div>
-    </footer>
+      </footer>
+    </>
   )
 }
