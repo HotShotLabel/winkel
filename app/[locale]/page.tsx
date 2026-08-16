@@ -1,6 +1,5 @@
 import { getProducts, localizeProduct, getPaidOrderCounts } from '@/lib/orders'
 import { getProductPrices } from '@/lib/prices'
-import { getProductSeasons } from '@/lib/seasons'
 import { getRecentReviews, getReviewSummary } from '@/lib/reviews'
 import HomeReviews from '@/components/HomeReviews'
 import CategoryFilter from '@/components/CategoryFilter'
@@ -17,10 +16,6 @@ export default async function Home() {
   const locale = await getLocale()
   const products = (await getProducts()).map(p => localizeProduct(p, locale))
   const prices = await getProductPrices()
-  const seasons = await getProductSeasons()
-
-  const zomerProducts = products.filter(p => seasons[p.id] === 'zomer')
-  const winterProducts = products.filter(p => seasons[p.id] === 'winter')
 
   const soldCounts = await getPaidOrderCounts()
   const soldFor = (id: string) => soldCounts[id] || 0
@@ -129,60 +124,6 @@ export default async function Home() {
         <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">{t('allTitle')}</h2>
         <CategoryFilter products={products} soldCounts={soldCounts} oldPrices={prices} />
       </div>
-
-      {/* Zomer */}
-      <section id="zomer" className="bg-gradient-to-br from-amber-300 via-orange-300 to-yellow-200 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <div className="text-5xl mb-2">☀️</div>
-            <h2 className="text-3xl font-bold text-amber-950">{t('summerTitle')}</h2>
-            <p className="text-amber-900 mt-2">{t('summerSub')}</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {zomerProducts.map(product => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                oldPrice={prices[product.id]?.old_price}
-                sold={soldFor(product.id)}
-              />
-            ))}
-          </div>
-          {zomerProducts.length === 0 && (
-            <p className="text-center text-amber-900 py-8">{t('emptySummer')}</p>
-          )}
-        </div>
-      </section>
-
-      {/* Zachte overgang zomer → winter */}
-      <div className="h-20 bg-gradient-to-b from-yellow-200 to-sky-900" aria-hidden="true" />
-
-      {/* Winter */}
-      <section id="winter" className="bg-gradient-to-br from-sky-900 via-blue-900 to-indigo-950 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <div className="text-5xl mb-2">❄️</div>
-            <h2 className="text-3xl font-bold text-white">{t('winterTitle')}</h2>
-            <p className="text-sky-200 mt-2">{t('winterSub')}</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {winterProducts.map(product => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                oldPrice={prices[product.id]?.old_price}
-                sold={soldFor(product.id)}
-              />
-            ))}
-          </div>
-          {winterProducts.length === 0 && (
-            <p className="text-center text-sky-200 py-8">{t('emptyWinter')}</p>
-          )}
-        </div>
-      </section>
-
-      {/* Zachte overgang winter → licht */}
-      <div className="h-20 bg-gradient-to-b from-indigo-950 to-gray-50" aria-hidden="true" />
 
       <HomeReviews
         recent={recentReviews}
