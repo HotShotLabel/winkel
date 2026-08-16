@@ -27,7 +27,9 @@
     "otherTitle": "Overige producten",
     "emptySummer": "Nog geen zomerproducten.",
     "emptyWinter": "Nog geen winterproducten.",
-    "emptyOther": "Geen overige producten."
+    "emptyOther": "Geen overige producten.",
+    "reviewsTitle": "Klanten aan het woord",
+    "reviewsSub": "Gemiddeld {avg} van 5 sterren — {count} beoordelingen"
   },
   "productCard": {
     "noImage": "Geen afbeelding",
@@ -67,7 +69,10 @@
     "perPiece": "per stuk",
     "remove": "Verwijder",
     "total": "Totaal:",
-    "checkout": "Doorgaan naar checkout"
+    "checkout": "Doorgaan naar checkout",
+    "shipFree": "Gratis verzending",
+    "return": "7 dagen retour",
+    "secure": "Veilig betalen"
   },
   "checkout": {
     "title": "Checkout",
@@ -101,7 +106,12 @@
     "couponRemove": "Verwijderen",
     "couponInvalid": "Deze kortingscode is ongeldig of verlopen.",
     "subtotal": "Subtotaal",
-    "discount": "Korting"
+    "discount": "Korting",
+    "secureTitle": "Beveiligde betaling",
+    "secureSub": "SSL-versleuteld via Stripe — je betaalgegevens zijn veilig",
+    "shipFree": "Gratis verzending",
+    "returnGuarantee": "Retourrecht",
+    "secureCheckout": "Veilig afrekenen"
   },
   "success": {
     "thanks": "Bedankt voor je bestelling!",

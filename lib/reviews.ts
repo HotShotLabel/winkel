@@ -24,6 +24,35 @@ export async function getReviews(productId: string): Promise<Review[]> {
   return (data as Review[]) || []
 }
 
+export async function getReviewSummary(): Promise<{ avg: number; count: number }> {
+  const { data, error } = await getSupabase()
+    .from('reviews')
+    .select('rating')
+    .eq('approved', true)
+
+  if (error || !data || data.length === 0) {
+    return { avg: 0, count: 0 }
+  }
+  const ratings = data.map(r => Number(r.rating))
+  const avg = ratings.reduce((a, b) => a + b, 0) / ratings.length
+  return { avg, count: ratings.length }
+}
+
+export async function getRecentReviews(limit: number): Promise<Review[]> {
+  const { data, error } = await getSupabase()
+    .from('reviews')
+    .select('*')
+    .eq('approved', true)
+    .order('created_at', { ascending: false })
+    .limit(limit)
+
+  if (error) {
+    console.error('Error fetching recent reviews:', error)
+    return []
+  }
+  return (data as Review[]) || []
+}
+
 export async function addReview(input: {
   product_id: string
   name: string

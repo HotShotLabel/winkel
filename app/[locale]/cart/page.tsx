@@ -74,6 +74,9 @@ export default function CartPage() {
           >
             {t('checkout')}
           </button>
+          <p className="text-center text-sm text-gray-500 mt-3">
+            🚚 {t('shipFree')} · ↩️ {t('return')} · 🔒 {t('secure')}
+          </p>
         </div>
       </div>
     </div>

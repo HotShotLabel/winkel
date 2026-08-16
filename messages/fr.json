@@ -27,7 +27,9 @@
     "otherTitle": "Autres produits",
     "emptySummer": "Pas encore de produits d'été.",
     "emptyWinter": "Pas encore de produits d'hiver.",
-    "emptyOther": "Aucun autre produit."
+    "emptyOther": "Aucun autre produit.",
+    "reviewsTitle": "Les clients parlent",
+    "reviewsSub": "Moyenne {avg} sur 5 étoiles — {count} avis"
   },
   "productCard": {
     "noImage": "Pas d'image",
@@ -67,7 +69,10 @@
     "perPiece": "pièce",
     "remove": "Supprimer",
     "total": "Total :",
-    "checkout": "Passer à la caisse"
+    "checkout": "Passer à la caisse",
+    "shipFree": "Livraison gratuite",
+    "return": "retour 7 jours",
+    "secure": "Paiement sécurisé"
   },
   "checkout": {
     "title": "Caisse",
@@ -101,7 +106,12 @@
     "couponRemove": "Pour supprimer",
     "couponInvalid": "Ce code de réduction est invalide ou a expiré.",
     "subtotal": "Total",
-    "discount": "Rabais"
+    "discount": "Rabais",
+    "secureTitle": "Paiement sécurisé",
+    "secureSub": "SSL crypté via Stripe — vos informations de paiement sont en sécurité",
+    "shipFree": "Livraison gratuite",
+    "returnGuarantee": "Droit de retour",
+    "secureCheckout": "Paiement sécurisé"
   },
   "success": {
     "thanks": "Merci pour votre commande !",

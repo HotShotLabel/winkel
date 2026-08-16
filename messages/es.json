@@ -27,7 +27,9 @@
     "otherTitle": "Otros productos",
     "emptySummer": "Aún no hay productos de verano.",
     "emptyWinter": "Aún no hay productos de invierno.",
-    "emptyOther": "No hay otros productos."
+    "emptyOther": "No hay otros productos.",
+    "reviewsTitle": "Clientes hablando",
+    "reviewsSub": "Promedio {avg} de 5 estrellas: reseñas {count}"
   },
   "productCard": {
     "noImage": "Sin imagen",
@@ -67,7 +69,10 @@
     "perPiece": "por unidad",
     "remove": "Eliminar",
     "total": "Total:",
-    "checkout": "Ir a pagar"
+    "checkout": "Ir a pagar",
+    "shipFree": "Envío gratis",
+    "return": "7 días de regreso",
+    "secure": "Pago seguro"
   },
   "checkout": {
     "title": "Pago",
@@ -101,7 +106,12 @@
     "couponRemove": "para eliminar",
     "couponInvalid": "Este código de descuento no es válido o ha caducado.",
     "subtotal": "Total parcial",
-    "discount": "Descuento"
+    "discount": "Descuento",
+    "secureTitle": "Pago seguro",
+    "secureSub": "SSL cifrado a través de Stripe: sus datos de pago están seguros",
+    "shipFree": "Envío gratis",
+    "returnGuarantee": "Derecho de devolución",
+    "secureCheckout": "Pago seguro"
   },
   "success": {
     "thanks": "¡Gracias por tu pedido!",

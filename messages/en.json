@@ -27,7 +27,9 @@
     "otherTitle": "Other products",
     "emptySummer": "No summer products yet.",
     "emptyWinter": "No winter products yet.",
-    "emptyOther": "No other products."
+    "emptyOther": "No other products.",
+    "reviewsTitle": "Customers speaking",
+    "reviewsSub": "Average {avg} out of 5 stars — {count} reviews"
   },
   "productCard": {
     "noImage": "No image",
@@ -67,7 +69,10 @@
     "perPiece": "per piece",
     "remove": "Remove",
     "total": "Total:",
-    "checkout": "Proceed to checkout"
+    "checkout": "Proceed to checkout",
+    "shipFree": "Free shipping",
+    "return": "7 days return",
+    "secure": "Secure payment"
   },
   "checkout": {
     "title": "Checkout",
@@ -101,7 +106,12 @@
     "couponRemove": "To delete",
     "couponInvalid": "This discount code is invalid or expired.",
     "subtotal": "Subtotal",
-    "discount": "Discount"
+    "discount": "Discount",
+    "secureTitle": "Secure payment",
+    "secureSub": "SSL encrypted via Stripe — your payment details are safe",
+    "shipFree": "Free shipping",
+    "returnGuarantee": "Right of return",
+    "secureCheckout": "Secure checkout"
   },
   "success": {
     "thanks": "Thank you for your order!",

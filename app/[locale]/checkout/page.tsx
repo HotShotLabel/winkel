@@ -267,6 +267,21 @@ export default function CheckoutPage() {
             >
               {loading ? t('loading') : t('pay', { total: payable.toFixed(2) })}
             </button>
+
+            {/* Vertrouwensblok bij de betaalknop */}
+            <div className="mt-4">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 flex items-center gap-2 text-sm font-medium text-gray-800">
+                <span>🔒</span>
+                <span>{t('secureTitle')}</span>
+              </div>
+              <p className="text-xs text-gray-500 mt-1.5">{t('secureSub')}</p>
+              <div className="flex flex-wrap gap-2 mt-3">
+                <span className="bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-md">iDEAL</span>
+                <span className="bg-indigo-700 text-white text-xs font-bold px-3 py-1.5 rounded-md">VISA</span>
+                <span className="bg-orange-500 text-white text-xs font-bold px-3 py-1.5 rounded-md">Mastercard</span>
+                <span className="bg-gray-900 text-white text-xs font-bold px-3 py-1.5 rounded-md">Apple Pay</span>
+              </div>
+            </div>
           </form>
         </div>
 
@@ -338,6 +353,21 @@ export default function CheckoutPage() {
               <div className="flex justify-between text-xl font-bold pt-2">
                 <span>{t('total')}</span>
                 <span>€{payable.toFixed(2)}</span>
+              </div>
+              {/* Verzend- en retourbelofte */}
+              <div className="pt-3 space-y-1">
+                <div className="flex justify-between text-sm text-green-700">
+                  <span>🚚 {t('shipFree')}</span>
+                  <span>€0,00</span>
+                </div>
+                <div className="flex justify-between text-sm text-green-700">
+                  <span>↩️ {t('returnGuarantee')}</span>
+                  <span>7 dagen</span>
+                </div>
+                <div className="flex justify-between text-sm text-green-700">
+                  <span>🔒 {t('secureCheckout')}</span>
+                  <span>SSL</span>
+                </div>
               </div>
             </div>
           </div>
