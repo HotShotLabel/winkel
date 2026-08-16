@@ -1,6 +1,7 @@
 'use client'
 
 import { Product } from '@/lib/orders'
+import { getProductNumber } from '@/lib/productOrder'
 import { Link } from '@/i18n/navigation'
 import { useCart } from '@/components/Cart'
 import { useTranslations } from 'next-intl'
@@ -11,6 +12,7 @@ export default function ProductCard({ product, oldPrice }: { product: Product; o
   const t = useTranslations('productCard')
   const { addToCart } = useCart()
   const [added, setAdded] = useState(false)
+  const number = getProductNumber(product.id)
 
   const discountPct =
     oldPrice && oldPrice > product.price
@@ -47,9 +49,16 @@ export default function ProductCard({ product, oldPrice }: { product: Product; o
         />
       </div>
       <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">
-          {product.name}
-        </h3>
+        <div className="flex items-center justify-between gap-2 mb-1">
+          <h3 className="text-lg font-semibold text-gray-900">
+            {product.name}
+          </h3>
+          {number && (
+            <span className="text-xs text-gray-400 font-medium whitespace-nowrap shrink-0">
+              Nr. {number}
+            </span>
+          )}
+        </div>
         <p className="text-gray-600 text-sm mb-4 line-clamp-2">
           {product.description}
         </p>

@@ -1,5 +1,6 @@
 import { getProduct, localizeProduct, getPaidOrderCounts, getProducts } from '@/lib/orders'
 import { getProductPrices } from '@/lib/prices'
+import { getProductNumber } from '@/lib/productOrder'
 import { getReviews } from '@/lib/reviews'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
@@ -50,6 +51,7 @@ export default async function ProductPage({ params }: { params: { id: string } }
     notFound()
   }
   const product = localizeProduct(productRaw, locale)
+  const number = getProductNumber(product.id)
 
   const prices = await getProductPrices()
   const oldPrice = prices[product.id]?.old_price
@@ -131,7 +133,8 @@ export default async function ProductPage({ params }: { params: { id: string } }
 
         {/* Info */}
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-3">{product.name}</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-1">{product.name}</h1>
+          {number && <p className="text-sm text-gray-400 mb-3">Artikelnummer: {number}</p>}
 
           {reviews.length > 0 && (
             <div className="flex items-center gap-2 mb-4">

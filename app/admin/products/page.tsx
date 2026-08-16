@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Product } from '@/lib/orders'
+import { getProductNumber } from '@/lib/productOrder'
 import { AliExpressSources } from '@/lib/aliexpress'
 import { ProductPrices } from '@/lib/prices'
 import { ProductSeasons } from '@/lib/seasons'
@@ -311,6 +312,7 @@ export default function AdminProductsPage() {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nr.</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Afbeelding</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Naam</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Prijs</th>
@@ -322,6 +324,9 @@ export default function AdminProductsPage() {
           <tbody className="bg-white divide-y divide-gray-200">
             {products.map(product => (
               <tr key={product.id} className="hover:bg-gray-50">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {getProductNumber(product.id) ?? '-'}
+                </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   {product.image ? (
                     <img src={product.image} alt={product.name} className="h-12 w-12 object-cover rounded" />
