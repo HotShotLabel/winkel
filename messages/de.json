@@ -1,6 +1,6 @@
 {
   "nav": {
-    "shopName": "Alles In 1 Winkel",
+    "shopName": "1Place4All",
     "products": "Produkte",
     "cart": "Warenkorb",
     "account": "Mein Konto",
@@ -225,7 +225,7 @@
     "loading": "Laden..."
   },
   "footer": {
-    "shopName": "Alles In 1 Winkel",
+    "shopName": "1Place4All",
     "tagline": "Smarte Gadgets und praktische Produkte, schnell und einfach bestellt.",
     "service": "Kundenservice",
     "guarantee": "Garantie & Rückgabe",
@@ -234,7 +234,7 @@
     "p1": "🛡️ 100 % Zufriedenheitsgarantie",
     "p2": "💶 Geld zurück innerhalb von 7 Tagen",
     "p3": "💳 Sichere Zahlung über Stripe",
-    "copyright": "© {year} Alles In 1 Winkel. Alle Rechte vorbehalten.",
+    "copyright": "© {year} 1Place4All. Alle Rechte vorbehalten.",
     "contact": "Kontakt",
     "privacy": "Datenschutzerklärung",
     "terms": "AGB",
@@ -244,11 +244,11 @@
   "privacy": {
     "title": "Datenschutzerklärung",
     "updated": "Zuletzt aktualisiert: 14. August 2026",
-    "intro": "Alles In 1 Winkel respektiert Ihre Privatsphäre. Diese Erklärung erläutert, welche Daten wir sammeln, wofür wir sie verwenden und welche Rechte Sie haben. Fragen? Schreiben Sie an mijnwinkel.vercel@proton.me.",
+    "intro": "1Place4All respektiert Ihre Privatsphäre. Diese Erklärung erläutert, welche Daten wir sammeln, wofür wir sie verwenden und welche Rechte Sie haben. Fragen? Schreiben Sie an mijnwinkel.vercel@proton.me.",
     "sections": [
       {
         "h": "Wer wir sind",
-        "p": "Alles In 1 Winkel ist ein Handelsname für einen Online-Shop mit smarten Gadgets und praktischen Produkten. Sie erreichen uns unter mijnwinkel.vercel@proton.me."
+        "p": "1Place4All ist ein Handelsname für einen Online-Shop mit smarten Gadgets und praktischen Produkten. Sie erreichen uns unter mijnwinkel.vercel@proton.me."
       },
       {
         "h": "Welche Daten wir sammeln",
@@ -287,11 +287,11 @@
   "terms": {
     "title": "Allgemeine Geschäftsbedingungen",
     "updated": "Zuletzt aktualisiert: 14. August 2026",
-    "intro": "Diese Bedingungen gelten für alle Bestellungen bei Alles In 1 Winkel. Mit einer Bestellung stimmen Sie diesen Bedingungen zu. Fragen? Schreiben Sie an mijnwinkel.vercel@proton.me.",
+    "intro": "Diese Bedingungen gelten für alle Bestellungen bei 1Place4All. Mit einer Bestellung stimmen Sie diesen Bedingungen zu. Fragen? Schreiben Sie an mijnwinkel.vercel@proton.me.",
     "sections": [
       {
         "h": "Allgemeines",
-        "p": "Alles In 1 Winkel ist ein Handelsname für einen Online-Shop mit smarten Gadgets und praktischen Produkten, erreichbar unter mijnwinkel.vercel@proton.me."
+        "p": "1Place4All ist ein Handelsname für einen Online-Shop mit smarten Gadgets und praktischen Produkten, erreichbar unter mijnwinkel.vercel@proton.me."
       },
       {
         "h": "Angebot und Vertrag",
@@ -328,7 +328,7 @@
     ]
   },
   "metadata": {
-    "title": "Alles In 1 Winkel | Schnell online bestellen",
+    "title": "1Place4All | Schnell online bestellen",
     "description": "Schnell und einfach online bestellen. Kühlende Sommerprodukte und wärmespeichernde Winterprodukte, schnell bei Ihnen zu Hause."
   },
   "reviews": {
@@ -406,7 +406,7 @@
   },
   "about": {
     "title": "Über uns",
-    "p1": "Alles In 1 Winkel ist ein Online-Shop mit smarten Gadgets und nützlichen Produkten für den Alltag. Wir wählen Produkte aus, die das Leben ein wenig einfacher machen – von intelligenten Lösungen für zu Hause bis hin zu praktischen Accessoires für unterwegs.",
+    "p1": "1Place4All ist ein Online-Shop mit smarten Gadgets und nützlichen Produkten für den Alltag. Wir wählen Produkte aus, die das Leben ein wenig einfacher machen – von intelligenten Lösungen für zu Hause bis hin zu praktischen Accessoires für unterwegs.",
     "p2": "Wir arbeiten direkt mit Herstellern und Lieferanten zusammen, sodass wir wettbewerbsfähige Preise ohne Qualitätseinbußen anbieten können. Jede Bestellung wird sorgfältig vorbereitet und versendet.",
     "p3": "Unser Ziel ist einfach: Kunden mit guten Produkten, schneller Lieferung und ehrlichem Service glücklich zu machen. Keine komplizierten Bedingungen, keine Überraschungen – einfach klar und zuverlässig.",
     "promiseTitle": "Unser Versprechen",

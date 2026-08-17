@@ -35,7 +35,7 @@ export default async function Home() {
   const orgSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Alles In 1 Winkel',
+    name: '1Place4All',
     url: absoluteUrl(locale),
     email: 'mijnwinkel.vercel@proton.me',
   }

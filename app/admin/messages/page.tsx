@@ -239,7 +239,7 @@ export default function AdminMessagesPage() {
                         >
                           <div className="flex justify-between items-center mb-1">
                             <span className={`font-semibold ${m.is_admin_reply ? 'text-blue-900' : 'text-gray-900'}`}>
-                              {m.is_admin_reply ? 'AllesIn1Winkel' : (m.name || m.email)}
+                              {m.is_admin_reply ? '1Place4All' : (m.name || m.email)}
                             </span>
                             <span className="text-xs text-gray-400">
                               {new Date(m.created_at).toLocaleString('nl-NL')}

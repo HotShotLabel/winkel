@@ -1,4 +1,4 @@
-# Alles In 1 Winkel - Dropshipping Store
+# 1Place4All - Dropshipping Store
 
 Gratis Next.js winkel met Stripe betalingen.
 

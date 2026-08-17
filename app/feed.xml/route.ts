@@ -41,7 +41,7 @@ export async function GET() {
     <g:price>${product.price.toFixed(2)} EUR</g:price>
     ${hasDiscount ? `<g:sale_price>${product.price.toFixed(2)} EUR</g:sale_price><g:price>${oldPrice!.toFixed(2)} EUR</g:price>` : ''}
     <g:condition>new</g:condition>
-    <g:brand>Alles In 1 Winkel</g:brand>
+    <g:brand>1Place4All</g:brand>
     <g:google_product_category>Health &amp; Beauty</g:google_product_category>
   </item>`
   }).join('')
@@ -49,9 +49,9 @@ export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
   <channel>
-    <title>Alles In 1 Winkel</title>
+    <title>1Place4All</title>
     <link>${absoluteUrl(locale)}</link>
-    <description>Producten van Alles In 1 Winkel</description>${xmlItems}
+    <description>Producten van 1Place4All</description>${xmlItems}
   </channel>
 </rss>`
 

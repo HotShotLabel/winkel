@@ -1,6 +1,6 @@
 {
   "nav": {
-    "shopName": "Alles In 1 Winkel",
+    "shopName": "1Place4All",
     "products": "Products",
     "cart": "Cart",
     "account": "My account",
@@ -225,7 +225,7 @@
     "loading": "Loading..."
   },
   "footer": {
-    "shopName": "Alles In 1 Winkel",
+    "shopName": "1Place4All",
     "tagline": "Smart gadgets and handy products, ordered quickly and easily.",
     "service": "Customer service",
     "guarantee": "Guarantee & Returns",
@@ -234,7 +234,7 @@
     "p1": "🛡️ 100% satisfaction guarantee",
     "p2": "💶 Money back within 7 days",
     "p3": "💳 Secure payments via Stripe",
-    "copyright": "© {year} Alles In 1 Winkel. All rights reserved.",
+    "copyright": "© {year} 1Place4All. All rights reserved.",
     "contact": "Contact",
     "privacy": "Privacy Policy",
     "terms": "Terms & Conditions",
@@ -244,11 +244,11 @@
   "privacy": {
     "title": "Privacy Policy",
     "updated": "Last updated: August 14, 2026",
-    "intro": "Alles In 1 Winkel respects your privacy. This policy explains what data we collect, what we use it for, and what rights you have. Questions? Email mijnwinkel.vercel@proton.me.",
+    "intro": "1Place4All respects your privacy. This policy explains what data we collect, what we use it for, and what rights you have. Questions? Email mijnwinkel.vercel@proton.me.",
     "sections": [
       {
         "h": "Who we are",
-        "p": "Alles In 1 Winkel is a trading name for an online store selling smart gadgets and handy products. You can reach us at mijnwinkel.vercel@proton.me."
+        "p": "1Place4All is a trading name for an online store selling smart gadgets and handy products. You can reach us at mijnwinkel.vercel@proton.me."
       },
       {
         "h": "What data we collect",
@@ -287,11 +287,11 @@
   "terms": {
     "title": "Terms & Conditions",
     "updated": "Last updated: August 14, 2026",
-    "intro": "These terms apply to all orders at Alles In 1 Winkel. By placing an order you agree to these terms. Questions? Email mijnwinkel.vercel@proton.me.",
+    "intro": "These terms apply to all orders at 1Place4All. By placing an order you agree to these terms. Questions? Email mijnwinkel.vercel@proton.me.",
     "sections": [
       {
         "h": "General",
-        "p": "Alles In 1 Winkel is a trading name for an online store selling smart gadgets and handy products, reachable at mijnwinkel.vercel@proton.me."
+        "p": "1Place4All is a trading name for an online store selling smart gadgets and handy products, reachable at mijnwinkel.vercel@proton.me."
       },
       {
         "h": "Offer and agreement",
@@ -328,7 +328,7 @@
     ]
   },
   "metadata": {
-    "title": "Alles In 1 Winkel | Fast online ordering",
+    "title": "1Place4All | Fast online ordering",
     "description": "Fast and easy online ordering. Cooling summer products and heat-retaining winter products, quickly at your door."
   },
   "reviews": {
@@ -406,7 +406,7 @@
   },
   "about": {
     "title": "About us",
-    "p1": "Alles In 1 Winkel is an online store with smart gadgets and useful products for everyday life. We select products that make life just a little easier — from smart solutions for the home to handy accessories on the go.",
+    "p1": "1Place4All is an online store with smart gadgets and useful products for everyday life. We select products that make life just a little easier — from smart solutions for the home to handy accessories on the go.",
     "p2": "We work directly with manufacturers and suppliers, so we can offer competitive prices without sacrificing quality. Every order is carefully prepared and shipped.",
     "p3": "Our goal is simple: make customers happy with good products, fast delivery and honest service. No complicated conditions, no surprises — just clear and reliable.",
     "promiseTitle": "Our promise",
