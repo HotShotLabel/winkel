@@ -1,6 +1,6 @@
 {
   "nav": {
-    "shopName": "Ma Boutique",
+    "shopName": "Alles In 1 Winkel",
     "products": "Produits",
     "cart": "Panier",
     "account": "Mon compte",
@@ -225,7 +225,7 @@
     "loading": "Chargement..."
   },
   "footer": {
-    "shopName": "Ma Boutique",
+    "shopName": "Alles In 1 Winkel",
     "tagline": "Gadgets intelligents et produits pratiques, commandés rapidement et facilement.",
     "service": "Service client",
     "guarantee": "Garantie & Retours",
@@ -234,7 +234,7 @@
     "p1": "🛡️ Garantie de satisfaction à 100 %",
     "p2": "💶 Remboursé sous 7 jours",
     "p3": "💳 Paiement sécurisé via Stripe",
-    "copyright": "© {year} Ma Boutique. Tous droits réservés.",
+    "copyright": "© {year} Alles In 1 Winkel. Tous droits réservés.",
     "contact": "Contact",
     "privacy": "Politique de confidentialité",
     "terms": "Conditions générales",
@@ -244,11 +244,11 @@
   "privacy": {
     "title": "Politique de confidentialité",
     "updated": "Dernière mise à jour : 14 août 2026",
-    "intro": "Ma Boutique respecte votre vie privée. Cette politique explique quelles données nous collectons, à quoi nous les utilisons et quels sont vos droits. Des questions ? Écrivez à mijnwinkel.vercel@proton.me.",
+    "intro": "Alles In 1 Winkel respecte votre vie privée. Cette politique explique quelles données nous collectons, à quoi nous les utilisons et quels sont vos droits. Des questions ? Écrivez à mijnwinkel.vercel@proton.me.",
     "sections": [
       {
         "h": "Qui sommes-nous",
-        "p": "Ma Boutique est un nom commercial pour une boutique en ligne de gadgets intelligents et produits pratiques. Vous pouvez nous joindre à mijnwinkel.vercel@proton.me."
+        "p": "Alles In 1 Winkel est un nom commercial pour une boutique en ligne de gadgets intelligents et produits pratiques. Vous pouvez nous joindre à mijnwinkel.vercel@proton.me."
       },
       {
         "h": "Quelles données nous collectons",
@@ -287,11 +287,11 @@
   "terms": {
     "title": "Conditions générales",
     "updated": "Dernière mise à jour : 14 août 2026",
-    "intro": "Ces conditions s’appliquent à toutes les commandes chez Ma Boutique. En passant une commande, vous acceptez ces conditions. Des questions ? Écrivez à mijnwinkel.vercel@proton.me.",
+    "intro": "Ces conditions s’appliquent à toutes les commandes chez Alles In 1 Winkel. En passant une commande, vous acceptez ces conditions. Des questions ? Écrivez à mijnwinkel.vercel@proton.me.",
     "sections": [
       {
         "h": "Général",
-        "p": "Ma Boutique est un nom commercial pour une boutique en ligne de gadgets intelligents et produits pratiques, joignable à mijnwinkel.vercel@proton.me."
+        "p": "Alles In 1 Winkel est un nom commercial pour une boutique en ligne de gadgets intelligents et produits pratiques, joignable à mijnwinkel.vercel@proton.me."
       },
       {
         "h": "Offre et contrat",
@@ -328,7 +328,7 @@
     ]
   },
   "metadata": {
-    "title": "Ma Boutique | Commandez en ligne rapidement",
+    "title": "Alles In 1 Winkel | Commandez en ligne rapidement",
     "description": "Commandez en ligne rapidement et facilement. Produits rafraîchissants pour l'été et produits chauffants pour l'hiver, livrés rapidement chez vous."
   },
   "reviews": {
@@ -406,7 +406,7 @@
   },
   "about": {
     "title": "À propos de nous",
-    "p1": "My Shop est une boutique en ligne proposant des gadgets intelligents et des produits utiles pour la vie de tous les jours. Nous sélectionnons des produits qui rendent la vie un peu plus facile : des solutions intelligentes pour la maison aux accessoires pratiques en déplacement.",
+    "p1": "Alles In 1 Winkel est une boutique en ligne proposant des gadgets intelligents et des produits utiles pour la vie de tous les jours. Nous sélectionnons des produits qui rendent la vie un peu plus facile : des solutions intelligentes pour la maison aux accessoires pratiques en déplacement.",
     "p2": "Nous travaillons directement avec les fabricants et les fournisseurs afin de pouvoir proposer des prix compétitifs sans sacrifier la qualité. Chaque commande est soigneusement préparée et expédiée.",
     "p3": "Notre objectif est simple : rendre les clients satisfaits avec de bons produits, une livraison rapide et un service honnête. Pas de conditions compliquées, pas de surprises – juste clair et fiable.",
     "promiseTitle": "Notre promesse",

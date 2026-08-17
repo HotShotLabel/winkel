@@ -36,7 +36,7 @@ export async function generateMetadata({
     openGraph: {
       title: t('title'),
       description,
-      siteName: 'Mijn Winkel',
+      siteName: 'Alles In 1 Winkel',
       type: 'website',
       locale: locale === 'nl' ? 'nl_NL' : locale,
     },

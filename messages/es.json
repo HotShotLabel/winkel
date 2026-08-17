@@ -1,6 +1,6 @@
 {
   "nav": {
-    "shopName": "Mi Tienda",
+    "shopName": "Alles In 1 Winkel",
     "products": "Productos",
     "cart": "Carrito",
     "account": "Mi cuenta",
@@ -225,7 +225,7 @@
     "loading": "Cargando..."
   },
   "footer": {
-    "shopName": "Mi Tienda",
+    "shopName": "Alles In 1 Winkel",
     "tagline": "Gadgets inteligentes y productos prácticos, pedidos rápida y fácilmente.",
     "service": "Atención al cliente",
     "guarantee": "Garantía y Devoluciones",
@@ -234,7 +234,7 @@
     "p1": "🛡️ Garantía de satisfacción al 100 %",
     "p2": "💶 Dinero de vuelta en 7 días",
     "p3": "💳 Pago seguro a través de Stripe",
-    "copyright": "© {year} Mi Tienda. Todos los derechos reservados.",
+    "copyright": "© {year} Alles In 1 Winkel. Todos los derechos reservados.",
     "contact": "Contacto",
     "privacy": "Política de privacidad",
     "terms": "Términos y condiciones",
@@ -244,11 +244,11 @@
   "privacy": {
     "title": "Política de privacidad",
     "updated": "Última actualización: 14 de agosto de 2026",
-    "intro": "Mi Tienda respeta su privacidad. Esta política explica qué datos recopilamos, para qué los usamos y qué derechos tiene. ¿Preguntas? Escriba a mijnwinkel.vercel@proton.me.",
+    "intro": "Alles In 1 Winkel respeta su privacidad. Esta política explica qué datos recopilamos, para qué los usamos y qué derechos tiene. ¿Preguntas? Escriba a mijnwinkel.vercel@proton.me.",
     "sections": [
       {
         "h": "Quiénes somos",
-        "p": "Mi Tienda es un nombre comercial de una tienda en línea de gadgets inteligentes y productos prácticos. Puede contactarnos en mijnwinkel.vercel@proton.me."
+        "p": "Alles In 1 Winkel es un nombre comercial de una tienda en línea de gadgets inteligentes y productos prácticos. Puede contactarnos en mijnwinkel.vercel@proton.me."
       },
       {
         "h": "Qué datos recopilamos",
@@ -287,11 +287,11 @@
   "terms": {
     "title": "Términos y condiciones",
     "updated": "Última actualización: 14 de agosto de 2026",
-    "intro": "Estos términos se aplican a todos los pedidos en Mi Tienda. Al realizar un pedido acepta estos términos. ¿Preguntas? Escriba a mijnwinkel.vercel@proton.me.",
+    "intro": "Estos términos se aplican a todos los pedidos en Alles In 1 Winkel. Al realizar un pedido acepta estos términos. ¿Preguntas? Escriba a mijnwinkel.vercel@proton.me.",
     "sections": [
       {
         "h": "General",
-        "p": "Mi Tienda es un nombre comercial de una tienda en línea de gadgets inteligentes y productos prácticos, contactable en mijnwinkel.vercel@proton.me."
+        "p": "Alles In 1 Winkel es un nombre comercial de una tienda en línea de gadgets inteligentes y productos prácticos, contactable en mijnwinkel.vercel@proton.me."
       },
       {
         "h": "Oferta y contrato",
@@ -328,7 +328,7 @@
     ]
   },
   "metadata": {
-    "title": "Mi Tienda | Pide online rápido",
+    "title": "Alles In 1 Winkel | Pide online rápido",
     "description": "Pide online de forma rápida y sencilla. Productos refrescantes de verano y productos que conservan el calor en invierno, rápido en tu casa."
   },
   "reviews": {
@@ -406,7 +406,7 @@
   },
   "about": {
     "title": "Sobre nosotros",
-    "p1": "My Shop es una tienda online con gadgets inteligentes y productos útiles para el día a día. Seleccionamos productos que hacen la vida un poco más fácil, desde soluciones inteligentes para el hogar hasta prácticos accesorios para llevar.",
+    "p1": "Alles In 1 Winkel es una tienda online con gadgets inteligentes y productos útiles para el día a día. Seleccionamos productos que hacen la vida un poco más fácil, desde soluciones inteligentes para el hogar hasta prácticos accesorios para llevar.",
     "p2": "Trabajamos directamente con fabricantes y proveedores, por lo que podemos ofrecer precios competitivos sin sacrificar la calidad. Cada pedido se prepara y envía cuidadosamente.",
     "p3": "Nuestro objetivo es simple: hacer felices a los clientes con buenos productos, entrega rápida y servicio honesto. Sin condiciones complicadas ni sorpresas: simplemente claro y fiable.",
     "promiseTitle": "Nuestra promesa",

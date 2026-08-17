@@ -21,7 +21,7 @@ export async function POST(request: Request) {
 
     const html = `
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;">
-      <h2 style="color:#1a1a1a;">Inloggen bij Mijn Winkel</h2>
+      <h2 style="color:#1a1a1a;">Inloggen bij Alles In 1 Winkel</h2>
       <p>Hallo,</p>
       <p>Klik op de knop hieronder om in te loggen op je account. Daar zie je al je bestellingen en hun status.</p>
       <p style="margin:24px 0;">
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     </div>
     `.trim()
 
-    const sent = await sendEmail(email, 'Inloggen bij Mijn Winkel', html)
+    const sent = await sendEmail(email, 'Inloggen bij Alles In 1 Winkel', html)
 
     if (!sent) {
       return NextResponse.json({ error: 'E-mail verzenden mislukt' }, { status: 500 })

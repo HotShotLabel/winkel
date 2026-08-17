@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     const { error: dbError } = await getSupabase()
       .from('contact_messages')
       .insert({
-        name: 'MijnWinkel',
+        name: 'AllesIn1Winkel',
         email: from,
         subject: '',
         message: message.trim(),

@@ -1,4 +1,4 @@
-# Mijn Winkel - Dropshipping Store
+# Alles In 1 Winkel - Dropshipping Store
 
 Gratis Next.js winkel met Stripe betalingen.
 

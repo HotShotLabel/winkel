@@ -1,6 +1,6 @@
 {
   "nav": {
-    "shopName": "Mijn Winkel",
+    "shopName": "Alles In 1 Winkel",
     "products": "Producten",
     "cart": "Winkelmand",
     "account": "Mijn account",
@@ -203,7 +203,7 @@
     "sendReply": "Verstuur antwoord",
     "replySent": "Antwoord verzonden.",
     "noMessages": "Nog geen berichten.",
-    "adminLabel": "MijnWinkel",
+    "adminLabel": "AllesIn1Winkel",
     "youLabel": "Jij",
     "threadOpen": "Open gesprek",
     "threadClosed": "Gesprek",
@@ -225,7 +225,7 @@
     "loading": "Laden..."
   },
   "footer": {
-    "shopName": "Mijn Winkel",
+    "shopName": "Alles In 1 Winkel",
     "tagline": "Slimme gadgets en handige producten, snel en eenvoudig besteld.",
     "service": "Klantenservice",
     "guarantee": "Garantie & Retour",
@@ -234,7 +234,7 @@
     "p1": "🛡️ 100% tevredenheidsgarantie",
     "p2": "💶 Geld terug binnen 7 dagen",
     "p3": "💳 Veilig betalen via Stripe",
-    "copyright": "© {year} Mijn Winkel. Alle rechten voorbehouden.",
+    "copyright": "© {year} Alles In 1 Winkel. Alle rechten voorbehouden.",
     "contact": "Contact",
     "privacy": "Privacyverklaring",
     "terms": "Algemene voorwaarden",
@@ -244,11 +244,11 @@
   "privacy": {
     "title": "Privacyverklaring",
     "updated": "Laatst bijgewerkt: 14 augustus 2026",
-    "intro": "Mijn Winkel respecteert uw privacy. In deze verklaring leggen we uit welke gegevens we verzamelen, waarvoor we ze gebruiken en welke rechten u heeft. Vragen? Mail naar mijnwinkel.vercel@proton.me.",
+    "intro": "Alles In 1 Winkel respecteert uw privacy. In deze verklaring leggen we uit welke gegevens we verzamelen, waarvoor we ze gebruiken en welke rechten u heeft. Vragen? Mail naar mijnwinkel.vercel@proton.me.",
     "sections": [
       {
         "h": "Wie zijn wij",
-        "p": "Mijn Winkel is een handelsnaam voor een online winkel in slimme gadgets en handige producten. Wij zijn bereikbaar via mijnwinkel.vercel@proton.me."
+        "p": "Alles In 1 Winkel is een handelsnaam voor een online winkel in slimme gadgets en handige producten. Wij zijn bereikbaar via mijnwinkel.vercel@proton.me."
       },
       {
         "h": "Welke gegevens verzamelen wij",
@@ -287,11 +287,11 @@
   "terms": {
     "title": "Algemene voorwaarden",
     "updated": "Laatst bijgewerkt: 14 augustus 2026",
-    "intro": "Deze voorwaarden gelden voor alle bestellingen bij Mijn Winkel. Door een bestelling te plaatsen gaat u akkoord met deze voorwaarden. Vragen? Mail naar mijnwinkel.vercel@proton.me.",
+    "intro": "Deze voorwaarden gelden voor alle bestellingen bij Alles In 1 Winkel. Door een bestelling te plaatsen gaat u akkoord met deze voorwaarden. Vragen? Mail naar mijnwinkel.vercel@proton.me.",
     "sections": [
       {
         "h": "Algemeen",
-        "p": "Mijn Winkel is een handelsnaam voor een online winkel in slimme gadgets en handige producten, bereikbaar via mijnwinkel.vercel@proton.me."
+        "p": "Alles In 1 Winkel is een handelsnaam voor een online winkel in slimme gadgets en handige producten, bereikbaar via mijnwinkel.vercel@proton.me."
       },
       {
         "h": "Aanbod en overeenkomst",
@@ -328,7 +328,7 @@
     ]
   },
   "metadata": {
-    "title": "Mijn Winkel | Snel online bestellen",
+    "title": "Alles In 1 Winkel | Snel online bestellen",
     "description": "Snel en eenvoudig online bestellen. Koelende zomerproducten en warmhoudende winterproducten, snel bij je thuis."
   },
   "reviews": {
@@ -406,7 +406,7 @@
   },
   "about": {
     "title": "Over ons",
-    "p1": "Mijn Winkel is een online winkel met slimme gadgets en handige producten voor het dagelijks leven. We zoeken producten uit die het leven net wat makkelijker maken — van slimme oplossingen voor thuis tot handige accessoires onderweg.",
+    "p1": "Alles In 1 Winkel is een online winkel met slimme gadgets en handige producten voor het dagelijks leven. We zoeken producten uit die het leven net wat makkelijker maken — van slimme oplossingen voor thuis tot handige accessoires onderweg.",
     "p2": "We werken rechtstreeks met fabrikanten en leveranciers samen, zodat we scherpe prijzen kunnen bieden zonder in te leveren op kwaliteit. Elke bestelling wordt zorgvuldig klaargemaakt en verzonden.",
     "p3": "Ons doel is simpel: klanten blij maken met goede producten, snelle levering en eerlijke service. Geen ingewikkelde voorwaarden, geen verrassingen — gewoon duidelijk en betrouwbaar.",
     "promiseTitle": "Onze belofte",

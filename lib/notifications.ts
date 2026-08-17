@@ -28,7 +28,7 @@ const SMTP_HOST = process.env.SMTP_HOST || 'smtp-relay.brevo.com'
 const SMTP_PORT = parseInt(process.env.SMTP_PORT || '587', 10)
 const SMTP_USER = process.env.SMTP_USER || ''
 const SMTP_PASS = process.env.SMTP_PASS || ''
-const SMTP_FROM = process.env.SMTP_FROM || 'MijnWinkel <mijnwinkel.vercel@proton.me>'
+const SMTP_FROM = process.env.SMTP_FROM || 'AllesIn1Winkel <mijnwinkel.vercel@proton.me>'
 
 function getTransporter() {
   return nodemailer.createTransport({
