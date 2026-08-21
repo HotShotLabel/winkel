@@ -170,6 +170,14 @@ export async function deleteProduct(id: string): Promise<boolean> {
   return true
 }
 
+export async function getOrderCount(): Promise<number> {
+  const { count, error } = await getSupabase()
+    .from('orders')
+    .select('*', { count: 'exact', head: true })
+  if (error) return 0
+  return count || 0
+}
+
 export async function getOrders(): Promise<Order[]> {
   const { data, error } = await getSupabase()
     .from('orders')

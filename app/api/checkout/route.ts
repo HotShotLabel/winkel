@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
-import { addOrder } from '@/lib/orders'
+import { addOrder, getOrderCount } from '@/lib/orders'
 import { getCountry, locationTreeId } from '@/lib/address-map'
 import { validateCoupon } from '@/lib/coupons'
 
@@ -77,6 +77,11 @@ export async function POST(request: Request) {
 
     const payableTotal = Math.max(0, total - discountAmount)
 
+    // 500ste bestelling helemaal gratis
+    const currentCount = await getOrderCount()
+    const ordinal = currentCount + 1
+    const isFreeOrder = ordinal % 500 === 0
+
     // Maak order aan in Supabase
     await addOrder({
       id: orderId,
@@ -89,9 +94,13 @@ export async function POST(request: Request) {
         price: item.price,
         quantity: item.quantity,
       })),
-      total: payableTotal,
-      status: 'pending',
+      total: isFreeOrder ? 0 : payableTotal,
+      status: isFreeOrder ? 'paid' : 'pending',
     })
+
+    if (isFreeOrder) {
+      return NextResponse.json({ url: `${baseUrl}/success?orderId=${orderId}`, orderId, free: true })
+    }
 
     // Maak Stripe session aan
     const session = await stripe.checkout.sessions.create({

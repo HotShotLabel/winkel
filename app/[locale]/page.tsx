@@ -1,4 +1,4 @@
-import { getProducts, localizeProduct, getPaidOrderCounts } from '@/lib/orders'
+import { getProducts, localizeProduct, getPaidOrderCounts, getOrderCount } from '@/lib/orders'
 import { getProductPrices } from '@/lib/prices'
 import { getRecentReviews, getReviewSummary, getReviewAverages } from '@/lib/reviews'
 import HomeReviews from '@/components/HomeReviews'
@@ -19,6 +19,8 @@ export default async function Home() {
 
   const soldCounts = await getPaidOrderCounts()
   const soldFor = (id: string) => soldCounts[id] || 0
+  const orderCount = await getOrderCount()
+  const nextFree = 500 - (orderCount % 500)
 
   // Bestsellers: meest verkochte eerst, daarna op productnummer.
   const bestsellers = [...products]
@@ -98,6 +100,15 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* 500ste gratis */}
+      <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-center py-3 px-4">
+        <p className="font-bold text-lg">
+          🎉 Elke 500ste bestelling helemaal GRATIS! {orderCount > 0 && (
+            <span className="font-normal text-sm">nog {nextFree} bestellingen tot de volgende winnaar</span>
+          )}
+        </p>
+      </div>
 
       {/* Bestsellers */}
       <section id="bestsellers" className="bg-gradient-to-b from-white to-blue-50 py-12">
