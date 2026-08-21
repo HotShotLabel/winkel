@@ -1,6 +1,6 @@
 import { getProducts, localizeProduct, getPaidOrderCounts } from '@/lib/orders'
 import { getProductPrices } from '@/lib/prices'
-import { getRecentReviews, getReviewSummary } from '@/lib/reviews'
+import { getRecentReviews, getReviewSummary, getReviewAverages } from '@/lib/reviews'
 import HomeReviews from '@/components/HomeReviews'
 import CategoryFilter from '@/components/CategoryFilter'
 import { getTranslations, getLocale } from 'next-intl/server'
@@ -25,9 +25,10 @@ export default async function Home() {
     .sort((a, b) => soldFor(b.id) - soldFor(a.id) || (a.number ?? 99) - (b.number ?? 99))
     .slice(0, 6)
 
-  const [reviewSummary, recentReviews] = await Promise.all([
+  const [reviewSummary, recentReviews, reviewAverages] = await Promise.all([
     getReviewSummary(),
     getRecentReviews(3),
+    getReviewAverages(),
   ])
 
   const faqItems = faq.raw('items') as { q: string; a: string }[]
@@ -113,6 +114,7 @@ export default async function Home() {
                 product={product}
                 oldPrice={prices[product.id]?.old_price}
                 sold={soldFor(product.id)}
+                rating={reviewAverages[product.id]}
               />
             ))}
           </div>
@@ -122,7 +124,7 @@ export default async function Home() {
       {/* Alle producten met categorie-filter */}
       <div id="producten" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">{t('allTitle')}</h2>
-        <CategoryFilter products={products} soldCounts={soldCounts} oldPrices={prices} />
+        <CategoryFilter products={products} soldCounts={soldCounts} oldPrices={prices} reviewAverages={reviewAverages} />
       </div>
 
       <HomeReviews

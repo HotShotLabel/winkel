@@ -11,9 +11,10 @@ interface Props {
   products: Product[]
   soldCounts: Record<string, number>
   oldPrices: ProductPrices
+  reviewAverages: Record<string, { avg: number; count: number }>
 }
 
-export default function CategoryFilter({ products, soldCounts, oldPrices }: Props) {
+export default function CategoryFilter({ products, soldCounts, oldPrices, reviewAverages }: Props) {
   const t = useTranslations('categories')
   const [active, setActive] = useState<CategoryId | null>(null)
 
@@ -60,6 +61,7 @@ export default function CategoryFilter({ products, soldCounts, oldPrices }: Prop
               product={product}
               oldPrice={oldPrices[product.id]?.old_price}
               sold={soldCounts[product.id] || 0}
+              rating={reviewAverages[product.id]}
             />
           ))}
         </div>

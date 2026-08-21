@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import WishlistButton from '@/components/WishlistButton'
 
-export default function ProductCard({ product, oldPrice, sold = 0 }: { product: Product; oldPrice?: number | null; sold?: number }) {
+export default function ProductCard({ product, oldPrice, sold = 0, rating }: { product: Product; oldPrice?: number | null; sold?: number; rating?: { avg: number; count: number } | null }) {
   const t = useTranslations('productCard')
   const { addToCart } = useCart()
   const [added, setAdded] = useState(false)
@@ -58,6 +58,12 @@ export default function ProductCard({ product, oldPrice, sold = 0 }: { product: 
             </span>
           )}
         </div>
+        {rating && rating.count > 0 && (
+          <div className="flex items-center gap-1 mb-1">
+            <span className="text-amber-400 text-sm">{'★'.repeat(Math.round(rating.avg))}{'☆'.repeat(5 - Math.round(rating.avg))}</span>
+            <span className="text-xs text-gray-500">({rating.count})</span>
+          </div>
+        )}
         <p className="text-gray-600 text-sm mb-4 line-clamp-2">
           {product.description}
         </p>
