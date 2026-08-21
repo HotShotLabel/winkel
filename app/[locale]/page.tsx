@@ -104,9 +104,8 @@ export default async function Home() {
       {/* 500ste gratis */}
       <div className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-center py-3 px-4">
         <p className="font-bold text-lg">
-          🎉 Elke 500ste bestelling helemaal GRATIS! {orderCount > 0 && (
-            <span className="font-normal text-sm">nog {nextFree} bestellingen tot de volgende winnaar</span>
-          )}
+          🎉 Elke 500ste bestelling helemaal GRATIS!{' '}
+          <span className="font-normal text-sm">nog {nextFree} bestellingen tot de volgende winnaar</span>
         </p>
       </div>
 
