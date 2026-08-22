@@ -69,6 +69,16 @@ const MAP: Record<string, CategoryId> = {
   'noodfluitje-overleving': 'gadgets',
   'aansteker-noodweerbestendig': 'gadgets',
   'noodkaarsen-set-12': 'gezin',
+  'noodpakket-72-uur-compleet': 'wellness',
+  'walkie-talkie-set-2': 'gadgets',
+  'rookgranaat-noodsignaal': 'gezin',
+  'bushcraft-overlevingsmes': 'gadgets',
+  'firestarter-set-outdoor': 'gadgets',
+  'paracord-armband-overleving': 'gadgets',
+  'survival-kompas-militair': 'gadgets',
+  'noodtent-bivakzak': 'gezin',
+  'ehbo-kit-compact-60': 'wellness',
+  'overlevingsbijl-kamp': 'gadgets',
 }
 
 export function productCategory(id: string): CategoryId | null {
