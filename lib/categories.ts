@@ -59,6 +59,16 @@ const MAP: Record<string, CategoryId> = {
   'pulsoximeter-vinger': 'wellness',
   'gua-sha-massage-set': 'wellness',
   'acupressuurmat-yoga': 'wellness',
+  'rhino-rescue-trauma-kit': 'wellness',
+  'rhino-rescue-ehbo-navul': 'wellness',
+  'overlevingsdeken-mylar': 'gezin',
+  'noodradio-zonne-energie': 'gadgets',
+  'zonnepaneel-powerbank-20000': 'gadgets',
+  'waterfilter-persoonlijk': 'wellness',
+  'multitool-18-in-1': 'gadgets',
+  'noodfluitje-overleving': 'gadgets',
+  'aansteker-noodweerbestendig': 'gadgets',
+  'noodkaarsen-set-12': 'gezin',
 }
 
 export function productCategory(id: string): CategoryId | null {
