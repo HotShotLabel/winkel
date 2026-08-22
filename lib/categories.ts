@@ -44,6 +44,14 @@ const MAP: Record<string, CategoryId> = {
   'hondendraagtas-dubbelschouder': 'gezin',
   'hondendraagtas-rugzak': 'gezin',
   'huisdier-autostoel-hond': 'gezin',
+  'zwangerschapskussen-u-vorm': 'wellness',
+  'zwangerschaps-buikband': 'wellness',
+  'postpartum-buikband': 'wellness',
+  'houten-dier-puzzel-montessori': 'gadgets',
+  'montessori-drukbord-schakelaars': 'gadgets',
+  'houten-klok-leertijd': 'gadgets',
+  'montessori-wiskunde-cijferkaart': 'gadgets',
+  'kinderen-kleuren-sorteer-speelgoed': 'gadgets',
 }
 
 export function productCategory(id: string): CategoryId | null {
