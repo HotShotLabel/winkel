@@ -168,12 +168,14 @@ export default async function ProductPage({ params }: { params: { id: string } }
 
           <p className="text-gray-600 mb-6 leading-relaxed">{product.description}</p>
 
+          {getProductOptions(product.id) && (
+            <div className="mb-6">
+              <ProductOptions product={product} />
+            </div>
+          )}
+
           <div className="flex items-center gap-3">
-            {getProductOptions(product.id) ? (
-              <ProductOptions product={product} large />
-            ) : (
-              <AddToCartButton product={product} large />
-            )}
+            <AddToCartButton product={product} large />
             <WishlistButton productId={product.id} showLabel className="px-4 py-3 border border-gray-200" />
           </div>
 
