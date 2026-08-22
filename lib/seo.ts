@@ -5,7 +5,7 @@ import { routing } from '@/i18n/routing'
 
 export function domainForLocale(locale: string): string {
   const entry = routing.domains?.find(d => d.defaultLocale === locale)
-  return entry?.domain || 'mijnwinkel.vercel.app'
+  return entry?.domain || '1place4all.vercel.app'
 }
 
 // Pad is relatief aan de taal, bv. '/product/koelhalsband' of '' (homepage).

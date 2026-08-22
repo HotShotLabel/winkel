@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/checkout', '/success', '/account', '/order'],
     },
-    sitemap: 'https://mijnwinkel.vercel.app/sitemap.xml',
+    sitemap: 'https://1place4all.vercel.app/sitemap.xml',
   }
 }
