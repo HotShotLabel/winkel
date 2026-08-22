@@ -52,6 +52,13 @@ const MAP: Record<string, CategoryId> = {
   'houten-klok-leertijd': 'gadgets',
   'montessori-wiskunde-cijferkaart': 'gadgets',
   'kinderen-kleuren-sorteer-speelgoed': 'gadgets',
+  'ems-pols-massager': 'wellness',
+  '3-in-1-rugmassager-warmte': 'wellness',
+  'u-vorm-nekmassager': 'wellness',
+  'oogmassager-airbag': 'wellness',
+  'pulsoximeter-vinger': 'wellness',
+  'gua-sha-massage-set': 'wellness',
+  'acupressuurmat-yoga': 'wellness',
 }
 
 export function productCategory(id: string): CategoryId | null {
