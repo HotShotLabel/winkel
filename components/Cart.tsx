@@ -5,11 +5,12 @@ import { Product } from '@/lib/orders'
 
 interface CartItem extends Product {
   quantity: number
+  option?: string
 }
 
 interface CartContextType {
   items: CartItem[]
-  addToCart: (product: Product, quantity?: number) => void
+  addToCart: (product: Product, quantity?: number, option?: string) => void
   updateQuantity: (productId: string, quantity: number) => void
   removeFromCart: (productId: string) => void
   clearCart: () => void
@@ -56,8 +57,22 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const MAX_QUANTITY = 10
 
-  const addToCart = (product: Product, quantity = 1) => {
+  const addToCart = (product: Product, quantity = 1, option?: string) => {
     setItems(prev => {
+      // Met optie = aparte entry (zelfde product, ander model)
+      if (option) {
+        const key = `${product.id}_${option}`
+        const existing = prev.find(item => item.id + '_' + (item.option || '') === key)
+        if (existing) {
+          return prev.map(item =>
+            item.id + '_' + (item.option || '') === key
+              ? { ...item, quantity: Math.min(item.quantity + quantity, MAX_QUANTITY) }
+              : item
+          )
+        }
+        return [...prev, { ...product, quantity: Math.min(quantity, MAX_QUANTITY), option }]
+      }
+      // Zonder optie: zoals eerst
       const existing = prev.find(item => item.id === product.id)
       if (existing) {
         return prev.map(item =>

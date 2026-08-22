@@ -90,9 +90,10 @@ export async function POST(request: Request) {
       address: `${customer.address} ${customer.houseNumber}, ${customer.postalCode} ${customer.city}, ${customer.country}`,
       items: items.map((item: any) => ({
         productId: item.id,
-        name: item.name,
+        name: item.option ? `${item.name} (${item.option})` : item.name,
         price: item.price,
         quantity: item.quantity,
+        option: item.option || null,
       })),
       total: isFreeOrder ? 0 : payableTotal,
       status: isFreeOrder ? 'paid' : 'pending',
