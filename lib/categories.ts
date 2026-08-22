@@ -41,6 +41,9 @@ const MAP: Record<string, CategoryId> = {
   'spin-scrubber': 'wellness',
   'hoofdmassageborstel-haargroei': 'wellness',
   'dieren-verzorgingshandschoen': 'gezin',
+  'hondendraagtas-dubbelschouder': 'gezin',
+  'hondendraagtas-rugzak': 'gezin',
+  'huisdier-autostoel-hond': 'gezin',
 }
 
 export function productCategory(id: string): CategoryId | null {
