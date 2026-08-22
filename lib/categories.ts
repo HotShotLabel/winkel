@@ -18,6 +18,11 @@ const MAP: Record<string, CategoryId> = {
   '3-in-1-mistkoelventilator': 'zomer',
   'gobi-heat-breeze-koelvest': 'zomer',
   'dreo-turbocool-misting-fan': 'zomer',
+  'draagbare-usb-blender-700ml': 'gadgets',
+  'led-lamp-draadloos-opladen': 'gadgets',
+  'slimme-houdingscorrecter': 'wellness',
+  'opvouwbare-laptopstandaard': 'gadgets',
+  'magnetische-kabelclips': 'gadgets',
   'elektrisch-verwarmde-handschoenen-3-standen': 'verwarming',
   'elektrische-deken-180x130cm-met-timer': 'verwarming',
   'magnetische-handwarmer-2-in-1': 'verwarming',
@@ -34,6 +39,8 @@ const MAP: Record<string, CategoryId> = {
   'star-projector': 'sfeer',
   'opblaasbaar-familiezwembad-verdikt-pvc': 'gezin',
   'spin-scrubber': 'wellness',
+  'hoofdmassageborstel-haargroei': 'wellness',
+  'dieren-verzorgingshandschoen': 'gezin',
 }
 
 export function productCategory(id: string): CategoryId | null {
